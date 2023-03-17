@@ -1,0 +1,103 @@
+{
+	"info": {
+		"_postman_id": "dcff1bb5-fb28-4cf4-afb5-61e1f24d2a07",
+		"name": "capstone_nodejs",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "23648949"
+	},
+	"item": [
+		{
+			"name": "users",
+			"item": [
+				{
+					"name": "signUp",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"ho_ten\":\"thinh\",\r\n    \"so_dt\": \"0978481071\",\r\n    \"email\":\"dothinh@gmail.com\",\r\n    \"mat_khau\": \"thinh123\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{domain}}/users/signUp",
+							"host": [
+								"{{domain}}"
+							],
+							"path": [
+								"users",
+								"signUp"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "signIn",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"email\": \"dothinh@gmail.com\",\r\n    \"mat_khau\": \"thinh123\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{domain}}/users/signIn",
+							"host": [
+								"{{domain}}"
+							],
+							"path": [
+								"users",
+								"signIn"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "getAllUsers",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0YWlfa2hvYW4iOjI4LCJob190ZW4iOiJ0aGluaCIsImVtYWlsIjoiZG90aGluaEBnbWFpbC5jb20iLCJzb19kdCI6IjA5Nzg0ODEwNzEiLCJtYXRfa2hhdSI6IiQyYiQxMCQuOElVMHY1U1NpOWRWdjhsLzl3bngueXNhUzVlYmZBWURNMWRtREFkaWpPMzEvcW1sZ2VhUyIsImxvYWlfbmd1b2lfZHVuZyI6MSwicGVybWlzc2lvbiI6eyJwZXJtaXNzaW9uX25hbWUiOiJNZW1iZXJzIn0sImlhdCI6MTY3OTA3Nzg0NywiZXhwIjoxNjc5MTY0MjQ3fQ.e16ewq2pPiRwFep1HRI7fR1c8nC_9hp0QtzWmNoVoEQ",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{domain}}/users/getAllUsers",
+							"host": [
+								"{{domain}}"
+							],
+							"path": [
+								"users",
+								"getAllUsers"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	],
+	"variable": [
+		{
+			"key": "domain",
+			"value": "localhost:8080"
+		}
+	]
+}
