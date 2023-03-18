@@ -7,10 +7,10 @@ import { UsersModule } from './users/users.module';
 
 @Module({
   imports: [
+    ConfigModule.forRoot({ isGlobal: true }),
     AppModule,
     AuthModule,
     UsersModule,
-    ConfigModule.forRoot({ isGlobal: true }),
   ],
   controllers: [AppController],
   providers: [AppProvider],

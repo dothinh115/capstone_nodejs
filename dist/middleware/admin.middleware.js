@@ -5,17 +5,22 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
     else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
     return c > 3 && r && Object.defineProperty(target, key, r), r;
 };
+var __metadata = (this && this.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.AdminCheck = void 0;
 const common_1 = require("@nestjs/common");
-const client_1 = require("@prisma/client");
 const jwt = require("jsonwebtoken");
+const prisma_service_1 = require("../prisma/prisma.service");
 let AdminCheck = class AdminCheck {
-    constructor() {
-        this.model = new client_1.PrismaClient();
+    constructor(model) {
+        this.model = model;
     }
     async use(req, res, next) {
         let { authorization } = req.headers;
+        if (!authorization)
+            throw new common_1.HttpException('Không đủ quyền', 400);
         authorization = authorization.split(' ')[1];
         const data = jwt.decode(authorization);
         const user = await this.model.nguoi_dung.findUnique({
@@ -31,7 +36,8 @@ let AdminCheck = class AdminCheck {
     }
 };
 AdminCheck = __decorate([
-    (0, common_1.Injectable)()
+    (0, common_1.Injectable)(),
+    __metadata("design:paramtypes", [prisma_service_1.PrismaService])
 ], AdminCheck);
 exports.AdminCheck = AdminCheck;
 //# sourceMappingURL=admin.middleware.js.map

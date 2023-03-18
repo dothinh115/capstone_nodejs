@@ -12,6 +12,7 @@ const common_1 = require("@nestjs/common");
 const passport_1 = require("@nestjs/passport");
 const admin_middleware_1 = require("../middleware/admin.middleware");
 const jwt_strategy_1 = require("../middleware/jwt.strategy");
+const prisma_module_1 = require("../prisma/prisma.module");
 const users_controller_1 = require("./users.controller");
 const users_service_1 = require("./users.service");
 let UsersModule = UsersModule_1 = class UsersModule {
@@ -21,7 +22,7 @@ let UsersModule = UsersModule_1 = class UsersModule {
 };
 UsersModule = UsersModule_1 = __decorate([
     (0, common_1.Module)({
-        imports: [UsersModule_1, passport_1.PassportModule],
+        imports: [UsersModule_1, passport_1.PassportModule, prisma_module_1.PrismaModule],
         controllers: [users_controller_1.UsersController],
         providers: [users_service_1.UsersProvider, jwt_strategy_1.JwtStrategy],
     })

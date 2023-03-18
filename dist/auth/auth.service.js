@@ -15,9 +15,11 @@ const client_1 = require("@prisma/client");
 const bcrypt = require("bcrypt");
 const variables_1 = require("../utils/variables");
 const jwt_1 = require("@nestjs/jwt");
+const config_1 = require("@nestjs/config");
 let AuthProvider = class AuthProvider {
-    constructor(jwt) {
+    constructor(jwt, configService) {
         this.jwt = jwt;
+        this.configService = configService;
         this.model = new client_1.PrismaClient();
     }
     async signUpProvider({ email, ho_ten, mat_khau, so_dt, }) {
@@ -31,7 +33,7 @@ let AuthProvider = class AuthProvider {
         const data = {
             email,
             ho_ten,
-            mat_khau: await bcrypt.hashSync(mat_khau, variables_1.bcrypt_loops),
+            mat_khau: await bcrypt.hashSync(mat_khau, Number(this.configService.get('BCRYPT_LOOPS'))),
             so_dt,
         };
         return await this.model.nguoi_dung.create({
@@ -68,7 +70,7 @@ let AuthProvider = class AuthProvider {
 };
 AuthProvider = __decorate([
     (0, common_1.Injectable)(),
-    __metadata("design:paramtypes", [jwt_1.JwtService])
+    __metadata("design:paramtypes", [jwt_1.JwtService, config_1.ConfigService])
 ], AuthProvider);
 exports.AuthProvider = AuthProvider;
 //# sourceMappingURL=auth.service.js.map

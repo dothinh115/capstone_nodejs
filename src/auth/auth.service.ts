@@ -9,14 +9,14 @@ import {
 import * as bcrypt from 'bcrypt';
 import {
   alreadyExistedEmailMessage,
-  bcrypt_loops,
   loginErrorMessage,
 } from 'src/utils/variables';
 import { JwtService } from '@nestjs/jwt';
+import { ConfigService } from '@nestjs/config';
 
 @Injectable()
 export class AuthProvider {
-  constructor(private jwt: JwtService) {}
+  constructor(private jwt: JwtService, private configService: ConfigService) {}
   private model = new PrismaClient();
 
   async signUpProvider({
@@ -35,7 +35,10 @@ export class AuthProvider {
     const data = {
       email,
       ho_ten,
-      mat_khau: await bcrypt.hashSync(mat_khau, bcrypt_loops),
+      mat_khau: await bcrypt.hashSync(
+        mat_khau,
+        Number(this.configService.get('BCRYPT_LOOPS')),
+      ),
       so_dt,
     };
     return await this.model.nguoi_dung.create({

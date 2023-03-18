@@ -19,10 +19,10 @@ let AppModule = AppModule_1 = class AppModule {
 AppModule = AppModule_1 = __decorate([
     (0, common_1.Module)({
         imports: [
+            config_1.ConfigModule.forRoot({ isGlobal: true }),
             AppModule_1,
             auth_module_1.AuthModule,
             users_module_1.UsersModule,
-            config_1.ConfigModule.forRoot({ isGlobal: true }),
         ],
         controllers: [app_controller_1.AppController],
         providers: [app_service_1.AppProvider],

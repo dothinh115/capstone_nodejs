@@ -1,13 +1,14 @@
 import { HttpException, Injectable, NestMiddleware } from '@nestjs/common';
-import { PrismaClient } from '@prisma/client';
 import { NextFunction } from 'express';
 import * as jwt from 'jsonwebtoken';
+import { PrismaService } from 'src/prisma/prisma.service';
 
 @Injectable()
 export class AdminCheck implements NestMiddleware {
-  private model = new PrismaClient();
+  constructor(private model: PrismaService) {}
   async use(req: any, res: any, next: NextFunction) {
     let { authorization } = req.headers;
+    if (!authorization) throw new HttpException('Không đủ quyền', 400);
     authorization = authorization.split(' ')[1];
     const data = jwt.decode(authorization);
     const user = await this.model.nguoi_dung.findUnique({
