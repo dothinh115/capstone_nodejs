@@ -17,4 +17,10 @@ export class AdminController {
     await this.adminProvider.imgSync();
     throw new HttpException(this.response.successRes(successMessage), 200);
   }
+
+  @Get('/movieSync')
+  async movieSync() {
+    await this.adminProvider.movieSync();
+    throw new HttpException(this.response.successRes(successMessage), 200);
+  }
 }

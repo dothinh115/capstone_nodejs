@@ -25,6 +25,10 @@ let AdminController = class AdminController {
         await this.adminProvider.imgSync();
         throw new common_1.HttpException(this.response.successRes(variables_1.successMessage), 200);
     }
+    async movieSync() {
+        await this.adminProvider.movieSync();
+        throw new common_1.HttpException(this.response.successRes(variables_1.successMessage), 200);
+    }
 };
 __decorate([
     (0, common_1.Get)('/imgSync'),
@@ -32,6 +36,12 @@ __decorate([
     __metadata("design:paramtypes", []),
     __metadata("design:returntype", Promise)
 ], AdminController.prototype, "imgSync", null);
+__decorate([
+    (0, common_1.Get)('/movieSync'),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", []),
+    __metadata("design:returntype", Promise)
+], AdminController.prototype, "movieSync", null);
 AdminController = __decorate([
     (0, common_1.Controller)('/admin'),
     (0, common_1.UseGuards)(strategy_1.TokenAuthorization, admin_guard_1.AdminRole),
