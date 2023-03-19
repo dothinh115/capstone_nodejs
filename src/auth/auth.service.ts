@@ -1,5 +1,4 @@
 import { HttpException, Injectable } from '@nestjs/common';
-import { PrismaClient } from '@prisma/client';
 import {
   UserBaseDto,
   UserDto,
@@ -13,11 +12,15 @@ import {
 } from 'src/utils/variables';
 import { JwtService } from '@nestjs/jwt';
 import { ConfigService } from '@nestjs/config';
+import { PrismaService } from 'src/prisma/prisma.service';
 
 @Injectable()
 export class AuthProvider {
-  constructor(private jwt: JwtService, private configService: ConfigService) {}
-  private model = new PrismaClient();
+  constructor(
+    private jwt: JwtService,
+    private configService: ConfigService,
+    private model: PrismaService,
+  ) {}
 
   async signUpProvider({
     email,
@@ -56,7 +59,7 @@ export class AuthProvider {
   async signInProvider({
     email,
     mat_khau,
-  }: UserLoginDto): Promise<UserLoginResponseDto> {
+  }: UserLoginDto): Promise<UserLoginResponseDto | boolean> {
     const result = await this.model.nguoi_dung.findFirst({
       where: {
         email,
@@ -70,13 +73,13 @@ export class AuthProvider {
       },
     });
     if (!result) throw new HttpException(loginErrorMessage, 400);
-
     if (bcrypt.compareSync(mat_khau, result.mat_khau)) {
       return {
         ...result,
-        access_token: this.jwt.sign(result),
+        access_token: this.jwt.sign({
+          tai_khoan: result.tai_khoan,
+        }),
       };
     }
-    throw new HttpException(loginErrorMessage, 400);
   }
 }

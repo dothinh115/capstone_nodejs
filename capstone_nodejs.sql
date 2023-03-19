@@ -99,7 +99,14 @@ CREATE TABLE `nguoi_dung` (
 
 INSERT INTO `nguoi_dung` (`tai_khoan`, `ho_ten`, `email`, `so_dt`, `mat_khau`, `loai_nguoi_dung`) VALUES
 (26,	'nguyen hau',	'hau19@gmail.com',	'978481071',	'$2b$10$C5UUxxda3XiS3OD/R5.vfO0lvTQq.dX.xxON9caY.L2tCjZIrRRmi',	1),
-(28,	'thinh',	'dothinh@gmail.com',	'0978481071',	'$2b$10$.8IU0v5SSi9dVv8l/9wnx.ysaS5ebfAYDM1dmDAdijO31/qmlgeaS',	1);
+(28,	'thinh',	'dothinh@gmail.com',	'0978481071',	'$2b$10$.8IU0v5SSi9dVv8l/9wnx.ysaS5ebfAYDM1dmDAdijO31/qmlgeaS',	4),
+(29,	'thinh',	'dothinh123@gmail.com',	'0978481071',	'$2b$10$GTbFuMc6rZiADAAeYFVPEOTDAhV.o/JMSRgxDYzPCP71O9rgjc.yK',	1),
+(31,	'thinh',	'dothinh12345@gmail.com',	'0978481071',	'$2b$10$4GgHcUN8FVRW44p5Nb6GBeknDMs/vGYX1f7SD1bIoX3P6uP2ZtIsy',	1),
+(32,	'thinh',	'dothinh123421345@gmail.com',	'0978481071',	'$2b$10$i4p1/Rlp/uHKPiIMMSBO/e7BEsC2TvhCE8hqRUbMCXzNySZqL.XsG',	1),
+(33,	'nguyenhau123',	'hau20@gmail.com',	'0361313493',	'hau123',	1),
+(34,	'ABC',	'abc@gmail.com',	'0361313493',	'$2b$10$u/2C9Z5HPeQVW.Wg3cIRp.Jotym5EG1RzMfNUUf2zWKZAUSguoMNW',	4),
+(35,	'admin',	'abcd@gmail.com',	'0361313493',	'$2b$10$ZPeiWj5zF1.vJtRq26Coc.cVgbIyBdbwFK6WTvKeTcElJqeMMXoQO',	1),
+(36,	'Mode',	'xyz@gmail.com',	'0361313493',	'$2b$10$iZcznRKUdO.zhlJyRSuycu2jM3nfIYUMFMcHascn3y3F3kJSZMNUi',	3);
 
 DROP TABLE IF EXISTS `permission`;
 CREATE TABLE `permission` (
@@ -127,10 +134,18 @@ CREATE TABLE `phim` (
   `hot` tinyint(1) NOT NULL DEFAULT '0',
   `dang_chieu` tinyint(1) NOT NULL,
   `sap_chieu` tinyint(1) NOT NULL,
+  `tai_khoan` int NOT NULL,
   PRIMARY KEY (`ma_phim`,`hinh_anh`),
-  UNIQUE KEY `ma_phim` (`ma_phim`)
+  UNIQUE KEY `ma_phim` (`ma_phim`),
+  KEY `tai_khoan` (`tai_khoan`),
+  CONSTRAINT `phim_ibfk_1` FOREIGN KEY (`tai_khoan`) REFERENCES `nguoi_dung` (`tai_khoan`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
+INSERT INTO `phim` (`ma_phim`, `ten_phim`, `trailer`, `hinh_anh`, `mo_ta`, `ngay_khoi_chieu`, `danh_gia`, `hot`, `dang_chieu`, `sap_chieu`, `tai_khoan`) VALUES
+(12,	'Phim 2',	'trailer_test',	'1679206396523_pexels-cesar-perez-733745.jpg',	'Mô tả phim thứ 1',	'2023-03-19',	5,	1,	1,	0,	34),
+(13,	'Phim 2',	'trailer_test',	'1679206483538_pexels-cesar-perez-733745.jpg',	'Mô tả phim thứ 1',	'2023-03-19',	5,	1,	1,	0,	34),
+(14,	'Phim 2',	'trailer_test',	'1679206766357_pexels-cesar-perez-733745.jpg',	'Mô tả phim thứ 1',	'2023-03-19',	5,	1,	1,	0,	34),
+(15,	'Phim 2',	'trailer_test',	'1679206800433_pexels-cesar-perez-733745.jpg',	'Mô tả phim thứ 1',	'2023-03-19',	5,	1,	1,	0,	34);
 
 DROP TABLE IF EXISTS `rap_phim`;
 CREATE TABLE `rap_phim` (
@@ -143,4 +158,4 @@ CREATE TABLE `rap_phim` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 
--- 2023-03-17 19:29:22
+-- 2023-03-19 06:20:35

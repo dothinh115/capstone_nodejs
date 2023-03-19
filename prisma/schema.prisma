@@ -81,6 +81,7 @@ model nguoi_dung {
   loai_nguoi_dung Int        @default(1)
   dat_ve          dat_ve[]
   permission      permission @relation(fields: [loai_nguoi_dung], references: [permission_value], onDelete: NoAction, onUpdate: NoAction, map: "nguoi_dung_ibfk_1")
+  phim            phim[]
 
   @@index([loai_nguoi_dung], map: "loai_nguoi_dung")
 }
@@ -96,10 +97,13 @@ model phim {
   hot             Boolean      @default(false)
   dang_chieu      Boolean
   sap_chieu       Boolean
+  tai_khoan       Int
   banner          banner[]
   lich_chieu      lich_chieu[]
+  nguoi_dung      nguoi_dung   @relation(fields: [tai_khoan], references: [tai_khoan], onDelete: NoAction, onUpdate: NoAction, map: "phim_ibfk_1")
 
   @@id([ma_phim, hinh_anh])
+  @@index([tai_khoan], map: "tai_khoan")
 }
 
 model rap_phim {

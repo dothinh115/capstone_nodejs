@@ -1,8 +1,10 @@
+import { Response, ResponseInterface } from 'src/utils/dto/global.dto';
 import { AuthProvider } from './auth.service';
-import { UserBaseDto, UserLoginDto, UserResponseDto } from './dto/auth.dto';
+import { UserBaseDto, UserLoginDto } from './dto/auth.dto';
 export declare class AuthController {
     private user;
-    constructor(user: AuthProvider);
-    signUp(data: UserBaseDto): Promise<UserResponseDto>;
-    signIn(data: UserLoginDto): Promise<UserResponseDto>;
+    private response;
+    constructor(user: AuthProvider, response: Response);
+    signUp(data: UserBaseDto): Promise<ResponseInterface>;
+    signIn(data: UserLoginDto): Promise<ResponseInterface>;
 }

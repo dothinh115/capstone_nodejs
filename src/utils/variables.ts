@@ -7,3 +7,13 @@ export const alreadyExistedEmailMessage = 'Email đã tồn tại';
 export const loginErrorMessage = 'Email hoặc mật khẩu không đúng!';
 
 export const successMessage = 'Thành công!';
+
+export const invalidTokenMessage = 'Token không hợp lệ!';
+
+export const notAllowedMessage = 'Không đủ quyền!';
+
+export const notExistedUserMessage = 'Không tìm ra user này!';
+
+export const notExistedMovieMessage = 'Không tìm thấy phim này!';
+
+export const movieImgPath = `${process.cwd()}/public/img/`;

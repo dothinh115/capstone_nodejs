@@ -1,10 +1,18 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.userConfig = void 0;
-const userConfig = (obj) => {
-    obj = Object.assign(Object.assign({}, obj), { loai_nguoi_dung: obj.permission.permission_name });
-    delete obj['permission'];
-    return obj;
-};
-exports.userConfig = userConfig;
+exports.Response = void 0;
+const moment = require("moment");
+const auth_dto_1 = require("../../auth/dto/auth.dto");
+class Response {
+    successRes(message, obj = null) {
+        return Object.assign(Object.assign({ message }, (obj && { data: auth_dto_1.UserDto.plainToClass(obj) })), { dateTime: moment().format() });
+    }
+    failRes(message) {
+        return {
+            message,
+            dateTime: moment().format(),
+        };
+    }
+}
+exports.Response = Response;
 //# sourceMappingURL=global.dto.js.map

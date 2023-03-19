@@ -14,32 +14,25 @@ var __param = (this && this.__param) || function (paramIndex, decorator) {
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.AuthController = void 0;
 const common_1 = require("@nestjs/common");
-const moment = require("moment");
 const global_dto_1 = require("../utils/dto/global.dto");
+const function_1 = require("../utils/function");
 const variables_1 = require("../utils/variables");
 const auth_service_1 = require("./auth.service");
 const auth_dto_1 = require("./dto/auth.dto");
 let AuthController = class AuthController {
-    constructor(user) {
+    constructor(user, response) {
         this.user = user;
+        this.response = response;
     }
     async signUp(data) {
         let user = await this.user.signUpProvider(data);
-        user = (0, global_dto_1.userConfig)(user);
-        return {
-            message: variables_1.successMessage,
-            data: auth_dto_1.UserDto.plainToClass(user),
-            dateTime: moment().format(),
-        };
+        user = (0, function_1.userConfig)(user);
+        throw new common_1.HttpException(this.response.successRes(variables_1.successMessage, user), 200);
     }
     async signIn(data) {
         let user = await this.user.signInProvider(data);
-        user = (0, global_dto_1.userConfig)(user);
-        return {
-            message: variables_1.successMessage,
-            data: auth_dto_1.UserDto.plainToClass(user),
-            dateTime: moment().format(),
-        };
+        user = (0, function_1.userConfig)(user);
+        throw new common_1.HttpException(this.response.successRes(variables_1.successMessage, user), 200);
     }
 };
 __decorate([
@@ -59,7 +52,7 @@ __decorate([
 ], AuthController.prototype, "signIn", null);
 AuthController = __decorate([
     (0, common_1.Controller)('/users'),
-    __metadata("design:paramtypes", [auth_service_1.AuthProvider])
+    __metadata("design:paramtypes", [auth_service_1.AuthProvider, global_dto_1.Response])
 ], AuthController);
 exports.AuthController = AuthController;
 //# sourceMappingURL=auth.controller.js.map

@@ -1,45 +1,39 @@
 import {
   Body,
   Controller,
+  HttpException,
   Post,
   UsePipes,
   ValidationPipe,
 } from '@nestjs/common';
-import * as moment from 'moment';
-import { userConfig } from 'src/utils/dto/global.dto';
+import { Response, ResponseInterface } from 'src/utils/dto/global.dto';
+import { userConfig } from 'src/utils/function';
 import { successMessage } from 'src/utils/variables';
 import { AuthProvider } from './auth.service';
-import {
-  UserBaseDto,
-  UserDto,
-  UserLoginDto,
-  UserResponseDto,
-} from './dto/auth.dto';
+import { UserBaseDto, UserLoginDto } from './dto/auth.dto';
 
 @Controller('/users')
 export class AuthController {
-  constructor(private user: AuthProvider) {}
+  constructor(private user: AuthProvider, private response: Response) {}
 
   @UsePipes(new ValidationPipe())
   @Post('/signUp')
-  async signUp(@Body() data: UserBaseDto): Promise<UserResponseDto> {
+  async signUp(@Body() data: UserBaseDto): Promise<ResponseInterface> {
     let user = await this.user.signUpProvider(data);
     user = userConfig(user);
-    return {
-      message: successMessage,
-      data: UserDto.plainToClass(user),
-      dateTime: moment().format(),
-    };
+    throw new HttpException(
+      this.response.successRes(successMessage, user),
+      200,
+    );
   }
 
   @Post('/signIn')
-  async signIn(@Body() data: UserLoginDto): Promise<UserResponseDto> {
+  async signIn(@Body() data: UserLoginDto): Promise<ResponseInterface> {
     let user = await this.user.signInProvider(data);
     user = userConfig(user);
-    return {
-      message: successMessage,
-      data: UserDto.plainToClass(user),
-      dateTime: moment().format(),
-    };
+    throw new HttpException(
+      this.response.successRes(successMessage, user),
+      200,
+    );
   }
 }

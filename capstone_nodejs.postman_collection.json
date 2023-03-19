@@ -16,7 +16,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"ho_ten\":\"thinh\",\r\n    \"so_dt\": \"0978481071\",\r\n    \"email\":\"dothinh@gmail.com\",\r\n    \"mat_khau\": \"thinh123\"\r\n}",
+							"raw": "{\r\n        \"email\": \"xyz@gmail.com\",\r\n    \"mat_khau\": \"hau123\",\r\n    \"ho_ten\":\"admin\",\r\n    \"so_dt\":\"343434\"\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -43,7 +43,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"email\": \"dothinh@gmail.com\",\r\n    \"mat_khau\": \"thinh123\"\r\n}",
+							"raw": "{\r\n    \"email\": \"abc@gmail.com\",\r\n    \"mat_khau\": \"hau123\"\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -64,14 +64,14 @@
 					"response": []
 				},
 				{
-					"name": "getAllUsers",
+					"name": "getCurrentUserInfo",
 					"request": {
 						"auth": {
 							"type": "bearer",
 							"bearer": [
 								{
 									"key": "token",
-									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0YWlfa2hvYW4iOjI4LCJob190ZW4iOiJ0aGluaCIsImVtYWlsIjoiZG90aGluaEBnbWFpbC5jb20iLCJzb19kdCI6IjA5Nzg0ODEwNzEiLCJtYXRfa2hhdSI6IiQyYiQxMCQuOElVMHY1U1NpOWRWdjhsLzl3bngueXNhUzVlYmZBWURNMWRtREFkaWpPMzEvcW1sZ2VhUyIsImxvYWlfbmd1b2lfZHVuZyI6MSwicGVybWlzc2lvbiI6eyJwZXJtaXNzaW9uX25hbWUiOiJNZW1iZXJzIn0sImlhdCI6MTY3OTA3Nzg0NywiZXhwIjoxNjc5MTY0MjQ3fQ.e16ewq2pPiRwFep1HRI7fR1c8nC_9hp0QtzWmNoVoEQ",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0YWlfa2hvYW4iOjI4LCJpYXQiOjE2NzkxOTA2NjMsImV4cCI6MTY3OTI3NzA2M30.88tGKlhsRPzHP2y7bwseecObu_UB7CucZ5Vl4kD9nq8",
 									"type": "string"
 								}
 							]
@@ -79,19 +79,219 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "{{domain}}/users/getAllUsers",
+							"raw": "{{domain}}/users/getCurrentUserInfo",
 							"host": [
 								"{{domain}}"
 							],
 							"path": [
 								"users",
-								"getAllUsers"
+								"getCurrentUserInfo"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "deleteUser",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0YWlfa2hvYW4iOjI4LCJpYXQiOjE2NzkxOTE1MTksImV4cCI6MTY3OTI3NzkxOX0.QHzQV88nI_o4orMyrXLhjM2bhovjSMGcSfR-vx39Bp8",
+									"type": "string"
+								}
+							]
+						},
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{domain}}/users/deleteUser/30",
+							"host": [
+								"{{domain}}"
+							],
+							"path": [
+								"users",
+								"deleteUser",
+								"30"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "update",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0YWlfa2hvYW4iOjM0LCJpYXQiOjE2NzkyMDUxMzksImV4cCI6MTY3OTI5MTUzOX0.FNh5VjWul5tccCg4ykgaF6wi1C2eezxrN5XvkQtZPO4",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n        \"email\": \"hau20@gmail.com\",\r\n    \"mat_khau\": \"hau123\",\r\n    \"ho_ten\":\"nguyenhau123\",\r\n    \"so_dt\":\"0361313493\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{domain}}/users/update/33",
+							"host": [
+								"{{domain}}"
+							],
+							"path": [
+								"users",
+								"update",
+								"33"
 							]
 						}
 					},
 					"response": []
 				}
 			]
+		},
+		{
+			"name": "movies",
+			"item": [
+				{
+					"name": "create",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0YWlfa2hvYW4iOjM0LCJpYXQiOjE2NzkyMDUxMzksImV4cCI6MTY3OTI5MTUzOX0.FNh5VjWul5tccCg4ykgaF6wi1C2eezxrN5XvkQtZPO4",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "hinh_anh",
+									"contentType": "",
+									"type": "file",
+									"src": "/C:/Users/Administrator/Downloads/pexels-cesar-perez-733745.jpg"
+								},
+								{
+									"key": "ten_phim",
+									"value": "Phim 2",
+									"type": "text"
+								},
+								{
+									"key": "trailer",
+									"value": "trailer_test",
+									"type": "text"
+								},
+								{
+									"key": "mo_ta",
+									"value": "Mô tả phim thứ 1",
+									"type": "text"
+								},
+								{
+									"key": "ngay_khoi_chieu",
+									"value": "2008-11-11 13:23:44",
+									"type": "text"
+								},
+								{
+									"key": "danh_gia",
+									"value": "5",
+									"type": "text"
+								},
+								{
+									"key": "hot",
+									"value": "1",
+									"type": "text"
+								},
+								{
+									"key": "dang_chieu",
+									"value": "1",
+									"type": "text"
+								},
+								{
+									"key": "sap_chieu",
+									"value": "0",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{domain}}/movies/create",
+							"host": [
+								"{{domain}}"
+							],
+							"path": [
+								"movies",
+								"create"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "deleteMovie",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0YWlfa2hvYW4iOjM0LCJpYXQiOjE2NzkyMDUxMzksImV4cCI6MTY3OTI5MTUzOX0.FNh5VjWul5tccCg4ykgaF6wi1C2eezxrN5XvkQtZPO4",
+									"type": "string"
+								}
+							]
+						},
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{domain}}/movies/deleteMovie/11",
+							"host": [
+								"{{domain}}"
+							],
+							"path": [
+								"movies",
+								"deleteMovie",
+								"11"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
 		}
 	],
 	"variable": [
