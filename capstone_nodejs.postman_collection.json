@@ -1,9 +1,8 @@
 {
 	"info": {
-		"_postman_id": "dcff1bb5-fb28-4cf4-afb5-61e1f24d2a07",
+		"_postman_id": "6f7f9625-49b9-46ad-9169-89b0abdacce4",
 		"name": "capstone_nodejs",
-		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
-		"_exporter_id": "23648949"
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
 	},
 	"item": [
 		{
@@ -298,6 +297,16 @@
 				{
 					"name": "imgSync",
 					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0YWlfa2hvYW4iOjM0LCJpYXQiOjE2NzkyMjM2NDksImV4cCI6MTY3OTMxMDA0OX0.mDXscE3PyC6Cx3v-Tx3c97PqIxI5KaoDgvFDtthM7Co",
+									"type": "string"
+								}
+							]
+						},
 						"method": "GET",
 						"header": [],
 						"url": {
@@ -308,6 +317,34 @@
 							"path": [
 								"admin",
 								"imgSync"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "movieSync",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0YWlfa2hvYW4iOjM0LCJpYXQiOjE2NzkyMjM2NDksImV4cCI6MTY3OTMxMDA0OX0.mDXscE3PyC6Cx3v-Tx3c97PqIxI5KaoDgvFDtthM7Co",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{domain}}/admin/movieSync",
+							"host": [
+								"{{domain}}"
+							],
+							"path": [
+								"admin",
+								"movieSync"
 							]
 						}
 					},
@@ -339,7 +376,7 @@
 	"variable": [
 		{
 			"key": "domain",
-			"value": "localhost:8080"
+			"value": "localhost:8080/api"
 		}
 	]
 }
