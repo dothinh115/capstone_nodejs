@@ -14,14 +14,15 @@ const common_1 = require("@nestjs/common");
 const admin_guard_1 = require("../guards/admin.guard");
 const strategy_1 = require("../strategy");
 const global_dto_1 = require("../utils/dto/global.dto");
-const function_1 = require("../utils/function");
 const variables_1 = require("../utils/variables");
+const admin_service_1 = require("./admin.service");
 let AdminController = class AdminController {
-    constructor(response) {
+    constructor(response, adminProvider) {
         this.response = response;
+        this.adminProvider = adminProvider;
     }
     async imgSync() {
-        await (0, function_1.imgSync)();
+        await this.adminProvider.imgSync();
         throw new common_1.HttpException(this.response.successRes(variables_1.successMessage), 200);
     }
 };
@@ -34,7 +35,8 @@ __decorate([
 AdminController = __decorate([
     (0, common_1.Controller)('/admin'),
     (0, common_1.UseGuards)(strategy_1.TokenAuthorization, admin_guard_1.AdminRole),
-    __metadata("design:paramtypes", [global_dto_1.Response])
+    __metadata("design:paramtypes", [global_dto_1.Response,
+        admin_service_1.AdminProvider])
 ], AdminController);
 exports.AdminController = AdminController;
 //# sourceMappingURL=admin.controller.js.map

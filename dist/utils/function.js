@@ -1,10 +1,9 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.imgSync = exports.selfCheck = exports.movieImgCheck = exports.movieConfig = exports.userConfig = void 0;
+exports.selfCheck = exports.movieImgCheck = exports.movieConfig = exports.userConfig = void 0;
 const common_1 = require("@nestjs/common");
 const client_1 = require("@prisma/client");
 const fs = require("fs");
-const variables_1 = require("./variables");
 const model = new client_1.PrismaClient();
 const maxSize = 6000000;
 const type = ['image/jpeg', 'image/jpg', 'image/png', 'image/gif'];
@@ -61,15 +60,4 @@ const selfCheck = async (user, params) => {
     };
 };
 exports.selfCheck = selfCheck;
-const imgSync = async () => {
-    const movieList = await model.phim.findMany();
-    fs.readdir(variables_1.movieImgPath, (err, files) => {
-        files.forEach((file) => {
-            const find = movieList.find((item) => item.hinh_anh === file);
-            if (!find)
-                fs.unlinkSync(`${variables_1.movieImgPath + file}`);
-        });
-    });
-};
-exports.imgSync = imgSync;
 //# sourceMappingURL=function.js.map

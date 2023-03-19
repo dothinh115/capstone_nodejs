@@ -59,13 +59,3 @@ export const selfCheck = async (user, params) => {
     handlingUser,
   };
 };
-
-export const imgSync = async () => {
-  const movieList = await model.phim.findMany();
-  fs.readdir(movieImgPath, (err, files) => {
-    files.forEach((file) => {
-      const find = movieList.find((item) => item.hinh_anh === file);
-      if (!find) fs.unlinkSync(`${movieImgPath + file}`);
-    });
-  });
-};

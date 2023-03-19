@@ -14,13 +14,14 @@ const prisma_module_1 = require("../prisma/prisma.module");
 const jwt_strategy_1 = require("../strategy/jwt.strategy");
 const global_dto_1 = require("../utils/dto/global.dto");
 const admin_controller_1 = require("./admin.controller");
+const admin_service_1 = require("./admin.service");
 let AdminModule = AdminModule_1 = class AdminModule {
 };
 AdminModule = AdminModule_1 = __decorate([
     (0, common_1.Module)({
         imports: [AdminModule_1, prisma_module_1.PrismaModule],
         controllers: [admin_controller_1.AdminController],
-        providers: [jwt_strategy_1.JwtStrategy, admin_guard_1.AdminRole, global_dto_1.Response],
+        providers: [jwt_strategy_1.JwtStrategy, admin_guard_1.AdminRole, global_dto_1.Response, admin_service_1.AdminProvider],
     })
 ], AdminModule);
 exports.AdminModule = AdminModule;

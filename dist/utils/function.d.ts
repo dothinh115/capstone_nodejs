@@ -5,4 +5,3 @@ export declare const selfCheck: (user: any, params: any) => Promise<{
     currentUser: any;
     handlingUser: any;
 }>;
-export declare const imgSync: () => Promise<void>;
