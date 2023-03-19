@@ -10,10 +10,11 @@ export class MoviesProvider {
   constructor(private model: PrismaService, private response: Response) {}
   async createNewMovie(file, body, tai_khoan: number) {
     movieImgCheck(file);
-    const { danh_gia, dang_chieu, sap_chieu, hot, ...others } = body;
+    const { danh_gia, dang_chieu, sap_chieu, hot, ngay_khoi_chieu, ...others } =
+      body;
     const data = {
       ...others,
-      ngay_khoi_chieu: new Date(),
+      ngay_khoi_chieu: new Date(ngay_khoi_chieu),
       danh_gia: Number(danh_gia),
       hot: Number(hot) === 1 ? true : false,
       dang_chieu: Number(dang_chieu) === 1 ? true : false,
@@ -59,5 +60,29 @@ export class MoviesProvider {
       },
     });
     fs.unlinkSync(movieImgPath + movie.hinh_anh);
+  }
+  async getMovieInfo(ma_phim) {
+    const result = await this.model.phim.findFirst({
+      where: {
+        ma_phim: +ma_phim,
+      },
+      include: {
+        nguoi_dung: {
+          include: {
+            permission: {
+              select: {
+                permission_name: true,
+              },
+            },
+          },
+        },
+      },
+    });
+    if (!result)
+      throw new HttpException(
+        this.response.failRes(notExistedMovieMessage),
+        400,
+      );
+    return result;
   }
 }

@@ -15,6 +15,8 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.UsersController = void 0;
 const common_1 = require("@nestjs/common");
 const auth_dto_1 = require("../auth/dto/auth.dto");
+const admin_guard_1 = require("../guards/admin.guard");
+const moderator_guard_1 = require("../guards/moderator.guard");
 const strategy_1 = require("../strategy");
 const global_dto_1 = require("../utils/dto/global.dto");
 const function_1 = require("../utils/function");
@@ -37,7 +39,7 @@ let UsersController = class UsersController {
         await this.userProvider.deleteUserProvider(tai_khoan);
         throw new common_1.HttpException(this.response.successRes(variables_1.successMessage), 200);
     }
-    async updateUser(tai_khoan, body) {
+    async updateUser(tai_khoan, body, req) {
         const data = await this.userProvider.updateUser(tai_khoan, body);
         throw new common_1.HttpException(this.response.successRes(variables_1.successMessage, (0, function_1.userConfig)(data)), 200);
     }
@@ -58,7 +60,7 @@ __decorate([
     __metadata("design:returntype", Promise)
 ], UsersController.prototype, "getUserInfo", null);
 __decorate([
-    (0, common_1.UseGuards)(strategy_1.AdminAuthorization),
+    (0, common_1.UseGuards)(strategy_1.TokenAuthorization, admin_guard_1.AdminRole),
     (0, common_1.Delete)('/deleteUser/:tai_khoan'),
     __param(0, (0, common_1.Param)('tai_khoan')),
     __metadata("design:type", Function),
@@ -66,12 +68,14 @@ __decorate([
     __metadata("design:returntype", Promise)
 ], UsersController.prototype, "deleteUser", null);
 __decorate([
+    (0, common_1.UseGuards)(strategy_1.TokenAuthorization, moderator_guard_1.ModeratorRole),
     (0, common_1.UsePipes)(new common_1.ValidationPipe()),
     (0, common_1.Put)('/update/:tai_khoan'),
     __param(0, (0, common_1.Param)('tai_khoan')),
     __param(1, (0, common_1.Body)()),
+    __param(2, (0, common_1.Req)()),
     __metadata("design:type", Function),
-    __metadata("design:paramtypes", [Number, auth_dto_1.UserBaseDto]),
+    __metadata("design:paramtypes", [Number, auth_dto_1.UserBaseDto, Object]),
     __metadata("design:returntype", Promise)
 ], UsersController.prototype, "updateUser", null);
 UsersController = __decorate([

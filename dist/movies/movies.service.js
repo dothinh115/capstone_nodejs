@@ -34,8 +34,8 @@ let MoviesProvider = class MoviesProvider {
     }
     async createNewMovie(file, body, tai_khoan) {
         (0, function_1.movieImgCheck)(file);
-        const { danh_gia, dang_chieu, sap_chieu, hot } = body, others = __rest(body, ["danh_gia", "dang_chieu", "sap_chieu", "hot"]);
-        const data = Object.assign(Object.assign({}, others), { ngay_khoi_chieu: new Date(), danh_gia: Number(danh_gia), hot: Number(hot) === 1 ? true : false, dang_chieu: Number(dang_chieu) === 1 ? true : false, sap_chieu: Number(sap_chieu) === 1 ? true : false, hinh_anh: file.filename, tai_khoan });
+        const { danh_gia, dang_chieu, sap_chieu, hot, ngay_khoi_chieu } = body, others = __rest(body, ["danh_gia", "dang_chieu", "sap_chieu", "hot", "ngay_khoi_chieu"]);
+        const data = Object.assign(Object.assign({}, others), { ngay_khoi_chieu: new Date(ngay_khoi_chieu), danh_gia: Number(danh_gia), hot: Number(hot) === 1 ? true : false, dang_chieu: Number(dang_chieu) === 1 ? true : false, sap_chieu: Number(sap_chieu) === 1 ? true : false, hinh_anh: file.filename, tai_khoan });
         const newMovie = await this.model.phim.create({
             data,
         });
@@ -70,6 +70,27 @@ let MoviesProvider = class MoviesProvider {
             },
         });
         fs.unlinkSync(variables_1.movieImgPath + movie.hinh_anh);
+    }
+    async getMovieInfo(ma_phim) {
+        const result = await this.model.phim.findFirst({
+            where: {
+                ma_phim: +ma_phim,
+            },
+            include: {
+                nguoi_dung: {
+                    include: {
+                        permission: {
+                            select: {
+                                permission_name: true,
+                            },
+                        },
+                    },
+                },
+            },
+        });
+        if (!result)
+            throw new common_1.HttpException(this.response.failRes(variables_1.notExistedMovieMessage), 400);
+        return result;
     }
 };
 MoviesProvider = __decorate([

@@ -16,6 +16,7 @@ exports.MoviesController = void 0;
 const common_1 = require("@nestjs/common");
 const platform_express_1 = require("@nestjs/platform-express");
 const multer_1 = require("multer");
+const editor_guard_1 = require("../guards/editor.guard");
 const strategy_1 = require("../strategy");
 const global_dto_1 = require("../utils/dto/global.dto");
 const function_1 = require("../utils/function");
@@ -27,16 +28,20 @@ let MoviesController = class MoviesController {
         this.response = response;
     }
     async upload(file, body, req) {
-        const data = await this.moviesProvider.createNewMovie(file, body, +req.user['tai_khoan']);
+        let data = await this.moviesProvider.createNewMovie(file, body, +req.user['tai_khoan']);
         throw new common_1.HttpException(this.response.successRes(variables_1.successMessage, (0, function_1.movieConfig)(data)), 200);
     }
     async deleteMovie(ma_phim) {
         await this.moviesProvider.deleteMovie(ma_phim);
         throw new common_1.HttpException(this.response.successRes(variables_1.successMessage), 200);
     }
+    async getMovieInfo(ma_phim) {
+        const data = await this.moviesProvider.getMovieInfo(ma_phim);
+        throw new common_1.HttpException(this.response.successRes(variables_1.successMessage, (0, function_1.movieConfig)(data)), 200);
+    }
 };
 __decorate([
-    (0, common_1.UseGuards)(strategy_1.EditorAuthorization),
+    (0, common_1.UseGuards)(strategy_1.TokenAuthorization, editor_guard_1.EditorRole),
     (0, common_1.Post)('/create'),
     (0, common_1.UseInterceptors)((0, platform_express_1.FileInterceptor)('hinh_anh', {
         storage: (0, multer_1.diskStorage)({
@@ -52,13 +57,20 @@ __decorate([
     __metadata("design:returntype", Promise)
 ], MoviesController.prototype, "upload", null);
 __decorate([
-    (0, common_1.UseGuards)(strategy_1.EditorAuthorization),
+    (0, common_1.UseGuards)(strategy_1.TokenAuthorization, editor_guard_1.EditorRole),
     (0, common_1.Delete)('/deleteMovie/:ma_phim'),
     __param(0, (0, common_1.Param)('ma_phim')),
     __metadata("design:type", Function),
     __metadata("design:paramtypes", [Number]),
     __metadata("design:returntype", Promise)
 ], MoviesController.prototype, "deleteMovie", null);
+__decorate([
+    (0, common_1.Get)('/getMovieInfo/:ma_phim'),
+    __param(0, (0, common_1.Param)('ma_phim')),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [Number]),
+    __metadata("design:returntype", Promise)
+], MoviesController.prototype, "getMovieInfo", null);
 MoviesController = __decorate([
     (0, common_1.Controller)('/movies'),
     __metadata("design:paramtypes", [movies_service_1.MoviesProvider,

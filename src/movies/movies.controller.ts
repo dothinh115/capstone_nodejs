@@ -2,6 +2,7 @@ import {
   Body,
   Controller,
   Delete,
+  Get,
   HttpException,
   Param,
   Post,
@@ -13,7 +14,8 @@ import {
 import { FileInterceptor } from '@nestjs/platform-express';
 import { Request } from 'express';
 import { diskStorage } from 'multer';
-import { EditorAuthorization } from 'src/strategy';
+import { EditorRole } from 'src/guards/editor.guard';
+import { TokenAuthorization } from 'src/strategy';
 import { Response } from 'src/utils/dto/global.dto';
 import { movieConfig } from 'src/utils/function';
 import { successMessage } from 'src/utils/variables';
@@ -26,7 +28,7 @@ export class MoviesController {
     private response: Response,
   ) {}
 
-  @UseGuards(EditorAuthorization)
+  @UseGuards(TokenAuthorization, EditorRole)
   @Post('/create')
   @UseInterceptors(
     FileInterceptor('hinh_anh', {
@@ -43,21 +45,30 @@ export class MoviesController {
     @Body() body: any,
     @Req() req: Request,
   ) {
-    const data = await this.moviesProvider.createNewMovie(
+    let data = await this.moviesProvider.createNewMovie(
       file,
       body,
       +req.user['tai_khoan'],
     );
+
     throw new HttpException(
       this.response.successRes(successMessage, movieConfig(data)),
       200,
     );
   }
 
-  @UseGuards(EditorAuthorization)
+  @UseGuards(TokenAuthorization, EditorRole)
   @Delete('/deleteMovie/:ma_phim')
   async deleteMovie(@Param('ma_phim') ma_phim: number) {
     await this.moviesProvider.deleteMovie(ma_phim);
     throw new HttpException(this.response.successRes(successMessage), 200);
+  }
+  @Get('/getMovieInfo/:ma_phim')
+  async getMovieInfo(@Param('ma_phim') ma_phim: number) {
+    const data = await this.moviesProvider.getMovieInfo(ma_phim);
+    throw new HttpException(
+      this.response.successRes(successMessage, movieConfig(data)),
+      200,
+    );
   }
 }

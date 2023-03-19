@@ -17,3 +17,9 @@ export const notExistedUserMessage = 'Không tìm ra user này!';
 export const notExistedMovieMessage = 'Không tìm thấy phim này!';
 
 export const movieImgPath = `${process.cwd()}/public/img/`;
+
+export const adminOnlyMessage =
+  'Chỉ có Administrators mới có quyền thực hiện thao tác này!';
+
+export const userInfoUpdateNotAllowed =
+  'Chỉ được chỉnh sửa nội dung của bản thân!';

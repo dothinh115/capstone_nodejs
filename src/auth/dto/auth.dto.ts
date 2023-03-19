@@ -1,7 +1,6 @@
 import { Exclude, plainToClass } from 'class-transformer';
 import { IsEmail, IsNotEmpty, Matches } from 'class-validator';
-import { so_dt_pattern, successMessage } from 'src/utils/variables';
-import * as moment from 'moment';
+import { so_dt_pattern } from 'src/utils/variables';
 
 //USER
 export class UserBaseDto {

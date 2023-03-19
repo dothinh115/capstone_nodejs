@@ -9,5 +9,5 @@ export declare class UsersController {
     getCurrentUserInfo(req: Request): Promise<void>;
     getUserInfo(tai_khoan: number): Promise<UserDto>;
     deleteUser(tai_khoan: number): Promise<void>;
-    updateUser(tai_khoan: number, body: UserBaseDto): Promise<void>;
+    updateUser(tai_khoan: number, body: UserBaseDto, req: Request): Promise<void>;
 }

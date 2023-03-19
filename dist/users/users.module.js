@@ -11,33 +11,20 @@ exports.UserModule = void 0;
 const common_1 = require("@nestjs/common");
 const config_1 = require("@nestjs/config");
 const jwt_1 = require("@nestjs/jwt");
-const selfOrMode_middleware_1 = require("../middleware/selfOrMode.middleware");
 const prisma_module_1 = require("../prisma/prisma.module");
-const admin_strategy_1 = require("../strategy/admin.strategy");
-const editor_strategy_1 = require("../strategy/editor.strategy");
 const jwt_strategy_1 = require("../strategy/jwt.strategy");
 const global_dto_1 = require("../utils/dto/global.dto");
 const users_controller_1 = require("./users.controller");
 const users_service_1 = require("./users.service");
 const global_dto_2 = require("../utils/dto/global.dto");
+const admin_guard_1 = require("../guards/admin.guard");
 let UserModule = UserModule_1 = class UserModule {
-    configure(consumer) {
-        consumer.apply(selfOrMode_middleware_1.SelfOrModeMidlleWare).forRoutes('/users/update/:tai_khoan');
-    }
 };
 UserModule = UserModule_1 = __decorate([
     (0, common_1.Module)({
         imports: [UserModule_1, jwt_1.JwtModule, config_1.ConfigModule, prisma_module_1.PrismaModule],
         controllers: [users_controller_1.UsersController],
-        providers: [
-            users_service_1.UsersProvider,
-            global_dto_1.Response,
-            jwt_strategy_1.JwtStrategy,
-            admin_strategy_1.AdminStrategy,
-            editor_strategy_1.EditorStrategy,
-            selfOrMode_middleware_1.SelfOrModeMidlleWare,
-            global_dto_2.Response,
-        ],
+        providers: [users_service_1.UsersProvider, global_dto_1.Response, jwt_strategy_1.JwtStrategy, global_dto_2.Response, admin_guard_1.AdminRole],
     })
 ], UserModule);
 exports.UserModule = UserModule;

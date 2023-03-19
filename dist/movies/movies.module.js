@@ -10,7 +10,6 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.MoviesModule = void 0;
 const common_1 = require("@nestjs/common");
 const prisma_module_1 = require("../prisma/prisma.module");
-const admin_strategy_1 = require("../strategy/admin.strategy");
 const global_dto_1 = require("../utils/dto/global.dto");
 const movies_controller_1 = require("./movies.controller");
 const movies_service_1 = require("./movies.service");
@@ -20,7 +19,7 @@ MoviesModule = MoviesModule_1 = __decorate([
     (0, common_1.Module)({
         imports: [MoviesModule_1, prisma_module_1.PrismaModule],
         controllers: [movies_controller_1.MoviesController],
-        providers: [movies_service_1.MoviesProvider, global_dto_1.Response, admin_strategy_1.AdminStrategy],
+        providers: [movies_service_1.MoviesProvider, global_dto_1.Response],
     })
 ], MoviesModule);
 exports.MoviesModule = MoviesModule;

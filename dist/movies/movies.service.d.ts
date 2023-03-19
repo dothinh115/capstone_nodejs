@@ -12,4 +12,11 @@ export declare class MoviesProvider {
         };
     }>;
     deleteMovie(ma_phim: number): Promise<void>;
+    getMovieInfo(ma_phim: any): Promise<import(".prisma/client").phim & {
+        nguoi_dung: import(".prisma/client").nguoi_dung & {
+            permission: {
+                permission_name: string;
+            };
+        };
+    }>;
 }

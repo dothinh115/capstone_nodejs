@@ -16,7 +16,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n        \"email\": \"xyz@gmail.com\",\r\n    \"mat_khau\": \"hau123\",\r\n    \"ho_ten\":\"admin\",\r\n    \"so_dt\":\"343434\"\r\n}",
+							"raw": "{\r\n        \"email\": \"abcd@gmail.com\",\r\n    \"mat_khau\": \"hau123\",\r\n    \"ho_ten\":\"admin\",\r\n    \"so_dt\":\"0978481071\"\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -99,7 +99,7 @@
 							"bearer": [
 								{
 									"key": "token",
-									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0YWlfa2hvYW4iOjI4LCJpYXQiOjE2NzkxOTE1MTksImV4cCI6MTY3OTI3NzkxOX0.QHzQV88nI_o4orMyrXLhjM2bhovjSMGcSfR-vx39Bp8",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0YWlfa2hvYW4iOjM0LCJpYXQiOjE2NzkyMTczOTEsImV4cCI6MTY3OTMwMzc5MX0.1NvPMD4lVMe0lbnEe4PSgFa8Nt6P-1Sy76BFY6szUdw",
 									"type": "string"
 								}
 							]
@@ -107,14 +107,14 @@
 						"method": "DELETE",
 						"header": [],
 						"url": {
-							"raw": "{{domain}}/users/deleteUser/30",
+							"raw": "{{domain}}/users/deleteUser/35",
 							"host": [
 								"{{domain}}"
 							],
 							"path": [
 								"users",
 								"deleteUser",
-								"30"
+								"35"
 							]
 						}
 					},
@@ -128,7 +128,7 @@
 							"bearer": [
 								{
 									"key": "token",
-									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0YWlfa2hvYW4iOjM0LCJpYXQiOjE2NzkyMDUxMzksImV4cCI6MTY3OTI5MTUzOX0.FNh5VjWul5tccCg4ykgaF6wi1C2eezxrN5XvkQtZPO4",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0YWlfa2hvYW4iOjM2LCJpYXQiOjE2NzkyMTcxNDUsImV4cCI6MTY3OTMwMzU0NX0.XpEf-Hgt_S00l45q6ztOWD_FlF8P1iAMJU--Mxhl8SU",
 									"type": "string"
 								}
 							]
@@ -145,14 +145,14 @@
 							}
 						},
 						"url": {
-							"raw": "{{domain}}/users/update/33",
+							"raw": "{{domain}}/users/update/34",
 							"host": [
 								"{{domain}}"
 							],
 							"path": [
 								"users",
 								"update",
-								"33"
+								"34"
 							]
 						}
 					},
@@ -171,7 +171,7 @@
 							"bearer": [
 								{
 									"key": "token",
-									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0YWlfa2hvYW4iOjM0LCJpYXQiOjE2NzkyMDUxMzksImV4cCI6MTY3OTI5MTUzOX0.FNh5VjWul5tccCg4ykgaF6wi1C2eezxrN5XvkQtZPO4",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0YWlfa2hvYW4iOjM3LCJpYXQiOjE2NzkyMTc0MjcsImV4cCI6MTY3OTMwMzgyN30.1NxCSbm7YokexEDeUcTWU4NHZ37uO4p7gG29r-KKBvU",
 									"type": "string"
 								}
 							]
@@ -185,7 +185,7 @@
 									"key": "hinh_anh",
 									"contentType": "",
 									"type": "file",
-									"src": "/C:/Users/Administrator/Downloads/pexels-cesar-perez-733745.jpg"
+									"src": "/C:/Users/Administrator/Downloads/elephant-2729415.jpg"
 								},
 								{
 									"key": "ten_phim",
@@ -204,7 +204,7 @@
 								},
 								{
 									"key": "ngay_khoi_chieu",
-									"value": "2008-11-11 13:23:44",
+									"value": "2000-03-11",
 									"type": "text"
 								},
 								{
@@ -250,7 +250,7 @@
 							"bearer": [
 								{
 									"key": "token",
-									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0YWlfa2hvYW4iOjM0LCJpYXQiOjE2NzkyMDUxMzksImV4cCI6MTY3OTI5MTUzOX0.FNh5VjWul5tccCg4ykgaF6wi1C2eezxrN5XvkQtZPO4",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0YWlfa2hvYW4iOjM3LCJpYXQiOjE2NzkyMTc0MjcsImV4cCI6MTY3OTMwMzgyN30.1NxCSbm7YokexEDeUcTWU4NHZ37uO4p7gG29r-KKBvU",
 									"type": "string"
 								}
 							]
@@ -258,14 +258,56 @@
 						"method": "DELETE",
 						"header": [],
 						"url": {
-							"raw": "{{domain}}/movies/deleteMovie/11",
+							"raw": "{{domain}}/movies/deleteMovie/34",
 							"host": [
 								"{{domain}}"
 							],
 							"path": [
 								"movies",
 								"deleteMovie",
-								"11"
+								"34"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "getMovieInfo",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{domain}}/movies/getMovieInfo/29",
+							"host": [
+								"{{domain}}"
+							],
+							"path": [
+								"movies",
+								"getMovieInfo",
+								"29"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "admin",
+			"item": [
+				{
+					"name": "imgSync",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{domain}}/admin/imgSync",
+							"host": [
+								"{{domain}}"
+							],
+							"path": [
+								"admin",
+								"imgSync"
 							]
 						}
 					},

@@ -8,4 +8,5 @@ export declare class MoviesController {
     constructor(moviesProvider: MoviesProvider, response: Response);
     upload(file: Express.Multer.File, body: any, req: Request): Promise<void>;
     deleteMovie(ma_phim: number): Promise<void>;
+    getMovieInfo(ma_phim: number): Promise<void>;
 }
