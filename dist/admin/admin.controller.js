@@ -11,8 +11,10 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.AdminController = void 0;
 const common_1 = require("@nestjs/common");
-const admin_guard_1 = require("../guards/admin.guard");
+const roles_decorator_1 = require("../guards/roles.decorator");
+const roles_guard_1 = require("../guards/roles.guard");
 const strategy_1 = require("../strategy");
+const config_1 = require("../utils/config");
 const global_dto_1 = require("../utils/dto/global.dto");
 const variables_1 = require("../utils/variables");
 const admin_service_1 = require("./admin.service");
@@ -44,7 +46,8 @@ __decorate([
 ], AdminController.prototype, "movieSync", null);
 AdminController = __decorate([
     (0, common_1.Controller)('/admin'),
-    (0, common_1.UseGuards)(strategy_1.TokenAuthorization, admin_guard_1.AdminRole),
+    (0, common_1.UseGuards)(strategy_1.TokenAuthorization, roles_guard_1.RoleGuard),
+    (0, roles_decorator_1.Roles)(config_1.permissionConfig.Administrators),
     __metadata("design:paramtypes", [global_dto_1.Response,
         admin_service_1.AdminProvider])
 ], AdminController);

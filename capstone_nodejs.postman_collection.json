@@ -1,8 +1,9 @@
 {
 	"info": {
-		"_postman_id": "6f7f9625-49b9-46ad-9169-89b0abdacce4",
+		"_postman_id": "dcff1bb5-fb28-4cf4-afb5-61e1f24d2a07",
 		"name": "capstone_nodejs",
-		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "23648949"
 	},
 	"item": [
 		{
@@ -42,7 +43,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"email\": \"abc@gmail.com\",\r\n    \"mat_khau\": \"hau123\"\r\n}",
+							"raw": "{\r\n    \"email\": \"abcd@gmail.com\",\r\n    \"mat_khau\": \"hau123\"\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -98,7 +99,7 @@
 							"bearer": [
 								{
 									"key": "token",
-									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0YWlfa2hvYW4iOjM0LCJpYXQiOjE2NzkyMTczOTEsImV4cCI6MTY3OTMwMzc5MX0.1NvPMD4lVMe0lbnEe4PSgFa8Nt6P-1Sy76BFY6szUdw",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0YWlfa2hvYW4iOjM2LCJpYXQiOjE2NzkyMzg3MjQsImV4cCI6MTY3OTMyNTEyNH0.HXVB02WYKj1xGFmBezdRsI1LQ9Sn7z3wFPpN3BGWkwE",
 									"type": "string"
 								}
 							]
@@ -127,7 +128,7 @@
 							"bearer": [
 								{
 									"key": "token",
-									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0YWlfa2hvYW4iOjM2LCJpYXQiOjE2NzkyMTcxNDUsImV4cCI6MTY3OTMwMzU0NX0.XpEf-Hgt_S00l45q6ztOWD_FlF8P1iAMJU--Mxhl8SU",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0YWlfa2hvYW4iOjM5LCJpYXQiOjE2NzkyNDM1ODAsImV4cCI6MTY3OTMyOTk4MH0.W5Ls4PVLKwkQ2sMaPKVN2gkZFbz2usPxUO_kxGsaFLE",
 									"type": "string"
 								}
 							]
@@ -136,7 +137,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n        \"email\": \"hau20@gmail.com\",\r\n    \"mat_khau\": \"hau123\",\r\n    \"ho_ten\":\"nguyenhau123\",\r\n    \"so_dt\":\"0361313493\"\r\n}",
+							"raw": "{\r\n    \"ho_ten\":\"nguyenhau12345\",\r\n    \"so_dt\":\"0361313493\"\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -144,14 +145,14 @@
 							}
 						},
 						"url": {
-							"raw": "{{domain}}/users/update/34",
+							"raw": "{{domain}}/users/update/39",
 							"host": [
 								"{{domain}}"
 							],
 							"path": [
 								"users",
 								"update",
-								"34"
+								"39"
 							]
 						}
 					},
@@ -170,7 +171,7 @@
 							"bearer": [
 								{
 									"key": "token",
-									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0YWlfa2hvYW4iOjM3LCJpYXQiOjE2NzkyMTc0MjcsImV4cCI6MTY3OTMwMzgyN30.1NxCSbm7YokexEDeUcTWU4NHZ37uO4p7gG29r-KKBvU",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0YWlfa2hvYW4iOjM4LCJpYXQiOjE2NzkyNDM3MTEsImV4cCI6MTY3OTMzMDExMX0.9xN3mn74SfiXf1FLSQ0HVqxMSCarZTeT3M_gC3nAPNs",
 									"type": "string"
 								}
 							]
@@ -184,7 +185,7 @@
 									"key": "hinh_anh",
 									"contentType": "",
 									"type": "file",
-									"src": "/C:/Users/Administrator/Downloads/elephant-2729415.jpg"
+									"src": "/C:/Users/Administrator/Downloads/avatardefault.png"
 								},
 								{
 									"key": "ten_phim",
@@ -225,6 +226,12 @@
 									"key": "sap_chieu",
 									"value": "0",
 									"type": "text"
+								},
+								{
+									"key": "abc",
+									"value": "abc",
+									"type": "text",
+									"disabled": true
 								}
 							]
 						},
@@ -288,6 +295,85 @@
 						}
 					},
 					"response": []
+				},
+				{
+					"name": "updateMovie",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0YWlfa2hvYW4iOjM5LCJpYXQiOjE2NzkyNDM3ODMsImV4cCI6MTY3OTMzMDE4M30.j5_rDwVk2xTz8JqNaK1uxXgqQS70aDobuwlf1bqFi6k",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "hinh_anh",
+									"type": "file",
+									"src": "/C:/Users/Administrator/Downloads/floral-designs-3840x2160-10372.jpg"
+								},
+								{
+									"key": "ten_phim",
+									"value": "phim 4",
+									"type": "text"
+								},
+								{
+									"key": "trailer",
+									"value": "trailer 3",
+									"type": "text"
+								},
+								{
+									"key": "mo_ta",
+									"value": "abc",
+									"type": "text"
+								},
+								{
+									"key": "ngay_khoi_chieu",
+									"value": "1111-11-11",
+									"type": "text"
+								},
+								{
+									"key": "danh_gia",
+									"value": "4",
+									"type": "text"
+								},
+								{
+									"key": "hot",
+									"value": "1",
+									"type": "text"
+								},
+								{
+									"key": "dang_chieu",
+									"value": "1",
+									"type": "text"
+								},
+								{
+									"key": "sap_chieu",
+									"value": "0",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{domain}}/movies/updateMovie/44",
+							"host": [
+								"{{domain}}"
+							],
+							"path": [
+								"movies",
+								"updateMovie",
+								"44"
+							]
+						}
+					},
+					"response": []
 				}
 			]
 		},
@@ -302,7 +388,7 @@
 							"bearer": [
 								{
 									"key": "token",
-									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0YWlfa2hvYW4iOjM0LCJpYXQiOjE2NzkyMjM2NDksImV4cCI6MTY3OTMxMDA0OX0.mDXscE3PyC6Cx3v-Tx3c97PqIxI5KaoDgvFDtthM7Co",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0YWlfa2hvYW4iOjM4LCJpYXQiOjE2NzkyNDMxODYsImV4cCI6MTY3OTMyOTU4Nn0.nqVsOCkGrqNRNt0yrw_bXCAD5WT_5ZhkPGZsHqcnf30",
 									"type": "string"
 								}
 							]
@@ -330,7 +416,7 @@
 							"bearer": [
 								{
 									"key": "token",
-									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0YWlfa2hvYW4iOjM0LCJpYXQiOjE2NzkyMjM2NDksImV4cCI6MTY3OTMxMDA0OX0.mDXscE3PyC6Cx3v-Tx3c97PqIxI5KaoDgvFDtthM7Co",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0YWlfa2hvYW4iOjM0LCJpYXQiOjE2NzkyMjI2MzksImV4cCI6MTY3OTMwOTAzOX0.wxdpPYosEAgXH69U02T_dw0aN8Dhn85yuSuOdsOVFHQ",
 									"type": "string"
 								}
 							]
@@ -376,7 +462,7 @@
 	"variable": [
 		{
 			"key": "domain",
-			"value": "localhost:8080/api"
+			"value": "localhost:8080"
 		}
 	]
 }

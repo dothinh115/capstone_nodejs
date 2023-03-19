@@ -49,6 +49,13 @@ let UsersProvider = class UsersProvider {
         return data;
     }
     async updateUser(tai_khoan, body) {
+        const user = await this.model.nguoi_dung.findFirst({
+            where: {
+                tai_khoan: +tai_khoan,
+            },
+        });
+        if (!user)
+            throw new common_1.HttpException(this.response.failRes(variables_1.notExistedUserMessage), 400);
         const data = Object.assign({}, body);
         return await this.model.nguoi_dung.update({
             data,

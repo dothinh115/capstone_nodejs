@@ -1,7 +1,6 @@
 import { HttpException } from '@nestjs/common';
 import { PrismaClient } from '@prisma/client';
 import * as fs from 'fs';
-import { movieImgPath } from './variables';
 const model = new PrismaClient();
 const maxSize = 6000000; //6Mb
 const type = ['image/jpeg', 'image/jpg', 'image/png', 'image/gif'];

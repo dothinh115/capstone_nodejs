@@ -15,11 +15,11 @@ const config_1 = require("@nestjs/config");
 const passport_1 = require("@nestjs/passport");
 const passport_jwt_1 = require("passport-jwt");
 const prisma_service_1 = require("../prisma/prisma.service");
-const function_1 = require("../utils/function");
 let JwtStrategy = class JwtStrategy extends (0, passport_1.PassportStrategy)(passport_jwt_1.Strategy, 'jwt') {
     constructor(configService, model) {
         super({
             jwtFromRequest: passport_jwt_1.ExtractJwt.fromAuthHeaderAsBearerToken(),
+            ignoreExpiration: false,
             secretOrKey: configService.get('SECRET_KEY'),
         });
         this.model = model;
@@ -30,14 +30,10 @@ let JwtStrategy = class JwtStrategy extends (0, passport_1.PassportStrategy)(pas
                 tai_khoan: payload.tai_khoan,
             },
             include: {
-                permission: {
-                    select: {
-                        permission_name: true,
-                    },
-                },
+                permission: true,
             },
         });
-        return (0, function_1.userConfig)(userData);
+        return userData;
     }
 };
 JwtStrategy = __decorate([

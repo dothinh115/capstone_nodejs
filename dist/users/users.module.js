@@ -17,14 +17,13 @@ const global_dto_1 = require("../utils/dto/global.dto");
 const users_controller_1 = require("./users.controller");
 const users_service_1 = require("./users.service");
 const global_dto_2 = require("../utils/dto/global.dto");
-const admin_guard_1 = require("../guards/admin.guard");
 let UserModule = UserModule_1 = class UserModule {
 };
 UserModule = UserModule_1 = __decorate([
     (0, common_1.Module)({
         imports: [UserModule_1, jwt_1.JwtModule, config_1.ConfigModule, prisma_module_1.PrismaModule],
         controllers: [users_controller_1.UsersController],
-        providers: [users_service_1.UsersProvider, global_dto_1.Response, jwt_strategy_1.JwtStrategy, global_dto_2.Response, admin_guard_1.AdminRole],
+        providers: [users_service_1.UsersProvider, global_dto_1.Response, jwt_strategy_1.JwtStrategy, global_dto_2.Response],
     })
 ], UserModule);
 exports.UserModule = UserModule;

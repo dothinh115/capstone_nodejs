@@ -9,7 +9,6 @@ var AdminModule_1;
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.AdminModule = void 0;
 const common_1 = require("@nestjs/common");
-const admin_guard_1 = require("../guards/admin.guard");
 const prisma_module_1 = require("../prisma/prisma.module");
 const jwt_strategy_1 = require("../strategy/jwt.strategy");
 const global_dto_1 = require("../utils/dto/global.dto");
@@ -21,7 +20,7 @@ AdminModule = AdminModule_1 = __decorate([
     (0, common_1.Module)({
         imports: [AdminModule_1, prisma_module_1.PrismaModule],
         controllers: [admin_controller_1.AdminController],
-        providers: [jwt_strategy_1.JwtStrategy, admin_guard_1.AdminRole, global_dto_1.Response, admin_service_1.AdminProvider],
+        providers: [jwt_strategy_1.JwtStrategy, global_dto_1.Response, admin_service_1.AdminProvider],
     })
 ], AdminModule);
 exports.AdminModule = AdminModule;

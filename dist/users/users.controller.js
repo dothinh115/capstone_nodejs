@@ -14,13 +14,16 @@ var __param = (this && this.__param) || function (paramIndex, decorator) {
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.UsersController = void 0;
 const common_1 = require("@nestjs/common");
-const auth_dto_1 = require("../auth/dto/auth.dto");
-const admin_guard_1 = require("../guards/admin.guard");
-const moderator_guard_1 = require("../guards/moderator.guard");
+const class_transformer_1 = require("class-transformer");
+const ownId_guard_1 = require("../guards/ownId.guard");
+const roles_decorator_1 = require("../guards/roles.decorator");
+const roles_guard_1 = require("../guards/roles.guard");
 const strategy_1 = require("../strategy");
+const config_1 = require("../utils/config");
 const global_dto_1 = require("../utils/dto/global.dto");
 const function_1 = require("../utils/function");
 const variables_1 = require("../utils/variables");
+const users_dto_1 = require("./dto/users.dto");
 const users_service_1 = require("./users.service");
 let UsersController = class UsersController {
     constructor(userProvider, response) {
@@ -39,8 +42,10 @@ let UsersController = class UsersController {
         await this.userProvider.deleteUserProvider(tai_khoan);
         throw new common_1.HttpException(this.response.successRes(variables_1.successMessage), 200);
     }
-    async updateUser(tai_khoan, body, req) {
-        const data = await this.userProvider.updateUser(tai_khoan, body);
+    async updateUser(tai_khoan, body) {
+        const data = await this.userProvider.updateUser(tai_khoan, (0, class_transformer_1.plainToClass)(users_dto_1.UpdateUserDto, body, {
+            excludeExtraneousValues: true,
+        }));
         throw new common_1.HttpException(this.response.successRes(variables_1.successMessage, (0, function_1.userConfig)(data)), 200);
     }
 };
@@ -60,7 +65,8 @@ __decorate([
     __metadata("design:returntype", Promise)
 ], UsersController.prototype, "getUserInfo", null);
 __decorate([
-    (0, common_1.UseGuards)(strategy_1.TokenAuthorization, admin_guard_1.AdminRole),
+    (0, common_1.UseGuards)(strategy_1.TokenAuthorization, roles_guard_1.RoleGuard),
+    (0, roles_decorator_1.Roles)(config_1.permissionConfig.Administrators),
     (0, common_1.Delete)('/deleteUser/:tai_khoan'),
     __param(0, (0, common_1.Param)('tai_khoan')),
     __metadata("design:type", Function),
@@ -68,14 +74,14 @@ __decorate([
     __metadata("design:returntype", Promise)
 ], UsersController.prototype, "deleteUser", null);
 __decorate([
-    (0, common_1.UseGuards)(strategy_1.TokenAuthorization, moderator_guard_1.ModeratorRole),
+    (0, common_1.UseGuards)(strategy_1.TokenAuthorization, ownId_guard_1.OwnID, roles_guard_1.RoleGuard),
+    (0, roles_decorator_1.Roles)(config_1.permissionConfig.Moderators, config_1.permissionConfig.Administrators),
     (0, common_1.UsePipes)(new common_1.ValidationPipe()),
     (0, common_1.Put)('/update/:tai_khoan'),
     __param(0, (0, common_1.Param)('tai_khoan')),
     __param(1, (0, common_1.Body)()),
-    __param(2, (0, common_1.Req)()),
     __metadata("design:type", Function),
-    __metadata("design:paramtypes", [Number, auth_dto_1.UserBaseDto, Object]),
+    __metadata("design:paramtypes", [Number, users_dto_1.UpdateUserDto]),
     __metadata("design:returntype", Promise)
 ], UsersController.prototype, "updateUser", null);
 UsersController = __decorate([

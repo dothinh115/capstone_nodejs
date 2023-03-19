@@ -1,9 +1,9 @@
 import { HttpException, Injectable } from '@nestjs/common';
-import { UserBaseDto, UserDto } from 'src/auth/dto/auth.dto';
+import { UserDto } from 'src/auth/dto/auth.dto';
 import { PrismaService } from 'src/prisma/prisma.service';
 import { Response } from 'src/utils/dto/global.dto';
-import { userConfig } from 'src/utils/function';
 import { notExistedUserMessage } from 'src/utils/variables';
+import { UpdateUserDto } from './dto/users.dto';
 
 @Injectable()
 export class UsersProvider {
@@ -41,8 +41,19 @@ export class UsersProvider {
     });
     return data;
   }
-  async updateUser(tai_khoan: number, body: UserBaseDto): Promise<UserDto> {
-    const data: UserBaseDto = {
+
+  async updateUser(tai_khoan: number, body: UpdateUserDto): Promise<UserDto> {
+    const user = await this.model.nguoi_dung.findFirst({
+      where: {
+        tai_khoan: +tai_khoan,
+      },
+    });
+    if (!user)
+      throw new HttpException(
+        this.response.failRes(notExistedUserMessage),
+        400,
+      );
+    const data: UpdateUserDto = {
       ...body,
     };
     return await this.model.nguoi_dung.update({

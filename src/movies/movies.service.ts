@@ -85,4 +85,48 @@ export class MoviesProvider {
       );
     return result;
   }
+
+  async updateMovie(file, body, ma_phim) {
+    const phim = await this.model.phim.findFirst({
+      where: {
+        ma_phim: +ma_phim,
+      },
+    });
+    if (!phim)
+      throw new HttpException(
+        this.response.failRes(notExistedMovieMessage),
+        400,
+      );
+
+    if (file) movieImgCheck(file);
+    const { danh_gia, dang_chieu, sap_chieu, hot, ngay_khoi_chieu, ...others } =
+      body;
+    const data = {
+      ...others,
+      ngay_khoi_chieu: new Date(ngay_khoi_chieu),
+      danh_gia: Number(danh_gia),
+      hot: Number(hot) === 1 ? true : false,
+      dang_chieu: Number(dang_chieu) === 1 ? true : false,
+      sap_chieu: Number(sap_chieu) === 1 ? true : false,
+      ...(file && { hinh_anh: file.filename }),
+    };
+    if (file) fs.unlinkSync(movieImgPath + phim.hinh_anh);
+    return await this.model.phim.update({
+      data,
+      where: {
+        ma_phim: +ma_phim,
+      },
+      include: {
+        nguoi_dung: {
+          include: {
+            permission: {
+              select: {
+                permission_name: true,
+              },
+            },
+          },
+        },
+      },
+    });
+  }
 }

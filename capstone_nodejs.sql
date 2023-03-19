@@ -103,10 +103,8 @@ INSERT INTO `nguoi_dung` (`tai_khoan`, `ho_ten`, `email`, `so_dt`, `mat_khau`, `
 (29,	'thinh',	'dothinh123@gmail.com',	'0978481071',	'$2b$10$GTbFuMc6rZiADAAeYFVPEOTDAhV.o/JMSRgxDYzPCP71O9rgjc.yK',	1),
 (31,	'thinh',	'dothinh12345@gmail.com',	'0978481071',	'$2b$10$4GgHcUN8FVRW44p5Nb6GBeknDMs/vGYX1f7SD1bIoX3P6uP2ZtIsy',	1),
 (32,	'thinh',	'dothinh123421345@gmail.com',	'0978481071',	'$2b$10$i4p1/Rlp/uHKPiIMMSBO/e7BEsC2TvhCE8hqRUbMCXzNySZqL.XsG',	1),
-(33,	'nguyenhau123',	'hau20@gmail.com',	'0361313493',	'hau123',	1),
-(34,	'ABC',	'abc@gmail.com',	'0361313493',	'$2b$10$u/2C9Z5HPeQVW.Wg3cIRp.Jotym5EG1RzMfNUUf2zWKZAUSguoMNW',	4),
-(36,	'Mode',	'xyz@gmail.com',	'0361313493',	'$2b$10$iZcznRKUdO.zhlJyRSuycu2jM3nfIYUMFMcHascn3y3F3kJSZMNUi',	3),
-(37,	'admin',	'abcd@gmail.com',	'0978481071',	'$2b$10$0WQORevK7I2.6ZIIJXGGNOayMQt16idY9/Q2h2V1JQyZwq8xqRtlm',	2);
+(38,	'nguyenhau12345',	'abc@gmail.com',	'0361313493',	'$2b$10$6XPfwsNkfz1xwB2bjqYM6eIYz.LxFikJCHHZy7JgJq7WFcDTzjh.W',	4),
+(39,	'nguyenhau12345',	'abcd@gmail.com',	'0361313493',	'$2b$10$r9vAMBpN3kalMEGjrvHo4OGvwyw0MDoLFygnCECcC3YQCOILsqEq.',	1);
 
 DROP TABLE IF EXISTS `permission`;
 CREATE TABLE `permission` (
@@ -116,7 +114,7 @@ CREATE TABLE `permission` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 INSERT INTO `permission` (`permission_value`, `permission_name`) VALUES
-(0,	'Banned users'),
+(0,	'Banned'),
 (1,	'Members'),
 (2,	'Editors'),
 (3,	'Moderators'),
@@ -142,14 +140,7 @@ CREATE TABLE `phim` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 INSERT INTO `phim` (`ma_phim`, `ten_phim`, `trailer`, `hinh_anh`, `mo_ta`, `ngay_khoi_chieu`, `danh_gia`, `hot`, `dang_chieu`, `sap_chieu`, `tai_khoan`) VALUES
-(33,	'Phim 2',	'trailer_test',	'1679222008041_floral-designs-3840x2160-10372.jpg',	'Mô tả phim thứ 1',	'2000-03-11',	5,	1,	1,	0,	37),
-(34,	'Phim 2',	'trailer_test',	'1679222009679_floral-designs-3840x2160-10372.jpg',	'Mô tả phim thứ 1',	'2000-03-11',	5,	1,	1,	0,	37),
-(35,	'Phim 2',	'trailer_test',	'1679222010880_floral-designs-3840x2160-10372.jpg',	'Mô tả phim thứ 1',	'2000-03-11',	5,	1,	1,	0,	37),
-(36,	'Phim 2',	'trailer_test',	'1679222011952_floral-designs-3840x2160-10372.jpg',	'Mô tả phim thứ 1',	'2000-03-11',	5,	1,	1,	0,	37),
-(37,	'Phim 2',	'trailer_test',	'1679222018505_elephant-2729415.jpg',	'Mô tả phim thứ 1',	'2000-03-11',	5,	1,	1,	0,	37),
-(38,	'Phim 2',	'trailer_test',	'1679222019761_elephant-2729415.jpg',	'Mô tả phim thứ 1',	'2000-03-11',	5,	1,	1,	0,	37),
-(39,	'Phim 2',	'trailer_test',	'1679222020744_elephant-2729415.jpg',	'Mô tả phim thứ 1',	'2000-03-11',	5,	1,	1,	0,	37),
-(40,	'Phim 2',	'trailer_test',	'1679222021880_elephant-2729415.jpg',	'Mô tả phim thứ 1',	'2000-03-11',	5,	1,	1,	0,	37);
+(44,	'phim 4',	'trailer 3',	'1679243765812_floral-designs-3840x2160-10372.jpg',	'abc',	'1111-11-11',	4,	1,	1,	0,	38);
 
 DROP TABLE IF EXISTS `rap_phim`;
 CREATE TABLE `rap_phim` (
@@ -162,4 +153,4 @@ CREATE TABLE `rap_phim` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 
--- 2023-03-19 10:48:40
+-- 2023-03-19 16:47:43

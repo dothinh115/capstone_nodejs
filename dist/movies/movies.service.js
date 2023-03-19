@@ -92,6 +92,38 @@ let MoviesProvider = class MoviesProvider {
             throw new common_1.HttpException(this.response.failRes(variables_1.notExistedMovieMessage), 400);
         return result;
     }
+    async updateMovie(file, body, ma_phim) {
+        const phim = await this.model.phim.findFirst({
+            where: {
+                ma_phim: +ma_phim,
+            },
+        });
+        if (!phim)
+            throw new common_1.HttpException(this.response.failRes(variables_1.notExistedMovieMessage), 400);
+        if (file)
+            (0, function_1.movieImgCheck)(file);
+        const { danh_gia, dang_chieu, sap_chieu, hot, ngay_khoi_chieu } = body, others = __rest(body, ["danh_gia", "dang_chieu", "sap_chieu", "hot", "ngay_khoi_chieu"]);
+        const data = Object.assign(Object.assign(Object.assign({}, others), { ngay_khoi_chieu: new Date(ngay_khoi_chieu), danh_gia: Number(danh_gia), hot: Number(hot) === 1 ? true : false, dang_chieu: Number(dang_chieu) === 1 ? true : false, sap_chieu: Number(sap_chieu) === 1 ? true : false }), (file && { hinh_anh: file.filename }));
+        if (file)
+            fs.unlinkSync(variables_1.movieImgPath + phim.hinh_anh);
+        return await this.model.phim.update({
+            data,
+            where: {
+                ma_phim: +ma_phim,
+            },
+            include: {
+                nguoi_dung: {
+                    include: {
+                        permission: {
+                            select: {
+                                permission_name: true,
+                            },
+                        },
+                    },
+                },
+            },
+        });
+    }
 };
 MoviesProvider = __decorate([
     (0, common_1.Injectable)(),

@@ -19,4 +19,11 @@ export declare class MoviesProvider {
             };
         };
     }>;
+    updateMovie(file: any, body: any, ma_phim: any): Promise<import(".prisma/client").phim & {
+        nguoi_dung: import(".prisma/client").nguoi_dung & {
+            permission: {
+                permission_name: string;
+            };
+        };
+    }>;
 }

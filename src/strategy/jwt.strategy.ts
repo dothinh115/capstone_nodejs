@@ -4,13 +4,13 @@ import { PassportStrategy } from '@nestjs/passport';
 import { ExtractJwt, Strategy } from 'passport-jwt';
 import { UserDto } from 'src/auth/dto/auth.dto';
 import { PrismaService } from 'src/prisma/prisma.service';
-import { userConfig } from 'src/utils/function';
 
 @Injectable()
 export class JwtStrategy extends PassportStrategy(Strategy, 'jwt') {
   constructor(configService: ConfigService, private model: PrismaService) {
     super({
       jwtFromRequest: ExtractJwt.fromAuthHeaderAsBearerToken(),
+      ignoreExpiration: false,
       secretOrKey: configService.get('SECRET_KEY'),
     });
   }
@@ -20,13 +20,9 @@ export class JwtStrategy extends PassportStrategy(Strategy, 'jwt') {
         tai_khoan: payload.tai_khoan,
       },
       include: {
-        permission: {
-          select: {
-            permission_name: true,
-          },
-        },
+        permission: true,
       },
     });
-    return userConfig(userData); //req.user
+    return userData;
   }
 }
