@@ -14,8 +14,8 @@ var __param = (this && this.__param) || function (paramIndex, decorator) {
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.AuthController = void 0;
 const common_1 = require("@nestjs/common");
+const config_1 = require("../utils/config");
 const global_dto_1 = require("../utils/dto/global.dto");
-const function_1 = require("../utils/function");
 const variables_1 = require("../utils/variables");
 const auth_service_1 = require("./auth.service");
 const auth_dto_1 = require("./dto/auth.dto");
@@ -26,12 +26,12 @@ let AuthController = class AuthController {
     }
     async signUp(data) {
         let user = await this.user.signUpProvider(data);
-        user = (0, function_1.userConfig)(user);
+        user = (0, config_1.userConfig)(user);
         throw new common_1.HttpException(this.response.successRes(variables_1.successMessage, user), 200);
     }
     async signIn(data) {
         let user = await this.user.signInProvider(data);
-        user = (0, function_1.userConfig)(user);
+        user = (0, config_1.userConfig)(user);
         throw new common_1.HttpException(this.response.successRes(variables_1.successMessage, user), 200);
     }
 };

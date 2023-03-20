@@ -21,7 +21,6 @@ const roles_guard_1 = require("../guards/roles.guard");
 const strategy_1 = require("../strategy");
 const config_1 = require("../utils/config");
 const global_dto_1 = require("../utils/dto/global.dto");
-const function_1 = require("../utils/function");
 const variables_1 = require("../utils/variables");
 const users_dto_1 = require("./dto/users.dto");
 const users_service_1 = require("./users.service");
@@ -36,7 +35,7 @@ let UsersController = class UsersController {
     }
     async getUserInfo(tai_khoan) {
         const result = await this.userProvider.getUserInfo(tai_khoan);
-        throw new common_1.HttpException(this.response.successRes(variables_1.successMessage, (0, function_1.userConfig)(result)), 200);
+        throw new common_1.HttpException(this.response.successRes(variables_1.successMessage, (0, config_1.userConfig)(result)), 200);
     }
     async deleteUser(tai_khoan) {
         await this.userProvider.deleteUserProvider(tai_khoan);
@@ -46,7 +45,7 @@ let UsersController = class UsersController {
         const data = await this.userProvider.updateUser(tai_khoan, (0, class_transformer_1.plainToClass)(users_dto_1.UpdateUserDto, body, {
             excludeExtraneousValues: true,
         }));
-        throw new common_1.HttpException(this.response.successRes(variables_1.successMessage, (0, function_1.userConfig)(data)), 200);
+        throw new common_1.HttpException(this.response.successRes(variables_1.successMessage, (0, config_1.userConfig)(data)), 200);
     }
 };
 __decorate([

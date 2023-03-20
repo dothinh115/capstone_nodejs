@@ -24,18 +24,22 @@ exports.MoviesProvider = void 0;
 const common_1 = require("@nestjs/common");
 const prisma_service_1 = require("../prisma/prisma.service");
 const global_dto_1 = require("../utils/dto/global.dto");
-const function_1 = require("../utils/function");
 const variables_1 = require("../utils/variables");
 const fs = require("fs");
+const config_1 = require("../utils/config");
 let MoviesProvider = class MoviesProvider {
     constructor(model, response) {
         this.model = model;
         this.response = response;
     }
-    async createNewMovie(file, body, tai_khoan) {
-        (0, function_1.movieImgCheck)(file);
+    async createNewMovie(req, file, body, tai_khoan) {
+        if (req.imgValidationErrorMessage) {
+            throw new common_1.HttpException(this.response.failRes(req.imgValidationErrorMessage), 400);
+        }
+        if (!file)
+            throw new common_1.HttpException(this.response.failRes(variables_1.imgRequiredMessage), 400);
         const { danh_gia, dang_chieu, sap_chieu, hot, ngay_khoi_chieu } = body, others = __rest(body, ["danh_gia", "dang_chieu", "sap_chieu", "hot", "ngay_khoi_chieu"]);
-        const data = Object.assign(Object.assign({}, others), { ngay_khoi_chieu: new Date(ngay_khoi_chieu), danh_gia: Number(danh_gia), hot: Number(hot) === 1 ? true : false, dang_chieu: Number(dang_chieu) === 1 ? true : false, sap_chieu: Number(sap_chieu) === 1 ? true : false, hinh_anh: file.filename, tai_khoan });
+        const data = Object.assign(Object.assign({}, others), { ngay_khoi_chieu: new Date(ngay_khoi_chieu), danh_gia: +danh_gia, hot: +hot === 1 ? true : false, dang_chieu: +dang_chieu === 1 ? true : false, sap_chieu: +sap_chieu === 1 ? true : false, hinh_anh: file.filename, tai_khoan });
         const newMovie = await this.model.phim.create({
             data,
         });
@@ -92,7 +96,10 @@ let MoviesProvider = class MoviesProvider {
             throw new common_1.HttpException(this.response.failRes(variables_1.notExistedMovieMessage), 400);
         return result;
     }
-    async updateMovie(file, body, ma_phim) {
+    async updateMovie(req, file, body, ma_phim) {
+        if (req.imgValidationErrorMessage) {
+            throw new common_1.HttpException(this.response.failRes(req.imgValidationErrorMessage), 400);
+        }
         const phim = await this.model.phim.findFirst({
             where: {
                 ma_phim: +ma_phim,
@@ -100,10 +107,8 @@ let MoviesProvider = class MoviesProvider {
         });
         if (!phim)
             throw new common_1.HttpException(this.response.failRes(variables_1.notExistedMovieMessage), 400);
-        if (file)
-            (0, function_1.movieImgCheck)(file);
         const { danh_gia, dang_chieu, sap_chieu, hot, ngay_khoi_chieu } = body, others = __rest(body, ["danh_gia", "dang_chieu", "sap_chieu", "hot", "ngay_khoi_chieu"]);
-        const data = Object.assign(Object.assign(Object.assign({}, others), { ngay_khoi_chieu: new Date(ngay_khoi_chieu), danh_gia: Number(danh_gia), hot: Number(hot) === 1 ? true : false, dang_chieu: Number(dang_chieu) === 1 ? true : false, sap_chieu: Number(sap_chieu) === 1 ? true : false }), (file && { hinh_anh: file.filename }));
+        const data = Object.assign(Object.assign(Object.assign({}, others), { ngay_khoi_chieu: new Date(ngay_khoi_chieu), danh_gia: +danh_gia, hot: +hot === 1 ? true : false, dang_chieu: +dang_chieu === 1 ? true : false, sap_chieu: +sap_chieu === 1 ? true : false }), (file && { hinh_anh: file.filename }));
         if (file)
             fs.unlinkSync(variables_1.movieImgPath + phim.hinh_anh);
         return await this.model.phim.update({
@@ -123,6 +128,61 @@ let MoviesProvider = class MoviesProvider {
                 },
             },
         });
+    }
+    async getMovieFromDateToDate(from, to, number, sort) {
+        const data = await this.model.phim.findMany(Object.assign(Object.assign(Object.assign({ where: {
+                ngay_khoi_chieu: {
+                    lte: new Date(to),
+                    gte: new Date(from),
+                },
+            }, include: {
+                nguoi_dung: {
+                    include: {
+                        permission: {
+                            select: {
+                                permission_name: true,
+                            },
+                        },
+                    },
+                },
+            } }, (number && { take: +number })), (sort === 'desc' && {
+            orderBy: {
+                ngay_khoi_chieu: 'desc',
+            },
+        })), (sort === 'asc' && {
+            orderBy: {
+                ngay_khoi_chieu: 'asc',
+            },
+        })));
+        for (let key in data) {
+            data[key] = (0, config_1.movieConfig)(data[key]);
+        }
+        return data;
+    }
+    async getMovieByQuantity(number, sort) {
+        if (+number === 0)
+            throw new common_1.HttpException('number không thể là 0', 400);
+        const dataQuantity = await this.model.phim.findMany(Object.assign(Object.assign({ take: +number, include: {
+                nguoi_dung: {
+                    include: {
+                        permission: {
+                            select: { permission_name: true },
+                        },
+                    },
+                },
+            } }, (sort === 'desc' && {
+            orderBy: {
+                ngay_khoi_chieu: 'desc',
+            },
+        })), (sort === 'asc' && {
+            orderBy: {
+                ngay_khoi_chieu: 'asc',
+            },
+        })));
+        for (const key in dataQuantity) {
+            dataQuantity[key] = (0, config_1.movieConfig)(dataQuantity[key]);
+        }
+        return dataQuantity;
     }
 };
 MoviesProvider = __decorate([

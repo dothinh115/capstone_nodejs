@@ -9,5 +9,6 @@ export declare class MoviesController {
     createMovie(file: Express.Multer.File, body: any, req: Request): Promise<void>;
     deleteMovie(ma_phim: number): Promise<void>;
     getMovieInfo(ma_phim: number): Promise<void>;
-    updateMovie(file: Express.Multer.File, body: any, ma_phim: string): Promise<void>;
+    getMovie(from: string, to: string, number: string, sort: string): Promise<void>;
+    updateMovie(file: Express.Multer.File, body: any, ma_phim: string, req: Request): Promise<void>;
 }

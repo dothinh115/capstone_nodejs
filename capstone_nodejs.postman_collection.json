@@ -43,7 +43,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"email\": \"abcd@gmail.com\",\r\n    \"mat_khau\": \"hau123\"\r\n}",
+							"raw": "{\r\n    \"email\": \"abc@gmail.com\",\r\n    \"mat_khau\": \"hau123\"\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -171,7 +171,7 @@
 							"bearer": [
 								{
 									"key": "token",
-									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0YWlfa2hvYW4iOjM4LCJpYXQiOjE2NzkyNDM3MTEsImV4cCI6MTY3OTMzMDExMX0.9xN3mn74SfiXf1FLSQ0HVqxMSCarZTeT3M_gC3nAPNs",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0YWlfa2hvYW4iOjM4LCJpYXQiOjE2NzkzMjM2NjMsImV4cCI6MTY3OTQxMDA2M30._CjSsYxwJ6pMnXAczP9mw8mApgkVkSiUWbE0nE8n-kg",
 									"type": "string"
 								}
 							]
@@ -185,7 +185,7 @@
 									"key": "hinh_anh",
 									"contentType": "",
 									"type": "file",
-									"src": "/C:/Users/Administrator/Downloads/avatardefault.png"
+									"src": "/C:/Users/Administrator/Downloads/elephant-2729415.jpg"
 								},
 								{
 									"key": "ten_phim",
@@ -204,7 +204,7 @@
 								},
 								{
 									"key": "ngay_khoi_chieu",
-									"value": "2000-03-11",
+									"value": "2023-03-20",
 									"type": "text"
 								},
 								{
@@ -283,14 +283,14 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "{{domain}}/movies/getMovieInfo/29",
+							"raw": "{{domain}}/movies/getMovieInfo/44",
 							"host": [
 								"{{domain}}"
 							],
 							"path": [
 								"movies",
 								"getMovieInfo",
-								"29"
+								"44"
 							]
 						}
 					},
@@ -304,7 +304,7 @@
 							"bearer": [
 								{
 									"key": "token",
-									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0YWlfa2hvYW4iOjM5LCJpYXQiOjE2NzkyNDM3ODMsImV4cCI6MTY3OTMzMDE4M30.j5_rDwVk2xTz8JqNaK1uxXgqQS70aDobuwlf1bqFi6k",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0YWlfa2hvYW4iOjM4LCJpYXQiOjE2NzkzMTk1NDksImV4cCI6MTY3OTQwNTk0OX0.4-wcqcnCibPUm_v5nSC_siPkUSjw4rYnev5tIGkAI7E",
 									"type": "string"
 								}
 							]
@@ -317,7 +317,7 @@
 								{
 									"key": "hinh_anh",
 									"type": "file",
-									"src": "/C:/Users/Administrator/Downloads/floral-designs-3840x2160-10372.jpg"
+									"src": "/C:/Users/Administrator/Downloads/avatardefault.png"
 								},
 								{
 									"key": "ten_phim",
@@ -374,6 +374,45 @@
 						}
 					},
 					"response": []
+				},
+				{
+					"name": "getMovie",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{domain}}/movies/getMovie?number=1",
+							"host": [
+								"{{domain}}"
+							],
+							"path": [
+								"movies",
+								"getMovie"
+							],
+							"query": [
+								{
+									"key": "from",
+									"value": "2023-3-1",
+									"disabled": true
+								},
+								{
+									"key": "to",
+									"value": "2023-4-30",
+									"disabled": true
+								},
+								{
+									"key": "number",
+									"value": "1"
+								},
+								{
+									"key": "sort",
+									"value": "desc",
+									"disabled": true
+								}
+							]
+						}
+					},
+					"response": []
 				}
 			]
 		},
@@ -388,7 +427,7 @@
 							"bearer": [
 								{
 									"key": "token",
-									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0YWlfa2hvYW4iOjM4LCJpYXQiOjE2NzkyNDMxODYsImV4cCI6MTY3OTMyOTU4Nn0.nqVsOCkGrqNRNt0yrw_bXCAD5WT_5ZhkPGZsHqcnf30",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0YWlfa2hvYW4iOjM4LCJpYXQiOjE2NzkzMTk1NDksImV4cCI6MTY3OTQwNTk0OX0.4-wcqcnCibPUm_v5nSC_siPkUSjw4rYnev5tIGkAI7E",
 									"type": "string"
 								}
 							]

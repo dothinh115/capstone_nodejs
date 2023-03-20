@@ -23,3 +23,5 @@ export const adminOnlyMessage =
 
 export const userInfoUpdateNotAllowed =
   'Chỉ được chỉnh sửa nội dung của bản thân!';
+
+export const imgRequiredMessage = 'Thiếu ảnh!';

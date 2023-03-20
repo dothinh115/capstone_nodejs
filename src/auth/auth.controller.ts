@@ -6,8 +6,8 @@ import {
   UsePipes,
   ValidationPipe,
 } from '@nestjs/common';
+import { userConfig } from 'src/utils/config';
 import { Response, ResponseInterface } from 'src/utils/dto/global.dto';
-import { userConfig } from 'src/utils/function';
 import { successMessage } from 'src/utils/variables';
 import { AuthProvider } from './auth.service';
 import { UserBaseDto, UserLoginDto } from './dto/auth.dto';

@@ -140,7 +140,9 @@ CREATE TABLE `phim` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 INSERT INTO `phim` (`ma_phim`, `ten_phim`, `trailer`, `hinh_anh`, `mo_ta`, `ngay_khoi_chieu`, `danh_gia`, `hot`, `dang_chieu`, `sap_chieu`, `tai_khoan`) VALUES
-(44,	'phim 4',	'trailer 3',	'1679243765812_floral-designs-3840x2160-10372.jpg',	'abc',	'1111-11-11',	4,	1,	1,	0,	38);
+(44,	'phim 4',	'trailer 3',	'1679322233729_avatardefault.png',	'abc',	'1111-11-11',	4,	1,	1,	0,	38),
+(45,	'Phim 2',	'trailer_test',	'1679323900567_elephant-2729415.jpg',	'Mô tả phim thứ 1',	'2023-03-15',	5,	1,	1,	0,	38),
+(46,	'Phim 2',	'trailer_test',	'1679323912955_elephant-2729415.jpg',	'Mô tả phim thứ 1',	'2023-03-20',	5,	1,	1,	0,	38);
 
 DROP TABLE IF EXISTS `rap_phim`;
 CREATE TABLE `rap_phim` (
@@ -153,4 +155,4 @@ CREATE TABLE `rap_phim` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 
--- 2023-03-19 16:47:43
+-- 2023-03-20 16:08:19

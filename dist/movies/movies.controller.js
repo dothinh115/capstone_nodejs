@@ -32,8 +32,8 @@ let MoviesController = class MoviesController {
         this.response = response;
     }
     async createMovie(file, body, req) {
-        let data = await this.moviesProvider.createNewMovie(file, (0, class_transformer_1.plainToClass)(movies_dto_1.MovieCreateDto, body, { excludeExtraneousValues: true }), +req.user['tai_khoan']);
-        throw new common_1.HttpException(this.response.successRes(variables_1.successMessage, (0, function_1.movieConfig)(data)), 200);
+        let data = await this.moviesProvider.createNewMovie(req, file, (0, class_transformer_1.plainToClass)(movies_dto_1.MovieCreateDto, body, { excludeExtraneousValues: true }), +req.user['tai_khoan']);
+        throw new common_1.HttpException(this.response.successRes(variables_1.successMessage, (0, config_1.movieConfig)(data)), 200);
     }
     async deleteMovie(ma_phim) {
         await this.moviesProvider.deleteMovie(ma_phim);
@@ -41,11 +41,32 @@ let MoviesController = class MoviesController {
     }
     async getMovieInfo(ma_phim) {
         const data = await this.moviesProvider.getMovieInfo(ma_phim);
-        throw new common_1.HttpException(this.response.successRes(variables_1.successMessage, (0, function_1.movieConfig)(data)), 200);
+        throw new common_1.HttpException(this.response.successRes(variables_1.successMessage, (0, config_1.movieConfig)(data)), 200);
     }
-    async updateMovie(file, body, ma_phim) {
-        let data = await this.moviesProvider.updateMovie(file, body, ma_phim);
-        throw new common_1.HttpException(this.response.successRes(variables_1.successMessage, (0, function_1.movieConfig)(data)), 200);
+    async getMovie(from, to, number, sort) {
+        if (from || to) {
+            if (!from || !to) {
+                throw new common_1.HttpException(this.response.failRes('Phải đủ cả from và to!'), 400);
+            }
+            const data = await this.moviesProvider.getMovieFromDateToDate(from, to, number ? number : null, sort ? sort : null);
+            if (data.length === 0)
+                throw new common_1.HttpException(this.response.successRes(`Không có phim nào được khởi chiếu từ ${from} đến ${to}`), 200);
+            throw new common_1.HttpException(this.response.successRes(variables_1.successMessage, data), 200);
+        }
+        else if (number) {
+            const data = await this.moviesProvider.getMovieByQuantity(number, sort ? sort : null);
+            throw new common_1.HttpException(this.response.successRes(variables_1.successMessage, data), 200);
+        }
+        throw new common_1.HttpException(this.response.successRes('Hướng dẫn sử dụng (query)', {
+            from: 'Từ ngày',
+            to: 'Đến ngày',
+            number: 'Giới hạn số lượng trả về (có hoặc không)',
+            sort: 'asc hoặc desc (có hoặc không)',
+        }), 200);
+    }
+    async updateMovie(file, body, ma_phim, req) {
+        let data = await this.moviesProvider.updateMovie(req, file, body, ma_phim);
+        throw new common_1.HttpException(this.response.successRes(variables_1.successMessage, (0, config_1.movieConfig)(data)), 200);
     }
 };
 __decorate([
@@ -57,6 +78,9 @@ __decorate([
             destination: process.cwd() + '/public/img',
             filename: (req, file, cb) => cb(null, Date.now() + '_' + file.originalname),
         }),
+        fileFilter: function (req, file, callback) {
+            (0, function_1.movieImgCheck)(req, file, callback);
+        },
     })),
     __param(0, (0, common_1.UploadedFile)()),
     __param(1, (0, common_1.Body)()),
@@ -82,6 +106,16 @@ __decorate([
     __metadata("design:returntype", Promise)
 ], MoviesController.prototype, "getMovieInfo", null);
 __decorate([
+    (0, common_1.Get)('/getMovie'),
+    __param(0, (0, common_1.Query)('from')),
+    __param(1, (0, common_1.Query)('to')),
+    __param(2, (0, common_1.Query)('number')),
+    __param(3, (0, common_1.Query)('sort')),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [String, String, String, String]),
+    __metadata("design:returntype", Promise)
+], MoviesController.prototype, "getMovie", null);
+__decorate([
     (0, common_1.UseGuards)(strategy_1.TokenAuthorization, roles_guard_1.RoleGuard),
     (0, roles_decorator_1.Roles)(config_1.permissionConfig.Editors, config_1.permissionConfig.Moderators, config_1.permissionConfig.Administrators),
     (0, common_1.Put)('/updateMovie/:ma_phim'),
@@ -90,12 +124,16 @@ __decorate([
             destination: process.cwd() + '/public/img',
             filename: (req, file, cb) => cb(null, Date.now() + '_' + file.originalname),
         }),
+        fileFilter: function (req, file, callback) {
+            (0, function_1.movieImgCheck)(req, file, callback);
+        },
     })),
     __param(0, (0, common_1.UploadedFile)()),
     __param(1, (0, common_1.Body)()),
     __param(2, (0, common_1.Param)('ma_phim')),
+    __param(3, (0, common_1.Req)()),
     __metadata("design:type", Function),
-    __metadata("design:paramtypes", [Object, Object, String]),
+    __metadata("design:paramtypes", [Object, Object, String, Object]),
     __metadata("design:returntype", Promise)
 ], MoviesController.prototype, "updateMovie", null);
 MoviesController = __decorate([

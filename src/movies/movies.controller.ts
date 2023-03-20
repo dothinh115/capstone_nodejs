@@ -7,6 +7,7 @@ import {
   Param,
   Post,
   Put,
+  Query,
   Req,
   UploadedFile,
   UseGuards,
@@ -19,9 +20,9 @@ import { diskStorage } from 'multer';
 import { Roles } from 'src/guards/roles.decorator';
 import { RoleGuard } from 'src/guards/roles.guard';
 import { TokenAuthorization } from 'src/strategy';
-import { permissionConfig } from 'src/utils/config';
+import { movieConfig, permissionConfig } from 'src/utils/config';
 import { Response } from 'src/utils/dto/global.dto';
-import { movieConfig } from 'src/utils/function';
+import { movieImgCheck } from 'src/utils/function';
 import { successMessage } from 'src/utils/variables';
 import { MovieCreateDto } from './dto/movies.dto';
 import { MoviesProvider } from './movies.service';
@@ -47,6 +48,9 @@ export class MoviesController {
         filename: (req, file, cb) =>
           cb(null, Date.now() + '_' + file.originalname),
       }),
+      fileFilter: function (req, file, callback) {
+        movieImgCheck(req, file, callback);
+      },
     }),
   )
   async createMovie(
@@ -56,6 +60,7 @@ export class MoviesController {
     @Req() req: Request,
   ) {
     let data = await this.moviesProvider.createNewMovie(
+      req,
       file,
       plainToClass(MovieCreateDto, body, { excludeExtraneousValues: true }),
       +req.user['tai_khoan'],
@@ -88,6 +93,59 @@ export class MoviesController {
     );
   }
 
+  @Get('/getMovie')
+  async getMovie(
+    @Query('from') from: string,
+    @Query('to') to: string,
+    @Query('number') number: string,
+    @Query('sort') sort: string,
+  ) {
+    if (from || to) {
+      if (!from || !to) {
+        throw new HttpException(
+          this.response.failRes('Phải đủ cả from và to!'),
+          400,
+        );
+      }
+
+      const data = await this.moviesProvider.getMovieFromDateToDate(
+        from,
+        to,
+        number ? number : null,
+        sort ? sort : null,
+      );
+      if (data.length === 0)
+        throw new HttpException(
+          this.response.successRes(
+            `Không có phim nào được khởi chiếu từ ${from} đến ${to}`,
+          ),
+          200,
+        );
+      throw new HttpException(
+        this.response.successRes(successMessage, data),
+        200,
+      );
+    } else if (number) {
+      const data = await this.moviesProvider.getMovieByQuantity(
+        number,
+        sort ? sort : null,
+      );
+      throw new HttpException(
+        this.response.successRes(successMessage, data),
+        200,
+      );
+    }
+    throw new HttpException(
+      this.response.successRes('Hướng dẫn sử dụng (query)', {
+        from: 'Từ ngày',
+        to: 'Đến ngày',
+        number: 'Giới hạn số lượng trả về (có hoặc không)',
+        sort: 'asc hoặc desc (có hoặc không)',
+      }),
+      200,
+    );
+  }
+
   @UseGuards(TokenAuthorization, RoleGuard)
   @Roles(
     permissionConfig.Editors,
@@ -102,6 +160,9 @@ export class MoviesController {
         filename: (req, file, cb) =>
           cb(null, Date.now() + '_' + file.originalname),
       }),
+      fileFilter: function (req, file, callback) {
+        movieImgCheck(req, file, callback);
+      },
     }),
   )
   async updateMovie(
@@ -109,8 +170,9 @@ export class MoviesController {
     file: Express.Multer.File,
     @Body() body: any,
     @Param('ma_phim') ma_phim: string,
+    @Req() req: Request,
   ) {
-    let data = await this.moviesProvider.updateMovie(file, body, ma_phim);
+    let data = await this.moviesProvider.updateMovie(req, file, body, ma_phim);
 
     throw new HttpException(
       this.response.successRes(successMessage, movieConfig(data)),
