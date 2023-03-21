@@ -5,6 +5,7 @@ import { AppController } from './app.controller';
 import { AppProvider } from './app.service';
 import { AuthModule } from './auth/auth.module';
 import { CinemasModule } from './cinemas/cinemas.module';
+import { dataModule } from './data/data.module';
 import { MoviesModule } from './movies/movies.module';
 import { UserModule } from './users/users.module';
 
@@ -17,6 +18,7 @@ import { UserModule } from './users/users.module';
     MoviesModule,
     AdminModule,
     CinemasModule,
+    dataModule,
   ],
   controllers: [AppController],
   providers: [AppProvider],

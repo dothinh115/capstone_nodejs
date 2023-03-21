@@ -544,7 +544,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"ten_cum_rap\":\"Cụm rạp Hồ Chí Minh\",\r\n    \"dia_chi\":\"Hồ Chí Minh\",\r\n    \"ma_he_thong_rap\":1\r\n}",
+							"raw": "{\r\n    \"ten_cum_rap\":\"Cụm rạp Biên Hòa\",\r\n    \"dia_chi\":\"Biên Hòa\",\r\n    \"ma_he_thong_rap\":12\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -647,7 +647,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"ten_rap\":\"cgv\",\r\n    \"ma_cum_rap\":6\r\n}",
+							"raw": "{\r\n    \"ten_rap\":\"Rạp Tp. Biên Hòa\",\r\n    \"ma_cum_rap\":9\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -662,6 +662,101 @@
 							"path": [
 								"cinemas",
 								"createCinema"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "deleteCinema",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{domain}}/cinemas/deleteCinema/2",
+							"host": [
+								"{{domain}}"
+							],
+							"path": [
+								"cinemas",
+								"deleteCinema",
+								"2"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "getCinemaInfo",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{domain}}/cinemas/getCinemaInfo/4",
+							"host": [
+								"{{domain}}"
+							],
+							"path": [
+								"cinemas",
+								"getCinemaInfo",
+								"4"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "getCinemasByComplex",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{domain}}/cinemas/getCinemasByComplex/6",
+							"host": [
+								"{{domain}}"
+							],
+							"path": [
+								"cinemas",
+								"getCinemasByComplex",
+								"6"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "updateCinema",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0YWlfa2hvYW4iOjM4LCJpYXQiOjE2Nzk0MTE1NTgsImV4cCI6MTY3OTQ5Nzk1OH0.JXuj64od7SKRMigb18PFNYpKt7jHd51bOuRvOikjCzE",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"ten_rap\":\"rap binh chanh\",\r\n    \"ma_cum_rap\":6\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{domain}}/cinemas/updateCinema/3",
+							"host": [
+								"{{domain}}"
+							],
+							"path": [
+								"cinemas",
+								"updateCinema",
+								"3"
 							]
 						}
 					},
@@ -723,6 +818,48 @@
 							"path": [
 								"admin",
 								"movieSync"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "data",
+			"item": [
+				{
+					"name": "createShowTime",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0YWlfa2hvYW4iOjM4LCJpYXQiOjE2Nzk0MTE1NTgsImV4cCI6MTY3OTQ5Nzk1OH0.JXuj64od7SKRMigb18PFNYpKt7jHd51bOuRvOikjCzE",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"ma_rap\":333,\r\n    \"ma_phim\":24,\r\n    \"ngay_gio_chieu\":\"2023-3-15\",\r\n    \"gia_ve\":10000\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{domain}}/data/createShowTime",
+							"host": [
+								"{{domain}}"
+							],
+							"path": [
+								"data",
+								"createShowTime"
 							]
 						}
 					},

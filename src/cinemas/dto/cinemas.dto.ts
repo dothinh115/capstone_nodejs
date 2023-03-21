@@ -27,3 +27,4 @@ export class CinemasCreateDto {
     return plainToClass(this, obj, { excludeExtraneousValues: true });
   }
 }
+export class CinemaUpdateDto extends CinemasCreateDto {}

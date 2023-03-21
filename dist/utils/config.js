@@ -1,6 +1,6 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.cinemaComplexConfig = exports.cinemaSystemConfig = exports.movieConfig = exports.userConfig = exports.permissionConfig = void 0;
+exports.showTimesConfig = exports.cinemaConfig = exports.cinemaComplexConfig = exports.cinemaSystemConfig = exports.movieConfig = exports.userConfig = exports.permissionConfig = void 0;
 const variables_1 = require("./variables");
 exports.permissionConfig = {
     Banned: 0,
@@ -34,4 +34,17 @@ const cinemaComplexConfig = (obj) => {
     return obj;
 };
 exports.cinemaComplexConfig = cinemaComplexConfig;
+const cinemaConfig = (obj) => {
+    obj = Object.assign(Object.assign({}, obj), { cum_rap: (0, exports.cinemaComplexConfig)(obj.cum_rap) });
+    delete obj.ma_cum_rap;
+    return obj;
+};
+exports.cinemaConfig = cinemaConfig;
+const showTimesConfig = (obj) => {
+    obj = Object.assign(Object.assign({}, obj), { rap_phim: (0, exports.cinemaConfig)(obj.rap_phim), phim: (0, exports.movieConfig)(obj.phim) });
+    delete obj.ma_rap;
+    delete obj.ma_phim;
+    return obj;
+};
+exports.showTimesConfig = showTimesConfig;
 //# sourceMappingURL=config.js.map

@@ -6,6 +6,7 @@ import {
   HttpException,
   Param,
   Post,
+  Put,
   UploadedFile,
   UseGuards,
   UseInterceptors,
@@ -24,6 +25,7 @@ import {
   CinemasComplexCreateDto,
   CinemasCreateDto,
   CinemasSystemCreateDto,
+  CinemaUpdateDto,
 } from './dto/cinemas.dto';
 
 @Controller('/cinemas')
@@ -101,6 +103,8 @@ export class CinemasController {
     await this.cinemasService.deleteCinemaComlex(ma_cum_rap);
     throw new HttpException(this.response.successRes(successMessage), 200);
   }
+  @UseGuards(TokenAuthorization, RoleGuard)
+  @Roles(permissionConfig.Administrators, permissionConfig.Moderators)
   @Post('/createCinema')
   async createCinema(@Body() body: CinemasCreateDto) {
     const data = await this.cinemasService.createCinema(
@@ -114,6 +118,42 @@ export class CinemasController {
   @Get('/getCinemaComlex')
   async getCinemaComlex() {
     const data = await this.cinemasService.getCinemaComplex();
+    throw new HttpException(
+      this.response.successRes(successMessage, data),
+      200,
+    );
+  }
+  @UseGuards(TokenAuthorization, RoleGuard)
+  @Roles(permissionConfig.Administrators, permissionConfig.Moderators)
+  @Delete('/deleteCinema/:ma_rap')
+  async deleteCinema(@Param('ma_rap') ma_rap: string) {
+    await this.cinemasService.deleteCinema(ma_rap);
+    throw new HttpException(this.response.successRes(successMessage), 200);
+  }
+  @Get('/getCinemaInfo/:ma_rap')
+  async getCinemaInfo(@Param('ma_rap') ma_rap: string) {
+    const data = await this.cinemasService.getCinemaInfo(ma_rap);
+    throw new HttpException(
+      this.response.successRes(successMessage, data),
+      200,
+    );
+  }
+  @Get('/getCinemasByComplex/:ma_cum_rap')
+  async getCinemasByComplex(@Param('ma_cum_rap') ma_cum_rap: string) {
+    const data = await this.cinemasService.getCinemasByComplex(ma_cum_rap);
+    throw new HttpException(
+      this.response.successRes(successMessage, data),
+      200,
+    );
+  }
+  @UseGuards(TokenAuthorization, RoleGuard)
+  @Roles(permissionConfig.Administrators, permissionConfig.Moderators)
+  @Put('/updateCinema/:ma_rap')
+  async updateCinema(
+    @Param('ma_rap') ma_rap: string,
+    @Body() body: CinemaUpdateDto,
+  ) {
+    const data = await this.cinemasService.updateCinema(ma_rap, body);
     throw new HttpException(
       this.response.successRes(successMessage, data),
       200,

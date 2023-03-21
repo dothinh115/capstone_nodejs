@@ -4,15 +4,21 @@ import {
   CinemasComplexCreateDto,
   CinemasCreateDto,
   CinemasSystemCreateDto,
+  CinemaUpdateDto,
 } from './dto/cinemas.dto';
 import * as fs from 'fs';
 import { Response } from 'src/utils/dto/global.dto';
 import {
   cinemaComplexNotFoundMessage,
   cinemaImgPath,
+  cinemaNotFoundMessage,
   cinemaSystemNotFoundMessage,
 } from 'src/utils/variables';
-import { cinemaComplexConfig, cinemaSystemConfig } from 'src/utils/config';
+import {
+  cinemaComplexConfig,
+  cinemaConfig,
+  cinemaSystemConfig,
+} from 'src/utils/config';
 @Injectable()
 export class CinemasProvider {
   constructor(private model: PrismaService, private response: Response) {}
@@ -104,5 +110,106 @@ export class CinemasProvider {
       data[key] = cinemaComplexConfig(data[key]);
     }
     return data;
+  }
+  async deleteCinema(ma_rap: string) {
+    const checkIfExit = await this.model.rap_phim.findFirst({
+      where: {
+        ma_rap: +ma_rap,
+      },
+    });
+    if (!checkIfExit)
+      throw new HttpException(
+        this.response.failRes(cinemaNotFoundMessage),
+        400,
+      );
+    return await this.model.rap_phim.delete({
+      where: {
+        ma_rap: +ma_rap,
+      },
+    });
+  }
+  async getCinemaInfo(ma_rap: string) {
+    const checkIfExit = await this.model.rap_phim.findFirst({
+      where: {
+        ma_rap: +ma_rap,
+      },
+      include: {
+        cum_rap: {
+          include: {
+            he_thong_rap: true,
+          },
+        },
+      },
+    });
+    if (!checkIfExit)
+      throw new HttpException(
+        this.response.failRes(cinemaNotFoundMessage),
+        400,
+      );
+    return cinemaConfig(checkIfExit);
+  }
+  async getCinemasByComplex(ma_cum_rap: string) {
+    const checkIfExit = await this.model.cum_rap.findFirst({
+      where: {
+        ma_cum_rap: +ma_cum_rap,
+      },
+    });
+    if (!checkIfExit)
+      throw new HttpException(
+        this.response.failRes(cinemaComplexNotFoundMessage),
+        400,
+      );
+    const data = await this.model.rap_phim.findMany({
+      where: {
+        ma_cum_rap: +ma_cum_rap,
+      },
+      include: {
+        cum_rap: {
+          include: {
+            he_thong_rap: true,
+          },
+        },
+      },
+    });
+    for (let key in data) {
+      data[key] = cinemaConfig(data[key]);
+    }
+    return data;
+  }
+  async updateCinema(ma_rap: string, data: CinemaUpdateDto) {
+    const checkIfCinemaExist = await this.model.rap_phim.findFirst({
+      where: {
+        ma_rap: +ma_rap,
+      },
+    });
+    if (!checkIfCinemaExist)
+      throw new HttpException(
+        this.response.failRes(cinemaNotFoundMessage),
+        400,
+      );
+    const checkIfComplexExist = await this.model.cum_rap.findFirst({
+      where: {
+        ma_cum_rap: +data.ma_cum_rap,
+      },
+    });
+    if (!checkIfComplexExist)
+      throw new HttpException(
+        this.response.failRes(cinemaComplexNotFoundMessage),
+        400,
+      );
+    const result = await this.model.rap_phim.update({
+      data,
+      where: {
+        ma_rap: +ma_rap,
+      },
+      include: {
+        cum_rap: {
+          include: {
+            he_thong_rap: true,
+          },
+        },
+      },
+    });
+    return cinemaConfig(result);
   }
 }

@@ -34,7 +34,8 @@ CREATE TABLE `cum_rap` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 INSERT INTO `cum_rap` (`ma_cum_rap`, `ten_cum_rap`, `dia_chi`, `ma_he_thong_rap`) VALUES
-(6,	'Cụm rạp Hồ Chí Minh',	'Hồ Chí Minh',	12);
+(6,	'Cụm rạp Hồ Chí Minh',	'Hồ Chí Minh',	12),
+(9,	'Cụm rạp Biên Hòa',	'Biên Hòa',	12);
 
 DROP TABLE IF EXISTS `dat_ve`;
 CREATE TABLE `dat_ve` (
@@ -87,6 +88,9 @@ CREATE TABLE `lich_chieu` (
   CONSTRAINT `lich_chieu_ibfk_2` FOREIGN KEY (`ma_phim`) REFERENCES `phim` (`ma_phim`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
+INSERT INTO `lich_chieu` (`ma_lich_chieu`, `ma_rap`, `ma_phim`, `ngay_gio_chieu`, `gia_ve`) VALUES
+(13,	3,	44,	'2023-03-14',	10000),
+(14,	3,	44,	'2023-03-14',	10000);
 
 DROP TABLE IF EXISTS `nguoi_dung`;
 CREATE TABLE `nguoi_dung` (
@@ -159,7 +163,11 @@ CREATE TABLE `rap_phim` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 INSERT INTO `rap_phim` (`ma_rap`, `ten_rap`, `ma_cum_rap`) VALUES
-(2,	'cgv',	6),
-(3,	'cgv',	6);
+(3,	'rap binh chanh',	6),
+(4,	'cgv',	6),
+(5,	'Rạp quận 7',	6),
+(6,	'Rạp quận 1',	6),
+(7,	'Rạp quận 2',	6),
+(8,	'Rạp Tp. Biên Hòa',	9);
 
--- 2023-03-21 05:51:10
+-- 2023-03-21 16:24:52

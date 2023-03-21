@@ -60,6 +60,22 @@ let CinemasController = class CinemasController {
         const data = await this.cinemasService.getCinemaComplex();
         throw new common_1.HttpException(this.response.successRes(variables_1.successMessage, data), 200);
     }
+    async deleteCinema(ma_rap) {
+        await this.cinemasService.deleteCinema(ma_rap);
+        throw new common_1.HttpException(this.response.successRes(variables_1.successMessage), 200);
+    }
+    async getCinemaInfo(ma_rap) {
+        const data = await this.cinemasService.getCinemaInfo(ma_rap);
+        throw new common_1.HttpException(this.response.successRes(variables_1.successMessage, data), 200);
+    }
+    async getCinemasByComplex(ma_cum_rap) {
+        const data = await this.cinemasService.getCinemasByComplex(ma_cum_rap);
+        throw new common_1.HttpException(this.response.successRes(variables_1.successMessage, data), 200);
+    }
+    async updateCinema(ma_rap, body) {
+        const data = await this.cinemasService.updateCinema(ma_rap, body);
+        throw new common_1.HttpException(this.response.successRes(variables_1.successMessage, data), 200);
+    }
 };
 __decorate([
     (0, common_1.UseGuards)(strategy_1.TokenAuthorization, roles_guard_1.RoleGuard),
@@ -116,6 +132,8 @@ __decorate([
     __metadata("design:returntype", Promise)
 ], CinemasController.prototype, "deleteCinemaComlex", null);
 __decorate([
+    (0, common_1.UseGuards)(strategy_1.TokenAuthorization, roles_guard_1.RoleGuard),
+    (0, roles_decorator_1.Roles)(config_1.permissionConfig.Administrators, config_1.permissionConfig.Moderators),
     (0, common_1.Post)('/createCinema'),
     __param(0, (0, common_1.Body)()),
     __metadata("design:type", Function),
@@ -128,6 +146,39 @@ __decorate([
     __metadata("design:paramtypes", []),
     __metadata("design:returntype", Promise)
 ], CinemasController.prototype, "getCinemaComlex", null);
+__decorate([
+    (0, common_1.UseGuards)(strategy_1.TokenAuthorization, roles_guard_1.RoleGuard),
+    (0, roles_decorator_1.Roles)(config_1.permissionConfig.Administrators, config_1.permissionConfig.Moderators),
+    (0, common_1.Delete)('/deleteCinema/:ma_rap'),
+    __param(0, (0, common_1.Param)('ma_rap')),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [String]),
+    __metadata("design:returntype", Promise)
+], CinemasController.prototype, "deleteCinema", null);
+__decorate([
+    (0, common_1.Get)('/getCinemaInfo/:ma_rap'),
+    __param(0, (0, common_1.Param)('ma_rap')),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [String]),
+    __metadata("design:returntype", Promise)
+], CinemasController.prototype, "getCinemaInfo", null);
+__decorate([
+    (0, common_1.Get)('/getCinemasByComplex/:ma_cum_rap'),
+    __param(0, (0, common_1.Param)('ma_cum_rap')),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [String]),
+    __metadata("design:returntype", Promise)
+], CinemasController.prototype, "getCinemasByComplex", null);
+__decorate([
+    (0, common_1.UseGuards)(strategy_1.TokenAuthorization, roles_guard_1.RoleGuard),
+    (0, roles_decorator_1.Roles)(config_1.permissionConfig.Administrators, config_1.permissionConfig.Moderators),
+    (0, common_1.Put)('/updateCinema/:ma_rap'),
+    __param(0, (0, common_1.Param)('ma_rap')),
+    __param(1, (0, common_1.Body)()),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [String, cinemas_dto_1.CinemaUpdateDto]),
+    __metadata("design:returntype", Promise)
+], CinemasController.prototype, "updateCinema", null);
 CinemasController = __decorate([
     (0, common_1.Controller)('/cinemas'),
     __metadata("design:paramtypes", [cinemas_service_1.CinemasProvider,

@@ -32,3 +32,4 @@ export const cinemaImgPath = `${process.cwd()}/public/img/cinemas/`;
 
 export const cinemaComplexNotFoundMessage = 'Không tìm thấy cụm rạp này';
 export const cinemaSystemNotFoundMessage = 'Không tìm thấy hệ thống rạp này';
+export const cinemaNotFoundMessage = 'Không tìm thấy rạp phim này';

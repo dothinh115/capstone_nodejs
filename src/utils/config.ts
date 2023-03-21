@@ -9,6 +9,7 @@ export const permissionConfig = {
 };
 
 export const userConfig = (obj) => {
+  //cần include permission
   obj = {
     ...obj,
     loai_nguoi_dung: obj.permission.permission_name,
@@ -19,6 +20,7 @@ export const userConfig = (obj) => {
 };
 
 export const movieConfig = (obj) => {
+  //cần include nguoi_dung && permission
   obj = {
     ...obj,
     nguoi_dang: userConfig(obj.nguoi_dung),
@@ -38,10 +40,32 @@ export const cinemaSystemConfig = (obj) => {
 };
 
 export const cinemaComplexConfig = (obj) => {
+  //cần include he_thong_rap
   obj = {
     ...obj,
     he_thong_rap: cinemaSystemConfig(obj.he_thong_rap),
   };
   delete obj.ma_he_thong_rap;
+  return obj;
+};
+
+export const cinemaConfig = (obj) => {
+  //cần include cum_rap, he_thong_rap, nguoi_dung, permission
+  obj = {
+    ...obj,
+    cum_rap: cinemaComplexConfig(obj.cum_rap),
+  };
+  delete obj.ma_cum_rap;
+  return obj;
+};
+
+export const showTimesConfig = (obj) => {
+  obj = {
+    ...obj,
+    rap_phim: cinemaConfig(obj.rap_phim),
+    phim: movieConfig(obj.phim),
+  };
+  delete obj.ma_rap;
+  delete obj.ma_phim;
   return obj;
 };

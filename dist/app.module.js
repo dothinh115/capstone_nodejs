@@ -15,6 +15,7 @@ const app_controller_1 = require("./app.controller");
 const app_service_1 = require("./app.service");
 const auth_module_1 = require("./auth/auth.module");
 const cinemas_module_1 = require("./cinemas/cinemas.module");
+const data_module_1 = require("./data/data.module");
 const movies_module_1 = require("./movies/movies.module");
 const users_module_1 = require("./users/users.module");
 let AppModule = AppModule_1 = class AppModule {
@@ -29,6 +30,7 @@ AppModule = AppModule_1 = __decorate([
             movies_module_1.MoviesModule,
             admin_module_1.AdminModule,
             cinemas_module_1.CinemasModule,
+            data_module_1.dataModule,
         ],
         controllers: [app_controller_1.AppController],
         providers: [app_service_1.AppProvider],

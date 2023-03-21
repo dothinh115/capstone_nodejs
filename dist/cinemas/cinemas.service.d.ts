@@ -1,5 +1,5 @@
 import { PrismaService } from 'src/prisma/prisma.service';
-import { CinemasComplexCreateDto, CinemasCreateDto, CinemasSystemCreateDto } from './dto/cinemas.dto';
+import { CinemasComplexCreateDto, CinemasCreateDto, CinemasSystemCreateDto, CinemaUpdateDto } from './dto/cinemas.dto';
 import { Response } from 'src/utils/dto/global.dto';
 export declare class CinemasProvider {
     private model;
@@ -14,4 +14,12 @@ export declare class CinemasProvider {
     getCinemaComplex(): Promise<(import(".prisma/client").cum_rap & {
         he_thong_rap: import(".prisma/client").he_thong_rap;
     })[]>;
+    deleteCinema(ma_rap: string): Promise<import(".prisma/client").rap_phim>;
+    getCinemaInfo(ma_rap: string): Promise<any>;
+    getCinemasByComplex(ma_cum_rap: string): Promise<(import(".prisma/client").rap_phim & {
+        cum_rap: import(".prisma/client").cum_rap & {
+            he_thong_rap: import(".prisma/client").he_thong_rap;
+        };
+    })[]>;
+    updateCinema(ma_rap: string, data: CinemaUpdateDto): Promise<any>;
 }

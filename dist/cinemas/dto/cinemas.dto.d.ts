@@ -13,3 +13,5 @@ export declare class CinemasCreateDto {
     ma_cum_rap: number;
     static plainToClass<T>(this: new (...args: any[]) => T, obj: T): T;
 }
+export declare class CinemaUpdateDto extends CinemasCreateDto {
+}

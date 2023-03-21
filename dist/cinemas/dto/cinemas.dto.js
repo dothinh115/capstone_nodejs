@@ -9,7 +9,7 @@ var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.CinemasCreateDto = exports.CinemasComplexCreateDto = exports.CinemasSystemCreateDto = void 0;
+exports.CinemaUpdateDto = exports.CinemasCreateDto = exports.CinemasComplexCreateDto = exports.CinemasSystemCreateDto = void 0;
 const class_transformer_1 = require("class-transformer");
 class CinemasSystemCreateDto {
     static plainToClass(obj) {
@@ -53,4 +53,7 @@ __decorate([
     __metadata("design:type", Number)
 ], CinemasCreateDto.prototype, "ma_cum_rap", void 0);
 exports.CinemasCreateDto = CinemasCreateDto;
+class CinemaUpdateDto extends CinemasCreateDto {
+}
+exports.CinemaUpdateDto = CinemaUpdateDto;
 //# sourceMappingURL=cinemas.dto.js.map

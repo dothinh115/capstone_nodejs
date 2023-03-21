@@ -14,3 +14,4 @@ export declare const maxSize = 6000000;
 export declare const cinemaImgPath: string;
 export declare const cinemaComplexNotFoundMessage = "Kh\u00F4ng t\u00ECm th\u1EA5y c\u1EE5m r\u1EA1p n\u00E0y";
 export declare const cinemaSystemNotFoundMessage = "Kh\u00F4ng t\u00ECm th\u1EA5y h\u1EC7 th\u1ED1ng r\u1EA1p n\u00E0y";
+export declare const cinemaNotFoundMessage = "Kh\u00F4ng t\u00ECm th\u1EA5y r\u1EA1p phim n\u00E0y";

@@ -1,6 +1,6 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.cinemaSystemNotFoundMessage = exports.cinemaComplexNotFoundMessage = exports.cinemaImgPath = exports.maxSize = exports.imgRequiredMessage = exports.userInfoUpdateNotAllowed = exports.adminOnlyMessage = exports.movieImgPath = exports.notExistedMovieMessage = exports.notExistedUserMessage = exports.notAllowedMessage = exports.invalidTokenMessage = exports.successMessage = exports.loginErrorMessage = exports.alreadyExistedEmailMessage = exports.so_dt_pattern = void 0;
+exports.cinemaNotFoundMessage = exports.cinemaSystemNotFoundMessage = exports.cinemaComplexNotFoundMessage = exports.cinemaImgPath = exports.maxSize = exports.imgRequiredMessage = exports.userInfoUpdateNotAllowed = exports.adminOnlyMessage = exports.movieImgPath = exports.notExistedMovieMessage = exports.notExistedUserMessage = exports.notAllowedMessage = exports.invalidTokenMessage = exports.successMessage = exports.loginErrorMessage = exports.alreadyExistedEmailMessage = exports.so_dt_pattern = void 0;
 exports.so_dt_pattern = /^(0?)(3[2-9]|5[6|8|9]|7[0|6-9]|8[0-6|8|9]|9[0-4|6-9])[0-9]{7}$/;
 exports.alreadyExistedEmailMessage = 'Email đã tồn tại';
 exports.loginErrorMessage = 'Email hoặc mật khẩu không đúng!';
@@ -17,4 +17,5 @@ exports.maxSize = 6000000;
 exports.cinemaImgPath = `${process.cwd()}/public/img/cinemas/`;
 exports.cinemaComplexNotFoundMessage = 'Không tìm thấy cụm rạp này';
 exports.cinemaSystemNotFoundMessage = 'Không tìm thấy hệ thống rạp này';
+exports.cinemaNotFoundMessage = 'Không tìm thấy rạp phim này';
 //# sourceMappingURL=variables.js.map
