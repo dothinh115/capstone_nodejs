@@ -8,4 +8,7 @@ export declare class MovieCreateDto {
     hot: boolean;
     dang_chieu: boolean;
     sap_chieu: boolean;
+    static plainToClass<T>(this: new (...args: any[]) => T, obj: T): T;
+}
+export declare class MovieUpdateDto extends MovieCreateDto {
 }

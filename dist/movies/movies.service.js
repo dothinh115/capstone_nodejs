@@ -33,11 +33,6 @@ let MoviesProvider = class MoviesProvider {
         this.response = response;
     }
     async createNewMovie(req, file, body, tai_khoan) {
-        if (req.imgValidationErrorMessage) {
-            throw new common_1.HttpException(this.response.failRes(req.imgValidationErrorMessage), 400);
-        }
-        if (!file)
-            throw new common_1.HttpException(this.response.failRes(variables_1.imgRequiredMessage), 400);
         const { danh_gia, dang_chieu, sap_chieu, hot, ngay_khoi_chieu } = body, others = __rest(body, ["danh_gia", "dang_chieu", "sap_chieu", "hot", "ngay_khoi_chieu"]);
         const data = Object.assign(Object.assign({}, others), { ngay_khoi_chieu: new Date(ngay_khoi_chieu), danh_gia: +danh_gia, hot: +hot === 1 ? true : false, dang_chieu: +dang_chieu === 1 ? true : false, sap_chieu: +sap_chieu === 1 ? true : false, hinh_anh: file.filename, tai_khoan });
         const newMovie = await this.model.phim.create({
@@ -97,9 +92,6 @@ let MoviesProvider = class MoviesProvider {
         return result;
     }
     async updateMovie(req, file, body, ma_phim) {
-        if (req.imgValidationErrorMessage) {
-            throw new common_1.HttpException(this.response.failRes(req.imgValidationErrorMessage), 400);
-        }
         const phim = await this.model.phim.findFirst({
             where: {
                 ma_phim: +ma_phim,

@@ -1,12 +1,7 @@
 import { HttpException, Injectable } from '@nestjs/common';
 import { PrismaService } from 'src/prisma/prisma.service';
 import { Response } from 'src/utils/dto/global.dto';
-import {
-  imgRequiredMessage,
-  movieImgPath,
-  notExistedMovieMessage,
-  successMessage,
-} from 'src/utils/variables';
+import { movieImgPath, notExistedMovieMessage } from 'src/utils/variables';
 import * as fs from 'fs';
 import { MovieCreateDto } from './dto/movies.dto';
 import { movieConfig } from 'src/utils/config';
@@ -20,14 +15,6 @@ export class MoviesProvider {
     body: MovieCreateDto,
     tai_khoan: number,
   ) {
-    if (req.imgValidationErrorMessage) {
-      throw new HttpException(
-        this.response.failRes(req.imgValidationErrorMessage),
-        400,
-      );
-    }
-    if (!file)
-      throw new HttpException(this.response.failRes(imgRequiredMessage), 400);
     const { danh_gia, dang_chieu, sap_chieu, hot, ngay_khoi_chieu, ...others } =
       body;
     const data = {
@@ -110,12 +97,6 @@ export class MoviesProvider {
     body: MovieCreateDto,
     ma_phim: string,
   ) {
-    if (req.imgValidationErrorMessage) {
-      throw new HttpException(
-        this.response.failRes(req.imgValidationErrorMessage),
-        400,
-      );
-    }
     const phim = await this.model.phim.findFirst({
       where: {
         ma_phim: +ma_phim,

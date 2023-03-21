@@ -9,51 +9,48 @@ var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.MovieUpdateDto = exports.MovieCreateDto = void 0;
+exports.CinemasCreateDto = exports.CinemasComplexCreateDto = exports.CinemasSystemCreateDto = void 0;
 const class_transformer_1 = require("class-transformer");
-class MovieCreateDto {
+class CinemasSystemCreateDto {
     static plainToClass(obj) {
         return (0, class_transformer_1.plainToClass)(this, obj, { excludeExtraneousValues: true });
     }
 }
 __decorate([
     (0, class_transformer_1.Expose)(),
-    __metadata("design:type", Object)
-], MovieCreateDto.prototype, "hinh_anh", void 0);
+    __metadata("design:type", String)
+], CinemasSystemCreateDto.prototype, "ten_he_thong_rap", void 0);
+exports.CinemasSystemCreateDto = CinemasSystemCreateDto;
+class CinemasComplexCreateDto {
+    static plainToClass(obj) {
+        return (0, class_transformer_1.plainToClass)(this, obj, { excludeExtraneousValues: true });
+    }
+}
 __decorate([
     (0, class_transformer_1.Expose)(),
     __metadata("design:type", String)
-], MovieCreateDto.prototype, "ten_phim", void 0);
+], CinemasComplexCreateDto.prototype, "ten_cum_rap", void 0);
 __decorate([
     (0, class_transformer_1.Expose)(),
     __metadata("design:type", String)
-], MovieCreateDto.prototype, "trailer", void 0);
-__decorate([
-    (0, class_transformer_1.Expose)(),
-    __metadata("design:type", String)
-], MovieCreateDto.prototype, "mo_ta", void 0);
-__decorate([
-    (0, class_transformer_1.Expose)(),
-    __metadata("design:type", String)
-], MovieCreateDto.prototype, "ngay_khoi_chieu", void 0);
+], CinemasComplexCreateDto.prototype, "dia_chi", void 0);
 __decorate([
     (0, class_transformer_1.Expose)(),
     __metadata("design:type", Number)
-], MovieCreateDto.prototype, "danh_gia", void 0);
-__decorate([
-    (0, class_transformer_1.Expose)(),
-    __metadata("design:type", Boolean)
-], MovieCreateDto.prototype, "hot", void 0);
-__decorate([
-    (0, class_transformer_1.Expose)(),
-    __metadata("design:type", Boolean)
-], MovieCreateDto.prototype, "dang_chieu", void 0);
-__decorate([
-    (0, class_transformer_1.Expose)(),
-    __metadata("design:type", Boolean)
-], MovieCreateDto.prototype, "sap_chieu", void 0);
-exports.MovieCreateDto = MovieCreateDto;
-class MovieUpdateDto extends MovieCreateDto {
+], CinemasComplexCreateDto.prototype, "ma_he_thong_rap", void 0);
+exports.CinemasComplexCreateDto = CinemasComplexCreateDto;
+class CinemasCreateDto {
+    static plainToClass(obj) {
+        return (0, class_transformer_1.plainToClass)(this, obj, { excludeExtraneousValues: true });
+    }
 }
-exports.MovieUpdateDto = MovieUpdateDto;
-//# sourceMappingURL=movies.dto.js.map
+__decorate([
+    (0, class_transformer_1.Expose)(),
+    __metadata("design:type", String)
+], CinemasCreateDto.prototype, "ten_rap", void 0);
+__decorate([
+    (0, class_transformer_1.Expose)(),
+    __metadata("design:type", Number)
+], CinemasCreateDto.prototype, "ma_cum_rap", void 0);
+exports.CinemasCreateDto = CinemasCreateDto;
+//# sourceMappingURL=cinemas.dto.js.map

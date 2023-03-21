@@ -1,4 +1,4 @@
-import { Expose } from 'class-transformer';
+import { Expose, plainToClass } from 'class-transformer';
 
 export class MovieCreateDto {
   @Expose()
@@ -19,4 +19,10 @@ export class MovieCreateDto {
   dang_chieu: boolean;
   @Expose()
   sap_chieu: boolean;
+
+  static plainToClass<T>(this: new (...args: any[]) => T, obj: T) {
+    return plainToClass(this, obj, { excludeExtraneousValues: true });
+  }
 }
+
+export class MovieUpdateDto extends MovieCreateDto {}

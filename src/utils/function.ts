@@ -1,5 +1,4 @@
-import { maxSize } from './config';
-import { movieImgPath } from './variables';
+import { maxSize, movieImgPath } from './variables';
 
 export const movieImgCheck = (req, file, callback) => {
   const filetypes = /jpeg|jpg|png|gif/;

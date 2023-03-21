@@ -33,6 +33,8 @@ CREATE TABLE `cum_rap` (
   CONSTRAINT `cum_rap_ibfk_1` FOREIGN KEY (`ma_he_thong_rap`) REFERENCES `he_thong_rap` (`ma_he_thong_rap`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
+INSERT INTO `cum_rap` (`ma_cum_rap`, `ten_cum_rap`, `dia_chi`, `ma_he_thong_rap`) VALUES
+(6,	'Cụm rạp Hồ Chí Minh',	'Hồ Chí Minh',	12);
 
 DROP TABLE IF EXISTS `dat_ve`;
 CREATE TABLE `dat_ve` (
@@ -68,6 +70,8 @@ CREATE TABLE `he_thong_rap` (
   PRIMARY KEY (`ma_he_thong_rap`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
+INSERT INTO `he_thong_rap` (`ma_he_thong_rap`, `ten_he_thong_rap`, `logo`) VALUES
+(12,	'Miền Nam',	'1679373438742_heThongRap.jpg');
 
 DROP TABLE IF EXISTS `lich_chieu`;
 CREATE TABLE `lich_chieu` (
@@ -140,7 +144,7 @@ CREATE TABLE `phim` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 INSERT INTO `phim` (`ma_phim`, `ten_phim`, `trailer`, `hinh_anh`, `mo_ta`, `ngay_khoi_chieu`, `danh_gia`, `hot`, `dang_chieu`, `sap_chieu`, `tai_khoan`) VALUES
-(44,	'phim 4',	'trailer 3',	'1679322233729_avatardefault.png',	'abc',	'1111-11-11',	4,	1,	1,	0,	38),
+(44,	'phim 5',	'trailer 3',	'1679322233729_avatardefault.png',	'abc',	'1111-11-11',	4,	1,	1,	0,	38),
 (45,	'Phim 2',	'trailer_test',	'1679323900567_elephant-2729415.jpg',	'Mô tả phim thứ 1',	'2023-03-15',	5,	1,	1,	0,	38),
 (46,	'Phim 2',	'trailer_test',	'1679323912955_elephant-2729415.jpg',	'Mô tả phim thứ 1',	'2023-03-20',	5,	1,	1,	0,	38);
 
@@ -154,5 +158,8 @@ CREATE TABLE `rap_phim` (
   CONSTRAINT `rap_phim_ibfk_1` FOREIGN KEY (`ma_cum_rap`) REFERENCES `cum_rap` (`ma_cum_rap`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
+INSERT INTO `rap_phim` (`ma_rap`, `ten_rap`, `ma_cum_rap`) VALUES
+(2,	'cgv',	6),
+(3,	'cgv',	6);
 
--- 2023-03-20 16:08:19
+-- 2023-03-21 05:51:10

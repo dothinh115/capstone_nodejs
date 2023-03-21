@@ -10,3 +10,7 @@ export declare const movieImgPath: string;
 export declare const adminOnlyMessage = "Ch\u1EC9 c\u00F3 Administrators m\u1EDBi c\u00F3 quy\u1EC1n th\u1EF1c hi\u1EC7n thao t\u00E1c n\u00E0y!";
 export declare const userInfoUpdateNotAllowed = "Ch\u1EC9 \u0111\u01B0\u1EE3c ch\u1EC9nh s\u1EEDa n\u1ED9i dung c\u1EE7a b\u1EA3n th\u00E2n!";
 export declare const imgRequiredMessage = "Thi\u1EBFu \u1EA3nh!";
+export declare const maxSize = 6000000;
+export declare const cinemaImgPath: string;
+export declare const cinemaComplexNotFoundMessage = "Kh\u00F4ng t\u00ECm th\u1EA5y c\u1EE5m r\u1EA1p n\u00E0y";
+export declare const cinemaSystemNotFoundMessage = "Kh\u00F4ng t\u00ECm th\u1EA5y h\u1EC7 th\u1ED1ng r\u1EA1p n\u00E0y";

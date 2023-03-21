@@ -25,3 +25,10 @@ export const userInfoUpdateNotAllowed =
   'Chỉ được chỉnh sửa nội dung của bản thân!';
 
 export const imgRequiredMessage = 'Thiếu ảnh!';
+
+export const maxSize = 6000000; //6Mb
+
+export const cinemaImgPath = `${process.cwd()}/public/img/cinemas/`;
+
+export const cinemaComplexNotFoundMessage = 'Không tìm thấy cụm rạp này';
+export const cinemaSystemNotFoundMessage = 'Không tìm thấy hệ thống rạp này';

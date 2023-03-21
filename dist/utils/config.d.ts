@@ -5,6 +5,7 @@ export declare const permissionConfig: {
     Moderators: number;
     Administrators: number;
 };
-export declare const maxSize = 6000000;
 export declare const userConfig: (obj: any) => any;
 export declare const movieConfig: (obj: any) => any;
+export declare const cinemaSystemConfig: (obj: any) => any;
+export declare const cinemaComplexConfig: (obj: any) => any;

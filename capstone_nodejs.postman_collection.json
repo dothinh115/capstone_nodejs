@@ -128,7 +128,7 @@
 							"bearer": [
 								{
 									"key": "token",
-									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0YWlfa2hvYW4iOjM5LCJpYXQiOjE2NzkyNDM1ODAsImV4cCI6MTY3OTMyOTk4MH0.W5Ls4PVLKwkQ2sMaPKVN2gkZFbz2usPxUO_kxGsaFLE",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0YWlfa2hvYW4iOjM4LCJpYXQiOjE2NzkzNjc4MzQsImV4cCI6MTY3OTQ1NDIzNH0.3sZ0WFxcqdhXUb1unjPBA8jZ3_RuOHUzxLGgpnNLXAY",
 									"type": "string"
 								}
 							]
@@ -304,7 +304,7 @@
 							"bearer": [
 								{
 									"key": "token",
-									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0YWlfa2hvYW4iOjM4LCJpYXQiOjE2NzkzMTk1NDksImV4cCI6MTY3OTQwNTk0OX0.4-wcqcnCibPUm_v5nSC_siPkUSjw4rYnev5tIGkAI7E",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0YWlfa2hvYW4iOjM4LCJpYXQiOjE2NzkzNjc4MzQsImV4cCI6MTY3OTQ1NDIzNH0.3sZ0WFxcqdhXUb1unjPBA8jZ3_RuOHUzxLGgpnNLXAY",
 									"type": "string"
 								}
 							]
@@ -321,7 +321,7 @@
 								},
 								{
 									"key": "ten_phim",
-									"value": "phim 4",
+									"value": "phim 5",
 									"type": "text"
 								},
 								{
@@ -358,6 +358,12 @@
 									"key": "sap_chieu",
 									"value": "0",
 									"type": "text"
+								},
+								{
+									"key": "",
+									"value": "",
+									"type": "text",
+									"disabled": true
 								}
 							]
 						},
@@ -417,6 +423,253 @@
 			]
 		},
 		{
+			"name": "cinemas",
+			"item": [
+				{
+					"name": "createCinemaSystem",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0YWlfa2hvYW4iOjM4LCJpYXQiOjE2NzkzNjc4MzQsImV4cCI6MTY3OTQ1NDIzNH0.3sZ0WFxcqdhXUb1unjPBA8jZ3_RuOHUzxLGgpnNLXAY",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "ten_he_thong_rap",
+									"value": "Miền Nam",
+									"type": "text"
+								},
+								{
+									"key": "logo",
+									"type": "file",
+									"src": "/C:/Users/Administrator/Downloads/heThongRap.jpg"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{domain}}/cinemas/createCinemaSystem",
+							"host": [
+								"{{domain}}"
+							],
+							"path": [
+								"cinemas",
+								"createCinemaSystem"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "deleteCinemaSystem",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0YWlfa2hvYW4iOjM4LCJpYXQiOjE2NzkzNjc4MzQsImV4cCI6MTY3OTQ1NDIzNH0.3sZ0WFxcqdhXUb1unjPBA8jZ3_RuOHUzxLGgpnNLXAY",
+									"type": "string"
+								}
+							]
+						},
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{domain}}/cinemas/deleteCinemaSystem/11",
+							"host": [
+								"{{domain}}"
+							],
+							"path": [
+								"cinemas",
+								"deleteCinemaSystem",
+								"11"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "getCinemaSystem",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"ten_he_thong_rap\":\"Miền Nam\",\r\n    \"logo\":\"hinhanh2\",\r\n    \"abc\":\"abc\"\r\n\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{domain}}/cinemas/getCinemaSystem",
+							"host": [
+								"{{domain}}"
+							],
+							"path": [
+								"cinemas",
+								"getCinemaSystem"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "createCinemaComplex",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0YWlfa2hvYW4iOjM4LCJpYXQiOjE2NzkzNzU1NDgsImV4cCI6MTY3OTQ2MTk0OH0.XIg4tW0H1aCGwKQwKMYRcU9TpeM67Q0yrIUS4MGe2Qw",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"ten_cum_rap\":\"Cụm rạp Hồ Chí Minh\",\r\n    \"dia_chi\":\"Hồ Chí Minh\",\r\n    \"ma_he_thong_rap\":1\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{domain}}/cinemas/createCinemaComlex",
+							"host": [
+								"{{domain}}"
+							],
+							"path": [
+								"cinemas",
+								"createCinemaComlex"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "deleteCinemaComplex",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0YWlfa2hvYW4iOjM4LCJpYXQiOjE2NzkzNzU1NDgsImV4cCI6MTY3OTQ2MTk0OH0.XIg4tW0H1aCGwKQwKMYRcU9TpeM67Q0yrIUS4MGe2Qw",
+									"type": "string"
+								}
+							]
+						},
+						"method": "DELETE",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"ten_cum_rap\":\"cgv\",\r\n    \"dia_chi\":\"asda\",\r\n    \"ma_he_thong_rap\":2\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{domain}}/cinemas/deleteCinemaComlex/3",
+							"host": [
+								"{{domain}}"
+							],
+							"path": [
+								"cinemas",
+								"deleteCinemaComlex",
+								"3"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "getCinemaComplex",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0YWlfa2hvYW4iOjM4LCJpYXQiOjE2NzkzNzU1NDgsImV4cCI6MTY3OTQ2MTk0OH0.XIg4tW0H1aCGwKQwKMYRcU9TpeM67Q0yrIUS4MGe2Qw",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{domain}}/cinemas/getCinemaComlex",
+							"host": [
+								"{{domain}}"
+							],
+							"path": [
+								"cinemas",
+								"getCinemaComlex"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "createCinema",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0YWlfa2hvYW4iOjM4LCJpYXQiOjE2NzkzNzU1NDgsImV4cCI6MTY3OTQ2MTk0OH0.XIg4tW0H1aCGwKQwKMYRcU9TpeM67Q0yrIUS4MGe2Qw",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"ten_rap\":\"cgv\",\r\n    \"ma_cum_rap\":6\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{domain}}/cinemas/createCinema",
+							"host": [
+								"{{domain}}"
+							],
+							"path": [
+								"cinemas",
+								"createCinema"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
 			"name": "admin",
 			"item": [
 				{
@@ -427,7 +680,7 @@
 							"bearer": [
 								{
 									"key": "token",
-									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0YWlfa2hvYW4iOjM4LCJpYXQiOjE2NzkzMTk1NDksImV4cCI6MTY3OTQwNTk0OX0.4-wcqcnCibPUm_v5nSC_siPkUSjw4rYnev5tIGkAI7E",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0YWlfa2hvYW4iOjM4LCJpYXQiOjE2NzkzNjc4MzQsImV4cCI6MTY3OTQ1NDIzNH0.3sZ0WFxcqdhXUb1unjPBA8jZ3_RuOHUzxLGgpnNLXAY",
 									"type": "string"
 								}
 							]

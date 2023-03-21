@@ -15,7 +15,6 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.MoviesController = void 0;
 const common_1 = require("@nestjs/common");
 const platform_express_1 = require("@nestjs/platform-express");
-const class_transformer_1 = require("class-transformer");
 const multer_1 = require("multer");
 const roles_decorator_1 = require("../guards/roles.decorator");
 const roles_guard_1 = require("../guards/roles.guard");
@@ -32,7 +31,12 @@ let MoviesController = class MoviesController {
         this.response = response;
     }
     async createMovie(file, body, req) {
-        let data = await this.moviesProvider.createNewMovie(req, file, (0, class_transformer_1.plainToClass)(movies_dto_1.MovieCreateDto, body, { excludeExtraneousValues: true }), +req.user['tai_khoan']);
+        if (!file)
+            throw new common_1.HttpException(this.response.failRes(variables_1.imgRequiredMessage), 400);
+        if (req.imgValidationErrorMessage) {
+            throw new common_1.HttpException(this.response.failRes(req.imgValidationErrorMessage), 400);
+        }
+        let data = await this.moviesProvider.createNewMovie(req, file, movies_dto_1.MovieCreateDto.plainToClass(body), +req.user['tai_khoan']);
         throw new common_1.HttpException(this.response.successRes(variables_1.successMessage, (0, config_1.movieConfig)(data)), 200);
     }
     async deleteMovie(ma_phim) {
@@ -65,7 +69,10 @@ let MoviesController = class MoviesController {
         }), 200);
     }
     async updateMovie(file, body, ma_phim, req) {
-        let data = await this.moviesProvider.updateMovie(req, file, body, ma_phim);
+        if (req.imgValidationErrorMessage) {
+            throw new common_1.HttpException(this.response.failRes(req.imgValidationErrorMessage), 400);
+        }
+        let data = await this.moviesProvider.updateMovie(req, file, movies_dto_1.MovieUpdateDto.plainToClass(body), ma_phim);
         throw new common_1.HttpException(this.response.successRes(variables_1.successMessage, (0, config_1.movieConfig)(data)), 200);
     }
 };

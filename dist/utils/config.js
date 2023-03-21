@@ -1,6 +1,6 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.movieConfig = exports.userConfig = exports.maxSize = exports.permissionConfig = void 0;
+exports.cinemaComplexConfig = exports.cinemaSystemConfig = exports.movieConfig = exports.userConfig = exports.permissionConfig = void 0;
 const variables_1 = require("./variables");
 exports.permissionConfig = {
     Banned: 0,
@@ -9,7 +9,6 @@ exports.permissionConfig = {
     Moderators: 3,
     Administrators: 4,
 };
-exports.maxSize = 6000000;
 const userConfig = (obj) => {
     obj = Object.assign(Object.assign({}, obj), { loai_nguoi_dung: obj.permission.permission_name });
     delete obj['permission'];
@@ -24,4 +23,15 @@ const movieConfig = (obj) => {
     return obj;
 };
 exports.movieConfig = movieConfig;
+const cinemaSystemConfig = (obj) => {
+    obj = Object.assign(Object.assign({}, obj), { logo: variables_1.cinemaImgPath + obj.logo });
+    return obj;
+};
+exports.cinemaSystemConfig = cinemaSystemConfig;
+const cinemaComplexConfig = (obj) => {
+    obj = Object.assign(Object.assign({}, obj), { he_thong_rap: (0, exports.cinemaSystemConfig)(obj.he_thong_rap) });
+    delete obj.ma_he_thong_rap;
+    return obj;
+};
+exports.cinemaComplexConfig = cinemaComplexConfig;
 //# sourceMappingURL=config.js.map

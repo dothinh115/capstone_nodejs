@@ -14,7 +14,6 @@ import {
   UseInterceptors,
 } from '@nestjs/common';
 import { FileInterceptor } from '@nestjs/platform-express';
-import { plainToClass } from 'class-transformer';
 import { Request } from 'express';
 import { diskStorage } from 'multer';
 import { Roles } from 'src/guards/roles.decorator';
@@ -23,8 +22,8 @@ import { TokenAuthorization } from 'src/strategy';
 import { movieConfig, permissionConfig } from 'src/utils/config';
 import { Response } from 'src/utils/dto/global.dto';
 import { movieImgCheck } from 'src/utils/function';
-import { successMessage } from 'src/utils/variables';
-import { MovieCreateDto } from './dto/movies.dto';
+import { imgRequiredMessage, successMessage } from 'src/utils/variables';
+import { MovieCreateDto, MovieUpdateDto } from './dto/movies.dto';
 import { MoviesProvider } from './movies.service';
 
 @Controller('/movies')
@@ -57,12 +56,20 @@ export class MoviesController {
     @UploadedFile()
     file: Express.Multer.File,
     @Body() body: any,
-    @Req() req: Request,
+    @Req() req,
   ) {
+    if (!file)
+      throw new HttpException(this.response.failRes(imgRequiredMessage), 400);
+    if (req.imgValidationErrorMessage) {
+      throw new HttpException(
+        this.response.failRes(req.imgValidationErrorMessage),
+        400,
+      );
+    }
     let data = await this.moviesProvider.createNewMovie(
       req,
       file,
-      plainToClass(MovieCreateDto, body, { excludeExtraneousValues: true }),
+      MovieCreateDto.plainToClass(body),
       +req.user['tai_khoan'],
     );
 
@@ -170,9 +177,20 @@ export class MoviesController {
     file: Express.Multer.File,
     @Body() body: any,
     @Param('ma_phim') ma_phim: string,
-    @Req() req: Request,
+    @Req() req,
   ) {
-    let data = await this.moviesProvider.updateMovie(req, file, body, ma_phim);
+    if (req.imgValidationErrorMessage) {
+      throw new HttpException(
+        this.response.failRes(req.imgValidationErrorMessage),
+        400,
+      );
+    }
+    let data = await this.moviesProvider.updateMovie(
+      req,
+      file,
+      MovieUpdateDto.plainToClass(body),
+      ma_phim,
+    );
 
     throw new HttpException(
       this.response.successRes(successMessage, movieConfig(data)),

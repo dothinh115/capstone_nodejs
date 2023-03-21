@@ -1,4 +1,4 @@
-import { movieImgPath } from './variables';
+import { cinemaImgPath, movieImgPath } from './variables';
 
 export const permissionConfig = {
   Banned: 0,
@@ -7,8 +7,6 @@ export const permissionConfig = {
   Moderators: 3,
   Administrators: 4,
 };
-
-export const maxSize = 6000000; //6Mb
 
 export const userConfig = (obj) => {
   obj = {
@@ -28,5 +26,22 @@ export const movieConfig = (obj) => {
   };
   delete obj['tai_khoan'];
   delete obj['nguoi_dung'];
+  return obj;
+};
+
+export const cinemaSystemConfig = (obj) => {
+  obj = {
+    ...obj,
+    logo: cinemaImgPath + obj.logo,
+  };
+  return obj;
+};
+
+export const cinemaComplexConfig = (obj) => {
+  obj = {
+    ...obj,
+    he_thong_rap: cinemaSystemConfig(obj.he_thong_rap),
+  };
+  delete obj.ma_he_thong_rap;
   return obj;
 };
