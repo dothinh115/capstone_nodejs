@@ -39,10 +39,12 @@ INSERT INTO `cum_rap` (`ma_cum_rap`, `ten_cum_rap`, `dia_chi`, `ma_he_thong_rap`
 
 DROP TABLE IF EXISTS `dat_ve`;
 CREATE TABLE `dat_ve` (
+  `ma_dat_ve` int NOT NULL AUTO_INCREMENT,
   `tai_khoan` int NOT NULL,
   `ma_lich_chieu` int NOT NULL,
   `ma_ghe` int NOT NULL,
-  PRIMARY KEY (`tai_khoan`,`ma_lich_chieu`,`ma_ghe`),
+  PRIMARY KEY (`ma_dat_ve`),
+  KEY `tai_khoan` (`tai_khoan`),
   KEY `ma_lich_chieu` (`ma_lich_chieu`),
   KEY `ma_ghe` (`ma_ghe`),
   CONSTRAINT `dat_ve_ibfk_1` FOREIGN KEY (`tai_khoan`) REFERENCES `nguoi_dung` (`tai_khoan`),
@@ -50,18 +52,33 @@ CREATE TABLE `dat_ve` (
   CONSTRAINT `dat_ve_ibfk_3` FOREIGN KEY (`ma_ghe`) REFERENCES `ghe` (`ma_ghe`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
+INSERT INTO `dat_ve` (`ma_dat_ve`, `tai_khoan`, `ma_lich_chieu`, `ma_ghe`) VALUES
+(3,	38,	59,	1),
+(4,	38,	59,	1),
+(5,	38,	59,	1),
+(6,	38,	59,	1),
+(7,	38,	59,	1),
+(8,	26,	59,	1),
+(9,	26,	59,	1);
 
 DROP TABLE IF EXISTS `ghe`;
 CREATE TABLE `ghe` (
   `ma_ghe` int NOT NULL AUTO_INCREMENT,
   `ten_ghe` varchar(255) NOT NULL,
-  `loai_ghe` varchar(255) NOT NULL,
+  `loai_ghe` varchar(255) NOT NULL DEFAULT 'Normal',
   `ma_rap` int NOT NULL,
   PRIMARY KEY (`ma_ghe`),
   KEY `ma_rap` (`ma_rap`),
   CONSTRAINT `ghe_ibfk_1` FOREIGN KEY (`ma_rap`) REFERENCES `rap_phim` (`ma_rap`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
+INSERT INTO `ghe` (`ma_ghe`, `ten_ghe`, `loai_ghe`, `ma_rap`) VALUES
+(1,	'thinh',	'VIP',	4),
+(2,	'abc',	'Normal',	4),
+(3,	'abc',	'Normal',	4),
+(4,	'abc',	'Normal',	4),
+(5,	'abc',	'Normal',	4),
+(7,	'abc',	'Normal',	4);
 
 DROP TABLE IF EXISTS `he_thong_rap`;
 CREATE TABLE `he_thong_rap` (
@@ -79,7 +96,7 @@ CREATE TABLE `lich_chieu` (
   `ma_lich_chieu` int NOT NULL AUTO_INCREMENT,
   `ma_rap` int NOT NULL,
   `ma_phim` int NOT NULL,
-  `ngay_gio_chieu` date NOT NULL,
+  `ngay_gio_chieu` datetime NOT NULL,
   `gia_ve` int NOT NULL,
   PRIMARY KEY (`ma_lich_chieu`),
   KEY `ma_rap` (`ma_rap`),
@@ -89,8 +106,9 @@ CREATE TABLE `lich_chieu` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 INSERT INTO `lich_chieu` (`ma_lich_chieu`, `ma_rap`, `ma_phim`, `ngay_gio_chieu`, `gia_ve`) VALUES
-(13,	3,	44,	'2023-03-14',	10000),
-(14,	3,	44,	'2023-03-14',	10000);
+(58,	3,	46,	'2023-03-15 10:00:00',	10000),
+(59,	3,	44,	'2023-03-15 08:00:00',	10000),
+(60,	3,	48,	'2023-03-15 12:00:00',	10000);
 
 DROP TABLE IF EXISTS `nguoi_dung`;
 CREATE TABLE `nguoi_dung` (
@@ -150,7 +168,8 @@ CREATE TABLE `phim` (
 INSERT INTO `phim` (`ma_phim`, `ten_phim`, `trailer`, `hinh_anh`, `mo_ta`, `ngay_khoi_chieu`, `danh_gia`, `hot`, `dang_chieu`, `sap_chieu`, `tai_khoan`) VALUES
 (44,	'phim 5',	'trailer 3',	'1679322233729_avatardefault.png',	'abc',	'1111-11-11',	4,	1,	1,	0,	38),
 (45,	'Phim 2',	'trailer_test',	'1679323900567_elephant-2729415.jpg',	'Mô tả phim thứ 1',	'2023-03-15',	5,	1,	1,	0,	38),
-(46,	'Phim 2',	'trailer_test',	'1679323912955_elephant-2729415.jpg',	'Mô tả phim thứ 1',	'2023-03-20',	5,	1,	1,	0,	38);
+(46,	'Phim 2',	'trailer_test',	'1679323912955_elephant-2729415.jpg',	'Mô tả phim thứ 1',	'2023-03-20',	5,	1,	1,	0,	38),
+(48,	'Phim 3',	'trailer_test',	'1679468141175_pexels-cesar-perez-733745.jpg',	'Mô tả phim thứ 1',	'2023-03-21',	5,	1,	1,	0,	38);
 
 DROP TABLE IF EXISTS `rap_phim`;
 CREATE TABLE `rap_phim` (
@@ -170,4 +189,4 @@ INSERT INTO `rap_phim` (`ma_rap`, `ten_rap`, `ma_cum_rap`) VALUES
 (7,	'Rạp quận 2',	6),
 (8,	'Rạp Tp. Biên Hòa',	9);
 
--- 2023-03-21 16:24:52
+-- 2023-03-22 09:37:24

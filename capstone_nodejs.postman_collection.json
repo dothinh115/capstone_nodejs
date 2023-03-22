@@ -171,7 +171,7 @@
 							"bearer": [
 								{
 									"key": "token",
-									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0YWlfa2hvYW4iOjM4LCJpYXQiOjE2NzkzMjM2NjMsImV4cCI6MTY3OTQxMDA2M30._CjSsYxwJ6pMnXAczP9mw8mApgkVkSiUWbE0nE8n-kg",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0YWlfa2hvYW4iOjM4LCJpYXQiOjE2Nzk0NjgwODEsImV4cCI6MTY3OTU1NDQ4MX0.8ltP_JykwOOQN2FG68wVaFWDmoiCXOaboD8CLA-yZjc",
 									"type": "string"
 								}
 							]
@@ -185,11 +185,11 @@
 									"key": "hinh_anh",
 									"contentType": "",
 									"type": "file",
-									"src": "/C:/Users/Administrator/Downloads/elephant-2729415.jpg"
+									"src": "/C:/Users/Administrator/Downloads/pexels-cesar-perez-733745.jpg"
 								},
 								{
 									"key": "ten_phim",
-									"value": "Phim 2",
+									"value": "Phim 3",
 									"type": "text"
 								},
 								{
@@ -204,7 +204,7 @@
 								},
 								{
 									"key": "ngay_khoi_chieu",
-									"value": "2023-03-20",
+									"value": "2023-03-21",
 									"type": "text"
 								},
 								{
@@ -256,7 +256,7 @@
 							"bearer": [
 								{
 									"key": "token",
-									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0YWlfa2hvYW4iOjM3LCJpYXQiOjE2NzkyMTc0MjcsImV4cCI6MTY3OTMwMzgyN30.1NxCSbm7YokexEDeUcTWU4NHZ37uO4p7gG29r-KKBvU",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0YWlfa2hvYW4iOjM4LCJpYXQiOjE2Nzk0NjgwODEsImV4cCI6MTY3OTU1NDQ4MX0.8ltP_JykwOOQN2FG68wVaFWDmoiCXOaboD8CLA-yZjc",
 									"type": "string"
 								}
 							]
@@ -264,14 +264,14 @@
 						"method": "DELETE",
 						"header": [],
 						"url": {
-							"raw": "{{domain}}/movies/deleteMovie/34",
+							"raw": "{{domain}}/movies/deleteMovie/47",
 							"host": [
 								"{{domain}}"
 							],
 							"path": [
 								"movies",
 								"deleteMovie",
-								"34"
+								"47"
 							]
 						}
 					},
@@ -387,7 +387,7 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "{{domain}}/movies/getMovie?number=1",
+							"raw": "{{domain}}/movies/getMovie?from=2023-3-1&to=2023-4-30&number=0",
 							"host": [
 								"{{domain}}"
 							],
@@ -398,22 +398,20 @@
 							"query": [
 								{
 									"key": "from",
-									"value": "2023-3-1",
-									"disabled": true
+									"value": "2023-3-1"
 								},
 								{
 									"key": "to",
-									"value": "2023-4-30",
-									"disabled": true
-								},
-								{
-									"key": "number",
-									"value": "1"
+									"value": "2023-4-30"
 								},
 								{
 									"key": "sort",
 									"value": "desc",
 									"disabled": true
+								},
+								{
+									"key": "number",
+									"value": "0"
 								}
 							]
 						}
@@ -765,6 +763,208 @@
 			]
 		},
 		{
+			"name": "data",
+			"item": [
+				{
+					"name": "createShowTime",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0YWlfa2hvYW4iOjM4LCJpYXQiOjE2Nzk0MTE1NTgsImV4cCI6MTY3OTQ5Nzk1OH0.JXuj64od7SKRMigb18PFNYpKt7jHd51bOuRvOikjCzE",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"ma_rap\":3,\r\n    \"ma_phim\":48,\r\n    \"ngay_gio_chieu\":\"2023-03-15 12:00:00\",\r\n    \"gia_ve\":10000\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{domain}}/data/createShowTime",
+							"host": [
+								"{{domain}}"
+							],
+							"path": [
+								"data",
+								"createShowTime"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "deleteShowTime",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0YWlfa2hvYW4iOjM4LCJpYXQiOjE2Nzk0NzE1NDUsImV4cCI6MTY3OTU1Nzk0NX0.-C0HcopyZpn01T4mSjDTZRM8Xc5zwB-U1ovj29wffhE",
+									"type": "string"
+								}
+							]
+						},
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{domain}}/data/deleteShowTime/56",
+							"host": [
+								"{{domain}}"
+							],
+							"path": [
+								"data",
+								"deleteShowTime",
+								"56"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "getShowTime",
+					"request": {
+						"method": "GET",
+						"header": []
+					},
+					"response": []
+				},
+				{
+					"name": "createSeat",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0YWlfa2hvYW4iOjM4LCJpYXQiOjE2Nzk0NzQ4NjYsImV4cCI6MTY3OTU2MTI2Nn0.zAS9M9bl2YuY0MeWClsDqQfeN_OgUyOPOXYg6oZt04w",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"ten_ghe\":\"abc\",\r\n  \"ma_rap\":4\r\n  }",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{domain}}/data/createSeat",
+							"host": [
+								"{{domain}}"
+							],
+							"path": [
+								"data",
+								"createSeat"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "deleteSeat",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0YWlfa2hvYW4iOjM4LCJpYXQiOjE2Nzk0NzE1NDUsImV4cCI6MTY3OTU1Nzk0NX0.-C0HcopyZpn01T4mSjDTZRM8Xc5zwB-U1ovj29wffhE",
+									"type": "string"
+								}
+							]
+						},
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{domain}}/data/deleteSeat/6",
+							"host": [
+								"{{domain}}"
+							],
+							"path": [
+								"data",
+								"deleteSeat",
+								"6"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "getSeatByCinema",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{domain}}/data/getSeatByCinema/4",
+							"host": [
+								"{{domain}}"
+							],
+							"path": [
+								"data",
+								"getSeatByCinema",
+								"4"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "updateSeat",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0YWlfa2hvYW4iOjM4LCJpYXQiOjE2Nzk0NzQ4NjYsImV4cCI6MTY3OTU2MTI2Nn0.zAS9M9bl2YuY0MeWClsDqQfeN_OgUyOPOXYg6oZt04w",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"ten_ghe\": \"thinh\",\r\n    \"loai_ghe\": \"VIP\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{domain}}/data/updateSeat/1",
+							"host": [
+								"{{domain}}"
+							],
+							"path": [
+								"data",
+								"updateSeat",
+								"1"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
 			"name": "admin",
 			"item": [
 				{
@@ -826,17 +1026,17 @@
 			]
 		},
 		{
-			"name": "data",
+			"name": "order",
 			"item": [
 				{
-					"name": "createShowTime",
+					"name": "Order",
 					"request": {
 						"auth": {
 							"type": "bearer",
 							"bearer": [
 								{
 									"key": "token",
-									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0YWlfa2hvYW4iOjM4LCJpYXQiOjE2Nzk0MTE1NTgsImV4cCI6MTY3OTQ5Nzk1OH0.JXuj64od7SKRMigb18PFNYpKt7jHd51bOuRvOikjCzE",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0YWlfa2hvYW4iOjM4LCJpYXQiOjE2Nzk0NzQ4NjYsImV4cCI6MTY3OTU2MTI2Nn0.zAS9M9bl2YuY0MeWClsDqQfeN_OgUyOPOXYg6oZt04w",
 									"type": "string"
 								}
 							]
@@ -845,7 +1045,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"ma_rap\":333,\r\n    \"ma_phim\":24,\r\n    \"ngay_gio_chieu\":\"2023-3-15\",\r\n    \"gia_ve\":10000\r\n}",
+							"raw": "{\r\n    \"ma_ghe\": 1,\r\n    \"ma_lich_chieu\": 59\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -853,13 +1053,79 @@
 							}
 						},
 						"url": {
-							"raw": "{{domain}}/data/createShowTime",
+							"raw": "{{domain}}/order/create",
 							"host": [
 								"{{domain}}"
 							],
 							"path": [
-								"data",
-								"createShowTime"
+								"order",
+								"create"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "adminCreate",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0YWlfa2hvYW4iOjM4LCJpYXQiOjE2Nzk0NzQ4NjYsImV4cCI6MTY3OTU2MTI2Nn0.zAS9M9bl2YuY0MeWClsDqQfeN_OgUyOPOXYg6oZt04w",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"tai_khoan\":26,\r\n    \"ma_ghe\": 1,\r\n    \"ma_lich_chieu\": 59\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{domain}}/order/adminCreate",
+							"host": [
+								"{{domain}}"
+							],
+							"path": [
+								"order",
+								"adminCreate"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "deleteOrder",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0YWlfa2hvYW4iOjM4LCJpYXQiOjE2Nzk0NzQ4NjYsImV4cCI6MTY3OTU2MTI2Nn0.zAS9M9bl2YuY0MeWClsDqQfeN_OgUyOPOXYg6oZt04w",
+									"type": "string"
+								}
+							]
+						},
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{domain}}/order/deleteOrder/2",
+							"host": [
+								"{{domain}}"
+							],
+							"path": [
+								"order",
+								"deleteOrder",
+								"2"
 							]
 						}
 					},

@@ -5,6 +5,7 @@ import { movieImgPath, notExistedMovieMessage } from 'src/utils/variables';
 import * as fs from 'fs';
 import { MovieCreateDto } from './dto/movies.dto';
 import { movieConfig } from 'src/utils/config';
+import { createDateAsUTC } from 'src/utils/function';
 
 @Injectable()
 export class MoviesProvider {
@@ -19,7 +20,7 @@ export class MoviesProvider {
       body;
     const data = {
       ...others,
-      ngay_khoi_chieu: new Date(ngay_khoi_chieu),
+      ngay_khoi_chieu: createDateAsUTC(new Date(ngay_khoi_chieu)),
       danh_gia: +danh_gia,
       hot: +hot === 1 ? true : false,
       dang_chieu: +dang_chieu === 1 ? true : false,
@@ -66,6 +67,7 @@ export class MoviesProvider {
     });
     fs.unlinkSync(movieImgPath + movie.hinh_anh);
   }
+
   async getMovieInfo(ma_phim) {
     const result = await this.model.phim.findFirst({
       where: {
@@ -111,7 +113,7 @@ export class MoviesProvider {
       body;
     const data = {
       ...others,
-      ngay_khoi_chieu: new Date(ngay_khoi_chieu),
+      ngay_khoi_chieu: createDateAsUTC(new Date(ngay_khoi_chieu)),
       danh_gia: +danh_gia,
       hot: +hot === 1 ? true : false,
       dang_chieu: +dang_chieu === 1 ? true : false,
@@ -141,13 +143,14 @@ export class MoviesProvider {
     from: string,
     to: string,
     number?: null | string,
-    sort?: null | string,
+    sort?: any,
   ) {
+    if (+number === 0) throw new HttpException('number không thể là 0', 400);
     const data = await this.model.phim.findMany({
       where: {
         ngay_khoi_chieu: {
-          lte: new Date(to),
-          gte: new Date(from),
+          lte: createDateAsUTC(new Date(to)),
+          gte: createDateAsUTC(new Date(from)),
         },
       },
       include: {
@@ -162,14 +165,9 @@ export class MoviesProvider {
         },
       },
       ...(number && { take: +number }),
-      ...(sort === 'desc' && {
+      ...(sort && {
         orderBy: {
-          ngay_khoi_chieu: 'desc',
-        },
-      }),
-      ...(sort === 'asc' && {
-        orderBy: {
-          ngay_khoi_chieu: 'asc',
+          ngay_khoi_chieu: sort,
         },
       }),
     });
@@ -179,7 +177,7 @@ export class MoviesProvider {
     return data;
   }
 
-  async getMovieByQuantity(number: string, sort?: null | string) {
+  async getMovieByQuantity(number: string, sort?: any) {
     if (+number === 0) throw new HttpException('number không thể là 0', 400);
     const dataQuantity = await this.model.phim.findMany({
       take: +number,
@@ -192,14 +190,9 @@ export class MoviesProvider {
           },
         },
       },
-      ...(sort === 'desc' && {
+      ...(sort && {
         orderBy: {
-          ngay_khoi_chieu: 'desc',
-        },
-      }),
-      ...(sort === 'asc' && {
-        orderBy: {
-          ngay_khoi_chieu: 'asc',
+          ngay_khoi_chieu: sort,
         },
       }),
     });

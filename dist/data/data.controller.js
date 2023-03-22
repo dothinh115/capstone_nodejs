@@ -16,7 +16,6 @@ exports.dataController = void 0;
 const common_1 = require("@nestjs/common");
 const roles_decorator_1 = require("../guards/roles.decorator");
 const roles_guard_1 = require("../guards/roles.guard");
-const prisma_service_1 = require("../prisma/prisma.service");
 const strategy_1 = require("../strategy");
 const config_1 = require("../utils/config");
 const global_dto_1 = require("../utils/dto/global.dto");
@@ -24,14 +23,52 @@ const variables_1 = require("../utils/variables");
 const data_service_1 = require("./data.service");
 const data_dto_1 = require("./Dto/data.dto");
 let dataController = class dataController {
-    constructor(model, response, dataService) {
-        this.model = model;
+    constructor(response, dataService) {
         this.response = response;
         this.dataService = dataService;
     }
     async createShowTime(body) {
         const data = await this.dataService.createShowTime(data_dto_1.ShowTimeCreateDto.plainToClass(body));
         throw new common_1.HttpException(this.response.successRes(variables_1.successMessage, data), 200);
+    }
+    async deleteShowTime(ma_lich_chieu) {
+        await this.dataService.deleteShowTime(ma_lich_chieu);
+        throw new common_1.HttpException(this.response.successRes(variables_1.successMessage), 200);
+    }
+    async getShowTime(from, to, number, sort) {
+        if (from || to) {
+            if (!from || !to) {
+                throw new common_1.HttpException(this.response.failRes('phải có đủ from và to'), 400);
+            }
+            const data = await this.dataService.getShowTimeFromDateToDate(from, to, number ? number : null, sort ? sort : null);
+            throw new common_1.HttpException(this.response.successRes(variables_1.successMessage, data), 200);
+        }
+        else if (number) {
+            const data = await this.dataService.getShowTimeByQuantity(number, sort ? sort : null);
+            throw new common_1.HttpException(this.response.successRes(variables_1.successMessage, data), 200);
+        }
+        throw new common_1.HttpException(this.response.successRes('Hướng dẫn sử dụng (query)', {
+            from: 'Từ ngày',
+            to: 'Đến ngày',
+            number: 'Giới hạn số lượng trả về (có hoặc không)',
+            sort: 'asc hoặc desc (có hoặc không)',
+        }), 200);
+    }
+    async createSeat(body) {
+        const data = await this.dataService.createSeat(data_dto_1.SeatCreateDto.plainToClass(body));
+        throw new common_1.HttpException(this.response.successRes(variables_1.successMessage, data), 200);
+    }
+    async deleteSeat(ma_ghe) {
+        await this.dataService.deleteSeat(ma_ghe);
+        throw new common_1.HttpException(this.response.successRes(variables_1.successMessage), 200);
+    }
+    async getSeatByCinema(ma_rap) {
+        const result = await this.dataService.getSeatByCinema(ma_rap);
+        throw new common_1.HttpException(this.response.successRes(variables_1.successMessage, result), 200);
+    }
+    async updateSeat(ma_ghe, body) {
+        const result = await this.dataService.updateSeat(ma_ghe, data_dto_1.SeatUpdateDto.plainToClass(body));
+        throw new common_1.HttpException(this.response.successRes(variables_1.successMessage, result), 200);
     }
 };
 __decorate([
@@ -43,11 +80,63 @@ __decorate([
     __metadata("design:paramtypes", [data_dto_1.ShowTimeCreateDto]),
     __metadata("design:returntype", Promise)
 ], dataController.prototype, "createShowTime", null);
+__decorate([
+    (0, common_1.UseGuards)(strategy_1.TokenAuthorization, roles_guard_1.RoleGuard),
+    (0, roles_decorator_1.Roles)(config_1.permissionConfig.Administrators, config_1.permissionConfig.Moderators, config_1.permissionConfig.Editors),
+    (0, common_1.Delete)('/deleteShowTime/:ma_lich_chieu'),
+    __param(0, (0, common_1.Param)('ma_lich_chieu')),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [String]),
+    __metadata("design:returntype", Promise)
+], dataController.prototype, "deleteShowTime", null);
+__decorate([
+    (0, common_1.Get)('/getShowTime'),
+    __param(0, (0, common_1.Query)('from')),
+    __param(1, (0, common_1.Query)('to')),
+    __param(2, (0, common_1.Query)('number')),
+    __param(3, (0, common_1.Query)('sort')),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [String, String, String, String]),
+    __metadata("design:returntype", Promise)
+], dataController.prototype, "getShowTime", null);
+__decorate([
+    (0, common_1.UseGuards)(strategy_1.TokenAuthorization, roles_guard_1.RoleGuard),
+    (0, roles_decorator_1.Roles)(config_1.permissionConfig.Administrators, config_1.permissionConfig.Moderators, config_1.permissionConfig.Editors),
+    (0, common_1.Post)('/createSeat'),
+    __param(0, (0, common_1.Body)()),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [data_dto_1.SeatCreateDto]),
+    __metadata("design:returntype", Promise)
+], dataController.prototype, "createSeat", null);
+__decorate([
+    (0, common_1.UseGuards)(strategy_1.TokenAuthorization, roles_guard_1.RoleGuard),
+    (0, roles_decorator_1.Roles)(config_1.permissionConfig.Administrators, config_1.permissionConfig.Moderators, config_1.permissionConfig.Editors),
+    (0, common_1.Delete)('/deleteSeat/:ma_ghe'),
+    __param(0, (0, common_1.Param)('ma_ghe')),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [String]),
+    __metadata("design:returntype", Promise)
+], dataController.prototype, "deleteSeat", null);
+__decorate([
+    (0, common_1.Get)('/getSeatByCinema/:ma_rap'),
+    __param(0, (0, common_1.Param)('ma_rap')),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [String]),
+    __metadata("design:returntype", Promise)
+], dataController.prototype, "getSeatByCinema", null);
+__decorate([
+    (0, common_1.UseGuards)(strategy_1.TokenAuthorization, roles_guard_1.RoleGuard),
+    (0, roles_decorator_1.Roles)(config_1.permissionConfig.Administrators, config_1.permissionConfig.Moderators, config_1.permissionConfig.Editors),
+    (0, common_1.Put)('/updateSeat/:ma_ghe'),
+    __param(0, (0, common_1.Param)('ma_ghe')),
+    __param(1, (0, common_1.Body)()),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [String, data_dto_1.SeatUpdateDto]),
+    __metadata("design:returntype", Promise)
+], dataController.prototype, "updateSeat", null);
 dataController = __decorate([
     (0, common_1.Controller)('/data'),
-    __metadata("design:paramtypes", [prisma_service_1.PrismaService,
-        global_dto_1.Response,
-        data_service_1.dataProvider])
+    __metadata("design:paramtypes", [global_dto_1.Response, data_service_1.dataProvider])
 ], dataController);
 exports.dataController = dataController;
 //# sourceMappingURL=data.controller.js.map

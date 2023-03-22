@@ -28,6 +28,7 @@ model cum_rap {
 }
 
 model dat_ve {
+  ma_dat_ve     Int        @id @default(autoincrement())
   tai_khoan     Int
   ma_lich_chieu Int
   ma_ghe        Int
@@ -35,15 +36,15 @@ model dat_ve {
   lich_chieu    lich_chieu @relation(fields: [ma_lich_chieu], references: [ma_lich_chieu], onDelete: NoAction, onUpdate: NoAction, map: "dat_ve_ibfk_2")
   ghe           ghe        @relation(fields: [ma_ghe], references: [ma_ghe], onDelete: NoAction, onUpdate: NoAction, map: "dat_ve_ibfk_3")
 
-  @@id([tai_khoan, ma_lich_chieu, ma_ghe])
   @@index([ma_ghe], map: "ma_ghe")
   @@index([ma_lich_chieu], map: "ma_lich_chieu")
+  @@index([tai_khoan], map: "tai_khoan")
 }
 
 model ghe {
   ma_ghe   Int      @id @default(autoincrement())
   ten_ghe  String   @db.VarChar(255)
-  loai_ghe String   @db.VarChar(255)
+  loai_ghe String   @default("Normal") @db.VarChar(255)
   ma_rap   Int
   dat_ve   dat_ve[]
   rap_phim rap_phim @relation(fields: [ma_rap], references: [ma_rap], onDelete: NoAction, onUpdate: NoAction, map: "ghe_ibfk_1")
@@ -62,7 +63,7 @@ model lich_chieu {
   ma_lich_chieu  Int      @id @default(autoincrement())
   ma_rap         Int
   ma_phim        Int
-  ngay_gio_chieu DateTime @db.Date
+  ngay_gio_chieu DateTime @db.DateTime(0)
   gia_ve         Int
   dat_ve         dat_ve[]
   rap_phim       rap_phim @relation(fields: [ma_rap], references: [ma_rap], onDelete: NoAction, onUpdate: NoAction, map: "lich_chieu_ibfk_1")

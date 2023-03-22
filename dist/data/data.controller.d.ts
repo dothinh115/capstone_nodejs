@@ -1,11 +1,15 @@
-import { PrismaService } from 'src/prisma/prisma.service';
 import { Response } from 'src/utils/dto/global.dto';
 import { dataProvider } from './data.service';
-import { ShowTimeCreateDto } from './Dto/data.dto';
+import { SeatCreateDto, SeatUpdateDto, ShowTimeCreateDto } from './Dto/data.dto';
 export declare class dataController {
-    private model;
     private response;
     private dataService;
-    constructor(model: PrismaService, response: Response, dataService: dataProvider);
+    constructor(response: Response, dataService: dataProvider);
     createShowTime(body: ShowTimeCreateDto): Promise<void>;
+    deleteShowTime(ma_lich_chieu: string): Promise<void>;
+    getShowTime(from: string, to: string, number: string, sort: string): Promise<void>;
+    createSeat(body: SeatCreateDto): Promise<void>;
+    deleteSeat(ma_ghe: string): Promise<void>;
+    getSeatByCinema(ma_rap: string): Promise<void>;
+    updateSeat(ma_ghe: string, body: SeatUpdateDto): Promise<void>;
 }

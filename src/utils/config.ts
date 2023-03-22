@@ -50,7 +50,7 @@ export const cinemaComplexConfig = (obj) => {
 };
 
 export const cinemaConfig = (obj) => {
-  //cần include cum_rap, he_thong_rap, nguoi_dung, permission
+  //cần include nguoi_dung, permission
   obj = {
     ...obj,
     cum_rap: cinemaComplexConfig(obj.cum_rap),
@@ -67,5 +67,25 @@ export const showTimesConfig = (obj) => {
   };
   delete obj.ma_rap;
   delete obj.ma_phim;
+  return obj;
+};
+
+export const seatConfig = (obj) => {
+  obj = {
+    ...obj,
+    rap_phim: cinemaConfig(obj.rap_phim),
+  };
+  delete obj.ma_rap;
+  return obj;
+};
+
+export const orderConfig = (obj) => {
+  obj = {
+    ...obj,
+    nguoi_dung: userConfig(obj.nguoi_dung),
+    lich_chieu: showTimesConfig(obj.lich_chieu),
+    ghe: seatConfig(obj.ghe),
+  };
+  delete obj.tai_khoan, delete obj.ma_ghe, delete obj.ma_lich_chieu;
   return obj;
 };

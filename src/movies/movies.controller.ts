@@ -14,7 +14,6 @@ import {
   UseInterceptors,
 } from '@nestjs/common';
 import { FileInterceptor } from '@nestjs/platform-express';
-import { Request } from 'express';
 import { diskStorage } from 'multer';
 import { Roles } from 'src/guards/roles.decorator';
 import { RoleGuard } from 'src/guards/roles.guard';

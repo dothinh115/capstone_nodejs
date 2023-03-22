@@ -33,3 +33,7 @@ export const cinemaImgPath = `${process.cwd()}/public/img/cinemas/`;
 export const cinemaComplexNotFoundMessage = 'Không tìm thấy cụm rạp này';
 export const cinemaSystemNotFoundMessage = 'Không tìm thấy hệ thống rạp này';
 export const cinemaNotFoundMessage = 'Không tìm thấy rạp phim này';
+export const alreadyExistedshowTimeMessage = 'Lịch chiếu này đã tồn tại!';
+export const showTimeNotFoundMessage = 'Lịch chiếu này không tồn tại!';
+export const seatNotFoundMessage = 'Không tìm thấy ghế này!';
+export const orderNotFoundMessage = 'Không tìm thấy mã đặt vé này!';

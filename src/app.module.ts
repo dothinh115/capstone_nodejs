@@ -7,6 +7,7 @@ import { AuthModule } from './auth/auth.module';
 import { CinemasModule } from './cinemas/cinemas.module';
 import { dataModule } from './data/data.module';
 import { MoviesModule } from './movies/movies.module';
+import { OrderModule } from './orders/order.module';
 import { UserModule } from './users/users.module';
 
 @Module({
@@ -19,6 +20,7 @@ import { UserModule } from './users/users.module';
     AdminModule,
     CinemasModule,
     dataModule,
+    OrderModule,
   ],
   controllers: [AppController],
   providers: [AppProvider],

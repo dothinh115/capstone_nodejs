@@ -9,7 +9,7 @@ var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.ShowTimeCreateDto = void 0;
+exports.SeatUpdateDto = exports.SeatCreateDto = exports.ShowTimeCreateDto = void 0;
 const class_transformer_1 = require("class-transformer");
 class ShowTimeCreateDto {
     static plainToClass(obj) {
@@ -33,4 +33,29 @@ __decorate([
     __metadata("design:type", Number)
 ], ShowTimeCreateDto.prototype, "gia_ve", void 0);
 exports.ShowTimeCreateDto = ShowTimeCreateDto;
+class SeatCreateDto {
+    static plainToClass(obj) {
+        return (0, class_transformer_1.plainToClass)(this, obj, { excludeExtraneousValues: true });
+    }
+}
+__decorate([
+    (0, class_transformer_1.Expose)(),
+    __metadata("design:type", String)
+], SeatCreateDto.prototype, "ten_ghe", void 0);
+__decorate([
+    (0, class_transformer_1.Expose)(),
+    __metadata("design:type", Number)
+], SeatCreateDto.prototype, "ma_rap", void 0);
+__decorate([
+    (0, class_transformer_1.Expose)(),
+    __metadata("design:type", String)
+], SeatCreateDto.prototype, "loai_ghe", void 0);
+exports.SeatCreateDto = SeatCreateDto;
+class SeatUpdateDto extends SeatCreateDto {
+}
+__decorate([
+    (0, class_transformer_1.Exclude)(),
+    __metadata("design:type", Number)
+], SeatUpdateDto.prototype, "ma_rap", void 0);
+exports.SeatUpdateDto = SeatUpdateDto;
 //# sourceMappingURL=data.dto.js.map

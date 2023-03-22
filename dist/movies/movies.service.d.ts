@@ -28,14 +28,14 @@ export declare class MoviesProvider {
             };
         };
     }>;
-    getMovieFromDateToDate(from: string, to: string, number?: null | string, sort?: null | string): Promise<(import(".prisma/client").phim & {
+    getMovieFromDateToDate(from: string, to: string, number?: null | string, sort?: any): Promise<(import(".prisma/client").phim & {
         nguoi_dung: import(".prisma/client").nguoi_dung & {
             permission: {
                 permission_name: string;
             };
         };
     })[]>;
-    getMovieByQuantity(number: string, sort?: null | string): Promise<(import(".prisma/client").phim & {
+    getMovieByQuantity(number: string, sort?: any): Promise<(import(".prisma/client").phim & {
         nguoi_dung: import(".prisma/client").nguoi_dung & {
             permission: {
                 permission_name: string;

@@ -12,3 +12,16 @@ export const movieImgCheck = (req, file, callback) => {
 
   callback(null, true);
 };
+
+export const createDateAsUTC = (date: Date): Date => {
+  return new Date(
+    Date.UTC(
+      date.getFullYear(),
+      date.getMonth(),
+      date.getDate(),
+      date.getHours(),
+      date.getMinutes(),
+      date.getSeconds(),
+    ),
+  );
+};

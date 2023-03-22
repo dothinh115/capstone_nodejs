@@ -15,3 +15,7 @@ export declare const cinemaImgPath: string;
 export declare const cinemaComplexNotFoundMessage = "Kh\u00F4ng t\u00ECm th\u1EA5y c\u1EE5m r\u1EA1p n\u00E0y";
 export declare const cinemaSystemNotFoundMessage = "Kh\u00F4ng t\u00ECm th\u1EA5y h\u1EC7 th\u1ED1ng r\u1EA1p n\u00E0y";
 export declare const cinemaNotFoundMessage = "Kh\u00F4ng t\u00ECm th\u1EA5y r\u1EA1p phim n\u00E0y";
+export declare const alreadyExistedshowTimeMessage = "L\u1ECBch chi\u1EBFu n\u00E0y \u0111\u00E3 t\u1ED3n t\u1EA1i!";
+export declare const showTimeNotFoundMessage = "L\u1ECBch chi\u1EBFu n\u00E0y kh\u00F4ng t\u1ED3n t\u1EA1i!";
+export declare const seatNotFoundMessage = "Kh\u00F4ng t\u00ECm th\u1EA5y gh\u1EBF n\u00E0y!";
+export declare const orderNotFoundMessage = "Kh\u00F4ng t\u00ECm th\u1EA5y m\u00E3 \u0111\u1EB7t v\u00E9 n\u00E0y!";
