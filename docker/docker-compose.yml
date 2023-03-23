@@ -1,0 +1,40 @@
+version: '3'
+services:
+  mysql_db:
+    image: mysql
+    container_name: mysql_db
+    # env_file:
+    #   - .env
+    #   $HOST
+    environment:
+      - MYSQL_ROOT_PASSWORD=Thinh123
+      - MYSQL_DATABASE=capstone_nodejs
+    ports:
+      - 3306:3306
+    volumes:
+      - mysql_db:/var/lib/mysql
+    networks:
+      - node-network
+  app:
+    depends_on:
+      - mysql_db
+    container_name: cons-node
+    build: .
+    #image:nguyenchonhau/new-mysql:v1
+    environment:
+      - DB_DATABASE=capstone_nodejs
+      - DB_USER=root
+      - DB_PASS=1234
+      - DB_HOST=localhost
+      - DB_PORT=3306
+      - DB_DIALECT=mysql
+    ports:
+      - "8080:8080"
+    networks:
+      - node-network
+
+volumes:
+  mysql_db:
+    driver: local
+networks:
+  node-network:
