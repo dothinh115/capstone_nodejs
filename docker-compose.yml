@@ -7,7 +7,7 @@ services:
     #   - .env
     #   $HOST
     environment:
-      - MYSQL_ROOT_PASSWORD=1234
+      - MYSQL_ROOT_PASSWORD=Thinh123
       - MYSQL_DATABASE=capstone_nodejs
     ports:
       - 3306:3306
@@ -24,7 +24,7 @@ services:
     environment:
       - DB_DATABASE=capstone_nodejs
       - DB_USER=root
-      - DB_PASS=1234
+      - DB_PASS=Thinh123
       - DB_HOST=localhost
       - DB_PORT=3306
       - DB_DIALECT=mysql
