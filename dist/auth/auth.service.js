@@ -63,9 +63,10 @@ let AuthProvider = class AuthProvider {
         if (!result)
             throw new common_1.HttpException(variables_1.loginErrorMessage, 400);
         if (bcrypt.compareSync(mat_khau, result.mat_khau)) {
-            return Object.assign(Object.assign({}, result), { access_token: this.jwt.sign({
-                    tai_khoan: result.tai_khoan,
-                }) });
+            const token = this.jwt.sign({
+                tai_khoan: result.tai_khoan,
+            });
+            return Object.assign(Object.assign({}, result), { access_token: token });
         }
     }
 };

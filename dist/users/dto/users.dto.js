@@ -9,9 +9,12 @@ var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.UpdateUserDto = void 0;
+exports.SetPermissionDto = exports.UpdateUserDto = void 0;
 const class_transformer_1 = require("class-transformer");
 class UpdateUserDto {
+    static plainToClass(obj) {
+        return (0, class_transformer_1.plainToClass)(this, obj, { excludeExtraneousValues: true });
+    }
 }
 __decorate([
     (0, class_transformer_1.Expose)(),
@@ -22,4 +25,18 @@ __decorate([
     __metadata("design:type", String)
 ], UpdateUserDto.prototype, "so_dt", void 0);
 exports.UpdateUserDto = UpdateUserDto;
+class SetPermissionDto {
+    static plainToClass(obj) {
+        return (0, class_transformer_1.plainToClass)(this, obj, { excludeExtraneousValues: true });
+    }
+}
+__decorate([
+    (0, class_transformer_1.Expose)(),
+    __metadata("design:type", Number)
+], SetPermissionDto.prototype, "tai_khoan", void 0);
+__decorate([
+    (0, class_transformer_1.Expose)(),
+    __metadata("design:type", Number)
+], SetPermissionDto.prototype, "loai_nguoi_dung", void 0);
+exports.SetPermissionDto = SetPermissionDto;
 //# sourceMappingURL=users.dto.js.map

@@ -9,6 +9,7 @@ import {
   UseGuards,
 } from '@nestjs/common';
 import { Request } from 'express';
+import { BannedGuard } from 'src/guards/banned.guard';
 import { Roles } from 'src/guards/roles.decorator';
 import { RoleGuard } from 'src/guards/roles.guard';
 import { TokenAuthorization } from 'src/strategy';
@@ -24,7 +25,7 @@ export class OrderController {
     private orderService: OrderProvider,
     private response: Response,
   ) {}
-  @UseGuards(TokenAuthorization)
+  @UseGuards(TokenAuthorization, BannedGuard)
   @Post('/create')
   async createOrder(@Body() body: OrderCreateDto, @Req() req: Request) {
     const result = await this.orderService.createOrder(

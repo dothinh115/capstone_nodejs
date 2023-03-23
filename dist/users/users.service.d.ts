@@ -1,7 +1,7 @@
 import { UserDto } from 'src/auth/dto/auth.dto';
 import { PrismaService } from 'src/prisma/prisma.service';
 import { Response } from 'src/utils/dto/global.dto';
-import { UpdateUserDto } from './dto/users.dto';
+import { SetPermissionDto, UpdateUserDto } from './dto/users.dto';
 export declare class UsersProvider {
     private model;
     private response;
@@ -13,4 +13,7 @@ export declare class UsersProvider {
         };
     }>;
     updateUser(tai_khoan: number, body: UpdateUserDto): Promise<UserDto>;
+    banUser(tai_khoan: string, req: any): Promise<any>;
+    unBanUser(tai_khoan: string): Promise<any>;
+    setPermission(data: SetPermissionDto, req: any): Promise<any>;
 }

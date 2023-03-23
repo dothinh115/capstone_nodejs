@@ -12,7 +12,7 @@ exports.permissionConfig = {
 const userConfig = (obj) => {
     obj = Object.assign(Object.assign({}, obj), { loai_nguoi_dung: obj.permission.permission_name });
     delete obj['permission'];
-    delete obj.mat_khau;
+    obj.mat_khau && delete obj.mat_khau;
     return obj;
 };
 exports.userConfig = userConfig;

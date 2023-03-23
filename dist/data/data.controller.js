@@ -70,6 +70,12 @@ let dataController = class dataController {
         const result = await this.dataService.updateSeat(ma_ghe, data_dto_1.SeatUpdateDto.plainToClass(body));
         throw new common_1.HttpException(this.response.successRes(variables_1.successMessage, result), 200);
     }
+    async getShowTimeByMovie(ma_phim) {
+        const data = await this.dataService.getShowTimeByMovie(ma_phim);
+        if (data.length === 0)
+            throw new common_1.HttpException(this.response.successRes('phim này chưa có lịch chiếu'), 200);
+        throw new common_1.HttpException(this.response.successRes(variables_1.successMessage, data), 200);
+    }
 };
 __decorate([
     (0, common_1.UseGuards)(strategy_1.TokenAuthorization, roles_guard_1.RoleGuard),
@@ -134,6 +140,13 @@ __decorate([
     __metadata("design:paramtypes", [String, data_dto_1.SeatUpdateDto]),
     __metadata("design:returntype", Promise)
 ], dataController.prototype, "updateSeat", null);
+__decorate([
+    (0, common_1.Get)('/getShowTimeByMovie/:ma_phim'),
+    __param(0, (0, common_1.Param)('ma_phim')),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [String]),
+    __metadata("design:returntype", Promise)
+], dataController.prototype, "getShowTimeByMovie", null);
 dataController = __decorate([
     (0, common_1.Controller)('/data'),
     __metadata("design:paramtypes", [global_dto_1.Response, data_service_1.dataProvider])

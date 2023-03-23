@@ -14,6 +14,7 @@ var __param = (this && this.__param) || function (paramIndex, decorator) {
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.OrderController = void 0;
 const common_1 = require("@nestjs/common");
+const banned_guard_1 = require("../guards/banned.guard");
 const roles_decorator_1 = require("../guards/roles.decorator");
 const roles_guard_1 = require("../guards/roles.guard");
 const strategy_1 = require("../strategy");
@@ -41,7 +42,7 @@ let OrderController = class OrderController {
     }
 };
 __decorate([
-    (0, common_1.UseGuards)(strategy_1.TokenAuthorization),
+    (0, common_1.UseGuards)(strategy_1.TokenAuthorization, banned_guard_1.BannedGuard),
     (0, common_1.Post)('/create'),
     __param(0, (0, common_1.Body)()),
     __param(1, (0, common_1.Req)()),

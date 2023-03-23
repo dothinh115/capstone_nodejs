@@ -12,4 +12,5 @@ export declare class dataController {
     deleteSeat(ma_ghe: string): Promise<void>;
     getSeatByCinema(ma_rap: string): Promise<void>;
     updateSeat(ma_ghe: string, body: SeatUpdateDto): Promise<void>;
+    getShowTimeByMovie(ma_phim: string): Promise<void>;
 }

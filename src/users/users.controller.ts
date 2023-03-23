@@ -11,9 +11,8 @@ import {
   UsePipes,
   ValidationPipe,
 } from '@nestjs/common';
-import { plainToClass } from 'class-transformer';
 import { Request } from 'express';
-import { UserBaseDto, UserDto } from 'src/auth/dto/auth.dto';
+import { UserDto } from 'src/auth/dto/auth.dto';
 import { OwnID } from 'src/guards/ownId.guard';
 import { Roles } from 'src/guards/roles.decorator';
 import { RoleGuard } from 'src/guards/roles.guard';
@@ -21,7 +20,7 @@ import { TokenAuthorization } from 'src/strategy';
 import { permissionConfig, userConfig } from 'src/utils/config';
 import { Response } from 'src/utils/dto/global.dto';
 import { successMessage } from 'src/utils/variables';
-import { UpdateUserDto } from './dto/users.dto';
+import { SetPermissionDto, UpdateUserDto } from './dto/users.dto';
 import { UsersProvider } from './users.service';
 
 @Controller('/users')
@@ -68,12 +67,43 @@ export class UsersController {
   ) {
     const data = await this.userProvider.updateUser(
       tai_khoan,
-      plainToClass(UpdateUserDto, body, {
-        excludeExtraneousValues: true,
-      }),
+      UpdateUserDto.plainToClass(body),
     );
     throw new HttpException(
       this.response.successRes(successMessage, userConfig(data)),
+      200,
+    );
+  }
+  @UseGuards(TokenAuthorization, RoleGuard)
+  @Roles(permissionConfig.Administrators, permissionConfig.Moderators)
+  @Put('/banUser/:tai_khoan')
+  async banUser(@Param('tai_khoan') tai_khoan: string, @Req() req: Request) {
+    const data = await this.userProvider.banUser(tai_khoan, req);
+    throw new HttpException(
+      this.response.successRes(successMessage, data),
+      200,
+    );
+  }
+  @UseGuards(TokenAuthorization, RoleGuard)
+  @Roles(permissionConfig.Administrators, permissionConfig.Moderators)
+  @Put('/unBanUser/:tai_khoan')
+  async unBanUser(@Param('tai_khoan') tai_khoan: string) {
+    const data = await this.userProvider.unBanUser(tai_khoan);
+    throw new HttpException(
+      this.response.successRes(successMessage, data),
+      200,
+    );
+  }
+  @UseGuards(TokenAuthorization, RoleGuard)
+  @Roles(permissionConfig.Administrators, permissionConfig.Moderators)
+  @Put('/setPermission')
+  async setPermission(@Body() body: SetPermissionDto, @Req() req: Request) {
+    const data = await this.userProvider.setPermission(
+      SetPermissionDto.plainToClass(body),
+      req,
+    );
+    throw new HttpException(
+      this.response.successRes(successMessage, data),
       200,
     );
   }

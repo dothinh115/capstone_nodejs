@@ -59,7 +59,12 @@ INSERT INTO `dat_ve` (`ma_dat_ve`, `tai_khoan`, `ma_lich_chieu`, `ma_ghe`) VALUE
 (6,	38,	59,	1),
 (7,	38,	59,	1),
 (8,	26,	59,	1),
-(9,	26,	59,	1);
+(9,	26,	59,	1),
+(10,	38,	59,	1),
+(11,	38,	59,	1),
+(12,	38,	59,	1),
+(13,	39,	59,	1),
+(14,	39,	59,	1);
 
 DROP TABLE IF EXISTS `ghe`;
 CREATE TABLE `ghe` (
@@ -108,7 +113,12 @@ CREATE TABLE `lich_chieu` (
 INSERT INTO `lich_chieu` (`ma_lich_chieu`, `ma_rap`, `ma_phim`, `ngay_gio_chieu`, `gia_ve`) VALUES
 (58,	3,	46,	'2023-03-15 10:00:00',	10000),
 (59,	3,	44,	'2023-03-15 08:00:00',	10000),
-(60,	3,	48,	'2023-03-15 12:00:00',	10000);
+(60,	3,	48,	'2023-03-15 12:00:00',	10000),
+(61,	3,	46,	'2023-03-15 12:00:00',	10000),
+(62,	3,	46,	'2023-03-16 12:00:00',	10000),
+(63,	3,	46,	'2023-03-14 12:00:00',	10000),
+(64,	3,	46,	'2023-03-14 15:00:00',	10000),
+(65,	3,	46,	'2023-03-14 16:00:00',	10000);
 
 DROP TABLE IF EXISTS `nguoi_dung`;
 CREATE TABLE `nguoi_dung` (
@@ -130,7 +140,7 @@ INSERT INTO `nguoi_dung` (`tai_khoan`, `ho_ten`, `email`, `so_dt`, `mat_khau`, `
 (31,	'thinh',	'dothinh12345@gmail.com',	'0978481071',	'$2b$10$4GgHcUN8FVRW44p5Nb6GBeknDMs/vGYX1f7SD1bIoX3P6uP2ZtIsy',	1),
 (32,	'thinh',	'dothinh123421345@gmail.com',	'0978481071',	'$2b$10$i4p1/Rlp/uHKPiIMMSBO/e7BEsC2TvhCE8hqRUbMCXzNySZqL.XsG',	1),
 (38,	'nguyenhau12345',	'abc@gmail.com',	'0361313493',	'$2b$10$6XPfwsNkfz1xwB2bjqYM6eIYz.LxFikJCHHZy7JgJq7WFcDTzjh.W',	4),
-(39,	'nguyenhau12345',	'abcd@gmail.com',	'0361313493',	'$2b$10$r9vAMBpN3kalMEGjrvHo4OGvwyw0MDoLFygnCECcC3YQCOILsqEq.',	1);
+(39,	'nguyenhau12345',	'abcd@gmail.com',	'0361313493',	'$2b$10$r9vAMBpN3kalMEGjrvHo4OGvwyw0MDoLFygnCECcC3YQCOILsqEq.',	4);
 
 DROP TABLE IF EXISTS `permission`;
 CREATE TABLE `permission` (
@@ -167,7 +177,6 @@ CREATE TABLE `phim` (
 
 INSERT INTO `phim` (`ma_phim`, `ten_phim`, `trailer`, `hinh_anh`, `mo_ta`, `ngay_khoi_chieu`, `danh_gia`, `hot`, `dang_chieu`, `sap_chieu`, `tai_khoan`) VALUES
 (44,	'phim 5',	'trailer 3',	'1679322233729_avatardefault.png',	'abc',	'1111-11-11',	4,	1,	1,	0,	38),
-(45,	'Phim 2',	'trailer_test',	'1679323900567_elephant-2729415.jpg',	'Mô tả phim thứ 1',	'2023-03-15',	5,	1,	1,	0,	38),
 (46,	'Phim 2',	'trailer_test',	'1679323912955_elephant-2729415.jpg',	'Mô tả phim thứ 1',	'2023-03-20',	5,	1,	1,	0,	38),
 (48,	'Phim 3',	'trailer_test',	'1679468141175_pexels-cesar-perez-733745.jpg',	'Mô tả phim thứ 1',	'2023-03-21',	5,	1,	1,	0,	38);
 
@@ -189,4 +198,4 @@ INSERT INTO `rap_phim` (`ma_rap`, `ten_rap`, `ma_cum_rap`) VALUES
 (7,	'Rạp quận 2',	6),
 (8,	'Rạp Tp. Biên Hòa',	9);
 
--- 2023-03-22 09:37:24
+-- 2023-03-23 11:43:27

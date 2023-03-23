@@ -99,7 +99,7 @@
 							"bearer": [
 								{
 									"key": "token",
-									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0YWlfa2hvYW4iOjM2LCJpYXQiOjE2NzkyMzg3MjQsImV4cCI6MTY3OTMyNTEyNH0.HXVB02WYKj1xGFmBezdRsI1LQ9Sn7z3wFPpN3BGWkwE",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0YWlfa2hvYW4iOjM4LCJpYXQiOjE2Nzk1NTA1NDMsImV4cCI6MTY3OTYzNjk0M30.d_Etbm4rKs9DmUV0INqX6OD_SBjbqJhE1PQB-AZB5Y0",
 									"type": "string"
 								}
 							]
@@ -121,14 +121,14 @@
 					"response": []
 				},
 				{
-					"name": "update",
+					"name": "updateUser",
 					"request": {
 						"auth": {
 							"type": "bearer",
 							"bearer": [
 								{
 									"key": "token",
-									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0YWlfa2hvYW4iOjM4LCJpYXQiOjE2NzkzNjc4MzQsImV4cCI6MTY3OTQ1NDIzNH0.3sZ0WFxcqdhXUb1unjPBA8jZ3_RuOHUzxLGgpnNLXAY",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0YWlfa2hvYW4iOjM5LCJpYXQiOjE2Nzk1NDYxODEsImV4cCI6MTY3OTYzMjU4MX0.BXB9MDHA6s_AWjNNwJiSc9IEWBMIm-KcsjQ71ScqtUs",
 									"type": "string"
 								}
 							]
@@ -137,7 +137,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"ho_ten\":\"nguyenhau12345\",\r\n    \"so_dt\":\"0361313493\"\r\n}",
+							"raw": "{\r\n    \"ho_ten\":\"nguyenhau12345\",\r\n    \"so_dt\":\"0361313493\",\r\n    \"sdaf\":\"asdfa\"\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -153,6 +153,101 @@
 								"users",
 								"update",
 								"39"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "banUser",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0YWlfa2hvYW4iOjM4LCJpYXQiOjE2Nzk1NTA1NDMsImV4cCI6MTY3OTYzNjk0M30.d_Etbm4rKs9DmUV0INqX6OD_SBjbqJhE1PQB-AZB5Y0",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PUT",
+						"header": [],
+						"url": {
+							"raw": "{{domain}}/users/banUser/38",
+							"host": [
+								"{{domain}}"
+							],
+							"path": [
+								"users",
+								"banUser",
+								"38"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "unBanUser",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0YWlfa2hvYW4iOjM4LCJpYXQiOjE2Nzk1NDY3NzMsImV4cCI6MTY3OTYzMzE3M30.uM7QSm1AoLVFi_D_zz7QmGG_E63kknDTNyJuK5DGJS4",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PUT",
+						"header": [],
+						"url": {
+							"raw": "{{domain}}/users/unBanUser/38",
+							"host": [
+								"{{domain}}"
+							],
+							"path": [
+								"users",
+								"unBanUser",
+								"38"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "setPermission",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0YWlfa2hvYW4iOjM5LCJpYXQiOjE2Nzk1NDkxNTYsImV4cCI6MTY3OTYzNTU1Nn0.uZ2ka46GOvskarBxfKhJam9CcPSkU6t6Ai8zWXFWxio",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"tai_khoan\":38,\r\n    \"loai_nguoi_dung\":3\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{domain}}/users/setPermission",
+							"host": [
+								"{{domain}}"
+							],
+							"path": [
+								"users",
+								"setPermission"
 							]
 						}
 					},
@@ -256,7 +351,7 @@
 							"bearer": [
 								{
 									"key": "token",
-									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0YWlfa2hvYW4iOjM4LCJpYXQiOjE2Nzk0NjgwODEsImV4cCI6MTY3OTU1NDQ4MX0.8ltP_JykwOOQN2FG68wVaFWDmoiCXOaboD8CLA-yZjc",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0YWlfa2hvYW4iOjM4LCJpYXQiOjE2Nzk1NTUxNTcsImV4cCI6MTY3OTY0MTU1N30.WEipPZnEXp2iS5sTx6TfpR0aBzOT9fRi98HhPjIhRKw",
 									"type": "string"
 								}
 							]
@@ -264,14 +359,14 @@
 						"method": "DELETE",
 						"header": [],
 						"url": {
-							"raw": "{{domain}}/movies/deleteMovie/47",
+							"raw": "{{domain}}/movies/deleteMovie/45",
 							"host": [
 								"{{domain}}"
 							],
 							"path": [
 								"movies",
 								"deleteMovie",
-								"47"
+								"45"
 							]
 						}
 					},
@@ -773,7 +868,7 @@
 							"bearer": [
 								{
 									"key": "token",
-									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0YWlfa2hvYW4iOjM4LCJpYXQiOjE2Nzk0MTE1NTgsImV4cCI6MTY3OTQ5Nzk1OH0.JXuj64od7SKRMigb18PFNYpKt7jHd51bOuRvOikjCzE",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0YWlfa2hvYW4iOjM4LCJpYXQiOjE2Nzk1NTUxNTcsImV4cCI6MTY3OTY0MTU1N30.WEipPZnEXp2iS5sTx6TfpR0aBzOT9fRi98HhPjIhRKw",
 									"type": "string"
 								}
 							]
@@ -782,7 +877,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"ma_rap\":3,\r\n    \"ma_phim\":48,\r\n    \"ngay_gio_chieu\":\"2023-03-15 12:00:00\",\r\n    \"gia_ve\":10000\r\n}",
+							"raw": "{\r\n    \"ma_rap\":3,\r\n    \"ma_phim\":46,\r\n    \"ngay_gio_chieu\":\"2023-03-14 16:00:00\",\r\n    \"gia_ve\":10000\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -961,6 +1056,25 @@
 						}
 					},
 					"response": []
+				},
+				{
+					"name": "getShowTimeByMovie",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{domain}}/data/getShowTimeByMovie/46",
+							"host": [
+								"{{domain}}"
+							],
+							"path": [
+								"data",
+								"getShowTimeByMovie",
+								"46"
+							]
+						}
+					},
+					"response": []
 				}
 			]
 		},
@@ -1036,7 +1150,7 @@
 							"bearer": [
 								{
 									"key": "token",
-									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0YWlfa2hvYW4iOjM4LCJpYXQiOjE2Nzk0NzQ4NjYsImV4cCI6MTY3OTU2MTI2Nn0.zAS9M9bl2YuY0MeWClsDqQfeN_OgUyOPOXYg6oZt04w",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0YWlfa2hvYW4iOjM5LCJpYXQiOjE2Nzk1NDQ2NjAsImV4cCI6MTY3OTYzMTA2MH0.spTb-ih0ntFB9mf-0IDNDC4DCBtndzqOpJ0QAZppGDM",
 									"type": "string"
 								}
 							]
@@ -1110,7 +1224,7 @@
 							"bearer": [
 								{
 									"key": "token",
-									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0YWlfa2hvYW4iOjM4LCJpYXQiOjE2Nzk0NzQ4NjYsImV4cCI6MTY3OTU2MTI2Nn0.zAS9M9bl2YuY0MeWClsDqQfeN_OgUyOPOXYg6oZt04w",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0YWlfa2hvYW4iOjM4LCJpYXQiOjE2Nzk1NTIxNjgsImV4cCI6MTY3OTYzODU2OH0.0_h_1SyJXOZYVuhcYXWyzz0bmnFTb52Tfs7La_EErL4",
 									"type": "string"
 								}
 							]
@@ -1118,14 +1232,14 @@
 						"method": "DELETE",
 						"header": [],
 						"url": {
-							"raw": "{{domain}}/order/deleteOrder/2",
+							"raw": "{{domain}}/order/deleteOrder/3",
 							"host": [
 								"{{domain}}"
 							],
 							"path": [
 								"order",
 								"deleteOrder",
-								"2"
+								"3"
 							]
 						}
 					},

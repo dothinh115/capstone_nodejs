@@ -308,4 +308,33 @@ export class dataProvider {
     });
     return seatConfig(result);
   }
+  async getShowTimeByMovie(ma_phim: string) {
+    const checkIfMovieExist = await this.model.phim.findFirst({
+      where: {
+        ma_phim: +ma_phim,
+      },
+    });
+    if (!checkIfMovieExist)
+      throw new HttpException(
+        this.response.failRes(notExistedMovieMessage),
+        200,
+      );
+    const result = await this.model.lich_chieu.findMany({
+      where: {
+        ma_phim: +ma_phim,
+      },
+      include: {
+        rap_phim: {
+          include: {
+            cum_rap: {
+              include: {
+                he_thong_rap: true,
+              },
+            },
+          },
+        },
+      },
+    });
+    return result;
+  }
 }

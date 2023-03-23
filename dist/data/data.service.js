@@ -266,6 +266,32 @@ let dataProvider = class dataProvider {
         });
         return (0, config_1.seatConfig)(result);
     }
+    async getShowTimeByMovie(ma_phim) {
+        const checkIfMovieExist = await this.model.phim.findFirst({
+            where: {
+                ma_phim: +ma_phim,
+            },
+        });
+        if (!checkIfMovieExist)
+            throw new common_1.HttpException(this.response.failRes(variables_1.notExistedMovieMessage), 200);
+        const result = await this.model.lich_chieu.findMany({
+            where: {
+                ma_phim: +ma_phim,
+            },
+            include: {
+                rap_phim: {
+                    include: {
+                        cum_rap: {
+                            include: {
+                                he_thong_rap: true,
+                            },
+                        },
+                    },
+                },
+            },
+        });
+        return result;
+    }
 };
 dataProvider = __decorate([
     (0, common_1.Injectable)(),

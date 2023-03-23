@@ -1,9 +1,19 @@
 import { HttpException, Injectable } from '@nestjs/common';
 import { UserDto } from 'src/auth/dto/auth.dto';
 import { PrismaService } from 'src/prisma/prisma.service';
+import { permissionConfig, userConfig } from 'src/utils/config';
 import { Response } from 'src/utils/dto/global.dto';
-import { notExistedUserMessage } from 'src/utils/variables';
-import { UpdateUserDto } from './dto/users.dto';
+import {
+  alreadyBannedMessage,
+  higherPermissionSetNotAllowedMessage,
+  notBannedMessage,
+  notEnoughRightsBanMessage,
+  notEnoughRightsPermissionMessage,
+  notExistedUserMessage,
+  selfBanNotAllowed,
+  selfSetPermissionNotAllowedMessage,
+} from 'src/utils/variables';
+import { SetPermissionDto, UpdateUserDto } from './dto/users.dto';
 
 @Injectable()
 export class UsersProvider {
@@ -69,5 +79,118 @@ export class UsersProvider {
         },
       },
     });
+  }
+  async banUser(tai_khoan: string, req: any) {
+    const user = await this.model.nguoi_dung.findFirst({
+      where: {
+        tai_khoan: +tai_khoan,
+      },
+    });
+    if (!user)
+      throw new HttpException(
+        this.response.failRes(notExistedUserMessage),
+        400,
+      );
+    if (req.user.tai_khoan === +tai_khoan)
+      throw new HttpException(this.response.failRes(selfBanNotAllowed), 400);
+
+    if (req.user.loai_nguoi_dung < user.loai_nguoi_dung)
+      throw new HttpException(
+        this.response.failRes(notEnoughRightsBanMessage),
+        400,
+      );
+    if (user.loai_nguoi_dung === permissionConfig.Banned)
+      throw new HttpException(this.response.failRes(alreadyBannedMessage), 400);
+    const data = await this.model.nguoi_dung.update({
+      where: {
+        tai_khoan: +tai_khoan,
+      },
+      include: {
+        permission: {
+          select: {
+            permission_name: true,
+          },
+        },
+      },
+      data: {
+        loai_nguoi_dung: 0,
+      },
+    });
+    return userConfig(data);
+  }
+
+  async unBanUser(tai_khoan: string) {
+    const user = await this.model.nguoi_dung.findFirst({
+      where: {
+        tai_khoan: +tai_khoan,
+      },
+    });
+    if (!user)
+      throw new HttpException(
+        this.response.failRes(notExistedUserMessage),
+        400,
+      );
+    if (user.loai_nguoi_dung !== permissionConfig.Banned)
+      throw new HttpException(this.response.failRes(notBannedMessage), 200);
+    const data = await this.model.nguoi_dung.update({
+      where: {
+        tai_khoan: +tai_khoan,
+      },
+      include: {
+        permission: {
+          select: {
+            permission_name: true,
+          },
+        },
+      },
+      data: {
+        loai_nguoi_dung: 1,
+      },
+    });
+    return userConfig(data);
+  }
+  async setPermission(data: SetPermissionDto, req: any) {
+    const user = await this.model.nguoi_dung.findFirst({
+      where: {
+        tai_khoan: +data.tai_khoan,
+      },
+    });
+    if (!user)
+      throw new HttpException(
+        this.response.failRes(notExistedUserMessage),
+        400,
+      );
+    if (req.user.tai_khoan === data.tai_khoan)
+      throw new HttpException(
+        this.response.failRes(selfSetPermissionNotAllowedMessage),
+        400,
+      );
+    if (req.user.loai_nguoi_dung < user.loai_nguoi_dung)
+      throw new HttpException(
+        this.response.failRes(notEnoughRightsPermissionMessage),
+        400,
+      );
+    if (data.loai_nguoi_dung > req.user.loai_nguoi_dung)
+      throw new HttpException(
+        this.response.failRes(higherPermissionSetNotAllowedMessage),
+        400,
+      );
+
+    const result = await this.model.nguoi_dung.update({
+      data: {
+        loai_nguoi_dung: data.loai_nguoi_dung,
+      },
+      where: {
+        tai_khoan: data.tai_khoan,
+      },
+      include: {
+        permission: {
+          select: {
+            permission_name: true,
+          },
+        },
+      },
+    });
+    return userConfig(result);
   }
 }

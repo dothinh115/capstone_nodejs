@@ -74,11 +74,12 @@ export class AuthProvider {
     });
     if (!result) throw new HttpException(loginErrorMessage, 400);
     if (bcrypt.compareSync(mat_khau, result.mat_khau)) {
+      const token = this.jwt.sign({
+        tai_khoan: result.tai_khoan,
+      });
       return {
         ...result,
-        access_token: this.jwt.sign({
-          tai_khoan: result.tai_khoan,
-        }),
+        access_token: token,
       };
     }
   }

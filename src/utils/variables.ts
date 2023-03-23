@@ -37,3 +37,16 @@ export const alreadyExistedshowTimeMessage = 'Lịch chiếu này đã tồn t�
 export const showTimeNotFoundMessage = 'Lịch chiếu này không tồn tại!';
 export const seatNotFoundMessage = 'Không tìm thấy ghế này!';
 export const orderNotFoundMessage = 'Không tìm thấy mã đặt vé này!';
+export const bannedUserMessage =
+  'Banned user không thể thực hiện hành động này ';
+export const notEnoughRightsBanMessage = 'Không thể ban người có quyền cao hơn';
+export const notBannedMessage = 'User này chưa bị ban';
+export const alreadyBannedMessage = 'User này đã bị ban';
+export const higherPermissionSetNotAllowedMessage =
+  'Không thể set quyền cao hơn quyền của bản thân!';
+export const notEnoughRightsPermissionMessage =
+  'Không thể set quyền cho người có quyền cao hơn mình!';
+export const selfSetPermissionNotAllowedMessage =
+  'Không thể phân quyền cho bản thân!';
+
+export const selfBanNotAllowed = 'Không được ban bản thân!';

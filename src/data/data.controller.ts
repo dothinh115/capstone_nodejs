@@ -156,4 +156,17 @@ export class dataController {
       200,
     );
   }
+  @Get('/getShowTimeByMovie/:ma_phim')
+  async getShowTimeByMovie(@Param('ma_phim') ma_phim: string) {
+    const data = await this.dataService.getShowTimeByMovie(ma_phim);
+    if (data.length === 0)
+      throw new HttpException(
+        this.response.successRes('phim này chưa có lịch chiếu'),
+        200,
+      );
+    throw new HttpException(
+      this.response.successRes(successMessage, data),
+      200,
+    );
+  }
 }

@@ -12,6 +12,7 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.UsersProvider = void 0;
 const common_1 = require("@nestjs/common");
 const prisma_service_1 = require("../prisma/prisma.service");
+const config_1 = require("../utils/config");
 const global_dto_1 = require("../utils/dto/global.dto");
 const variables_1 = require("../utils/variables");
 let UsersProvider = class UsersProvider {
@@ -70,6 +71,95 @@ let UsersProvider = class UsersProvider {
                 },
             },
         });
+    }
+    async banUser(tai_khoan, req) {
+        const user = await this.model.nguoi_dung.findFirst({
+            where: {
+                tai_khoan: +tai_khoan,
+            },
+        });
+        if (!user)
+            throw new common_1.HttpException(this.response.failRes(variables_1.notExistedUserMessage), 400);
+        if (req.user.tai_khoan === +tai_khoan)
+            throw new common_1.HttpException(this.response.failRes(variables_1.selfBanNotAllowed), 400);
+        if (req.user.loai_nguoi_dung < user.loai_nguoi_dung)
+            throw new common_1.HttpException(this.response.failRes(variables_1.notEnoughRightsBanMessage), 400);
+        if (user.loai_nguoi_dung === config_1.permissionConfig.Banned)
+            throw new common_1.HttpException(this.response.failRes(variables_1.alreadyBannedMessage), 400);
+        const data = await this.model.nguoi_dung.update({
+            where: {
+                tai_khoan: +tai_khoan,
+            },
+            include: {
+                permission: {
+                    select: {
+                        permission_name: true,
+                    },
+                },
+            },
+            data: {
+                loai_nguoi_dung: 0,
+            },
+        });
+        return (0, config_1.userConfig)(data);
+    }
+    async unBanUser(tai_khoan) {
+        const user = await this.model.nguoi_dung.findFirst({
+            where: {
+                tai_khoan: +tai_khoan,
+            },
+        });
+        if (!user)
+            throw new common_1.HttpException(this.response.failRes(variables_1.notExistedUserMessage), 400);
+        if (user.loai_nguoi_dung !== config_1.permissionConfig.Banned)
+            throw new common_1.HttpException(this.response.failRes(variables_1.notBannedMessage), 200);
+        const data = await this.model.nguoi_dung.update({
+            where: {
+                tai_khoan: +tai_khoan,
+            },
+            include: {
+                permission: {
+                    select: {
+                        permission_name: true,
+                    },
+                },
+            },
+            data: {
+                loai_nguoi_dung: 1,
+            },
+        });
+        return (0, config_1.userConfig)(data);
+    }
+    async setPermission(data, req) {
+        const user = await this.model.nguoi_dung.findFirst({
+            where: {
+                tai_khoan: +data.tai_khoan,
+            },
+        });
+        if (!user)
+            throw new common_1.HttpException(this.response.failRes(variables_1.notExistedUserMessage), 400);
+        if (req.user.tai_khoan === data.tai_khoan)
+            throw new common_1.HttpException(this.response.failRes(variables_1.selfSetPermissionNotAllowedMessage), 400);
+        if (req.user.loai_nguoi_dung < user.loai_nguoi_dung)
+            throw new common_1.HttpException(this.response.failRes(variables_1.notEnoughRightsPermissionMessage), 400);
+        if (data.loai_nguoi_dung > req.user.loai_nguoi_dung)
+            throw new common_1.HttpException(this.response.failRes(variables_1.higherPermissionSetNotAllowedMessage), 400);
+        const result = await this.model.nguoi_dung.update({
+            data: {
+                loai_nguoi_dung: data.loai_nguoi_dung,
+            },
+            where: {
+                tai_khoan: data.tai_khoan,
+            },
+            include: {
+                permission: {
+                    select: {
+                        permission_name: true,
+                    },
+                },
+            },
+        });
+        return (0, config_1.userConfig)(result);
     }
 };
 UsersProvider = __decorate([

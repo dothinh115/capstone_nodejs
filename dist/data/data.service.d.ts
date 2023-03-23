@@ -8,30 +8,30 @@ export declare class dataProvider {
     createShowTime(body: ShowTimeCreateDto): Promise<any>;
     deleteShowTime(ma_lich_chieu: string): Promise<void>;
     getShowTimeFromDateToDate(from: string, to: string, number?: string, sort?: any): Promise<(import(".prisma/client").lich_chieu & {
+        rap_phim: import(".prisma/client").rap_phim & {
+            cum_rap: import(".prisma/client").cum_rap & {
+                he_thong_rap: import(".prisma/client").he_thong_rap;
+            };
+        };
         phim: import(".prisma/client").phim & {
             nguoi_dung: import(".prisma/client").nguoi_dung & {
                 permission: {
                     permission_name: string;
                 };
-            };
-        };
-        rap_phim: import(".prisma/client").rap_phim & {
-            cum_rap: import(".prisma/client").cum_rap & {
-                he_thong_rap: import(".prisma/client").he_thong_rap;
             };
         };
     })[]>;
     getShowTimeByQuantity(number: string, sort?: any): Promise<(import(".prisma/client").lich_chieu & {
+        rap_phim: import(".prisma/client").rap_phim & {
+            cum_rap: import(".prisma/client").cum_rap & {
+                he_thong_rap: import(".prisma/client").he_thong_rap;
+            };
+        };
         phim: import(".prisma/client").phim & {
             nguoi_dung: import(".prisma/client").nguoi_dung & {
                 permission: {
                     permission_name: string;
                 };
-            };
-        };
-        rap_phim: import(".prisma/client").rap_phim & {
-            cum_rap: import(".prisma/client").cum_rap & {
-                he_thong_rap: import(".prisma/client").he_thong_rap;
             };
         };
     })[]>;
@@ -45,4 +45,11 @@ export declare class dataProvider {
         };
     })[]>;
     updateSeat(ma_ghe: string, body: SeatUpdateDto): Promise<any>;
+    getShowTimeByMovie(ma_phim: string): Promise<(import(".prisma/client").lich_chieu & {
+        rap_phim: import(".prisma/client").rap_phim & {
+            cum_rap: import(".prisma/client").cum_rap & {
+                he_thong_rap: import(".prisma/client").he_thong_rap;
+            };
+        };
+    })[]>;
 }

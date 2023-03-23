@@ -14,7 +14,6 @@ var __param = (this && this.__param) || function (paramIndex, decorator) {
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.UsersController = void 0;
 const common_1 = require("@nestjs/common");
-const class_transformer_1 = require("class-transformer");
 const ownId_guard_1 = require("../guards/ownId.guard");
 const roles_decorator_1 = require("../guards/roles.decorator");
 const roles_guard_1 = require("../guards/roles.guard");
@@ -42,10 +41,20 @@ let UsersController = class UsersController {
         throw new common_1.HttpException(this.response.successRes(variables_1.successMessage), 200);
     }
     async updateUser(tai_khoan, body) {
-        const data = await this.userProvider.updateUser(tai_khoan, (0, class_transformer_1.plainToClass)(users_dto_1.UpdateUserDto, body, {
-            excludeExtraneousValues: true,
-        }));
+        const data = await this.userProvider.updateUser(tai_khoan, users_dto_1.UpdateUserDto.plainToClass(body));
         throw new common_1.HttpException(this.response.successRes(variables_1.successMessage, (0, config_1.userConfig)(data)), 200);
+    }
+    async banUser(tai_khoan, req) {
+        const data = await this.userProvider.banUser(tai_khoan, req);
+        throw new common_1.HttpException(this.response.successRes(variables_1.successMessage, data), 200);
+    }
+    async unBanUser(tai_khoan) {
+        const data = await this.userProvider.unBanUser(tai_khoan);
+        throw new common_1.HttpException(this.response.successRes(variables_1.successMessage, data), 200);
+    }
+    async setPermission(body, req) {
+        const data = await this.userProvider.setPermission(users_dto_1.SetPermissionDto.plainToClass(body), req);
+        throw new common_1.HttpException(this.response.successRes(variables_1.successMessage, data), 200);
     }
 };
 __decorate([
@@ -83,6 +92,35 @@ __decorate([
     __metadata("design:paramtypes", [Number, users_dto_1.UpdateUserDto]),
     __metadata("design:returntype", Promise)
 ], UsersController.prototype, "updateUser", null);
+__decorate([
+    (0, common_1.UseGuards)(strategy_1.TokenAuthorization, roles_guard_1.RoleGuard),
+    (0, roles_decorator_1.Roles)(config_1.permissionConfig.Administrators, config_1.permissionConfig.Moderators),
+    (0, common_1.Put)('/banUser/:tai_khoan'),
+    __param(0, (0, common_1.Param)('tai_khoan')),
+    __param(1, (0, common_1.Req)()),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [String, Object]),
+    __metadata("design:returntype", Promise)
+], UsersController.prototype, "banUser", null);
+__decorate([
+    (0, common_1.UseGuards)(strategy_1.TokenAuthorization, roles_guard_1.RoleGuard),
+    (0, roles_decorator_1.Roles)(config_1.permissionConfig.Administrators, config_1.permissionConfig.Moderators),
+    (0, common_1.Put)('/unBanUser/:tai_khoan'),
+    __param(0, (0, common_1.Param)('tai_khoan')),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [String]),
+    __metadata("design:returntype", Promise)
+], UsersController.prototype, "unBanUser", null);
+__decorate([
+    (0, common_1.UseGuards)(strategy_1.TokenAuthorization, roles_guard_1.RoleGuard),
+    (0, roles_decorator_1.Roles)(config_1.permissionConfig.Administrators, config_1.permissionConfig.Moderators),
+    (0, common_1.Put)('/setPermission'),
+    __param(0, (0, common_1.Body)()),
+    __param(1, (0, common_1.Req)()),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [users_dto_1.SetPermissionDto, Object]),
+    __metadata("design:returntype", Promise)
+], UsersController.prototype, "setPermission", null);
 UsersController = __decorate([
     (0, common_1.Controller)('/users'),
     __metadata("design:paramtypes", [users_service_1.UsersProvider,
