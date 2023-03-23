@@ -17,7 +17,7 @@ export class AdminProvider {
         });
       });
     } catch (error) {
-      console.log(error);
+      return error;
     }
   }
 
