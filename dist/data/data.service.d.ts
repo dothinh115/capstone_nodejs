@@ -21,7 +21,7 @@ export declare class dataProvider {
             };
         };
     })[]>;
-    getShowTimeByQuantity(number: string, sort?: any): Promise<(import(".prisma/client").lich_chieu & {
+    getShowTimeByQuantity(number: string | null, sort?: any): Promise<(import(".prisma/client").lich_chieu & {
         rap_phim: import(".prisma/client").rap_phim & {
             cum_rap: import(".prisma/client").cum_rap & {
                 he_thong_rap: import(".prisma/client").he_thong_rap;

@@ -145,7 +145,7 @@ export class MoviesProvider {
     number?: null | string,
     sort?: any,
   ) {
-    if (+number === 0) throw new HttpException('number không thể là 0', 400);
+    if (+number < 1) throw new HttpException('number không thể bé hơn 1', 400);
     const data = await this.model.phim.findMany({
       where: {
         ngay_khoi_chieu: {
@@ -178,7 +178,7 @@ export class MoviesProvider {
   }
 
   async getMovieByQuantity(number: string, sort?: any) {
-    if (+number === 0) throw new HttpException('number không thể là 0', 400);
+    if (+number < 1) throw new HttpException('number không thể bé hơn 1', 400);
     const dataQuantity = await this.model.phim.findMany({
       take: +number,
       include: {

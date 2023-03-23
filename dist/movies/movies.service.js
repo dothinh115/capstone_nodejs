@@ -123,8 +123,8 @@ let MoviesProvider = class MoviesProvider {
         });
     }
     async getMovieFromDateToDate(from, to, number, sort) {
-        if (+number === 0)
-            throw new common_1.HttpException('number không thể là 0', 400);
+        if (+number < 1)
+            throw new common_1.HttpException('number không thể bé hơn 1', 400);
         const data = await this.model.phim.findMany(Object.assign(Object.assign({ where: {
                 ngay_khoi_chieu: {
                     lte: (0, function_1.createDateAsUTC)(new Date(to)),
@@ -151,8 +151,8 @@ let MoviesProvider = class MoviesProvider {
         return data;
     }
     async getMovieByQuantity(number, sort) {
-        if (+number === 0)
-            throw new common_1.HttpException('number không thể là 0', 400);
+        if (+number < 1)
+            throw new common_1.HttpException('number không thể bé hơn 1', 400);
         const dataQuantity = await this.model.phim.findMany(Object.assign({ take: +number, include: {
                 nguoi_dung: {
                     include: {

@@ -57,7 +57,7 @@ export class dataController {
   async getShowTime(
     @Query('from') from: string,
     @Query('to') to: string,
-    @Query('number') number: string,
+    @Query('number') number: string | null,
     @Query('sort') sort: string,
   ) {
     if (from || to) {

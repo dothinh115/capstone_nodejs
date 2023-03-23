@@ -96,8 +96,8 @@ let dataProvider = class dataProvider {
         });
     }
     async getShowTimeFromDateToDate(from, to, number, sort) {
-        if (+number === 0)
-            throw new common_1.HttpException('number không thể là 0', 400);
+        if (+number && +number < 1)
+            throw new common_1.HttpException('number không thể bé hơn 1', 400);
         const result = await this.model.lich_chieu.findMany(Object.assign(Object.assign({ where: {
                 ngay_gio_chieu: {
                     lte: (0, function_1.createDateAsUTC)(new Date(to)),
@@ -137,8 +137,8 @@ let dataProvider = class dataProvider {
         return result;
     }
     async getShowTimeByQuantity(number, sort) {
-        if (+number === 0)
-            throw new common_1.HttpException('number không thể là 0', 400);
+        if (+number < 1)
+            throw new common_1.HttpException('number không thể bé hơn 1', 400);
         const result = await this.model.lich_chieu.findMany(Object.assign(Object.assign({ take: +number }, (sort && {
             orderBy: {
                 ngay_gio_chieu: sort,

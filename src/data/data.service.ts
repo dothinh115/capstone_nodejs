@@ -119,7 +119,8 @@ export class dataProvider {
     number?: string,
     sort?: any,
   ) {
-    if (+number === 0) throw new HttpException('number không thể là 0', 400);
+    if (+number && +number < 1)
+      throw new HttpException('number không thể bé hơn 1', 400);
     const result = await this.model.lich_chieu.findMany({
       where: {
         ngay_gio_chieu: {
@@ -166,8 +167,8 @@ export class dataProvider {
     return result;
   }
 
-  async getShowTimeByQuantity(number: string, sort?: any) {
-    if (+number === 0) throw new HttpException('number không thể là 0', 400);
+  async getShowTimeByQuantity(number: string | null, sort?: any) {
+    if (+number < 1) throw new HttpException('number không thể bé hơn 1', 400);
     const result = await this.model.lich_chieu.findMany({
       take: +number,
       ...(sort && {

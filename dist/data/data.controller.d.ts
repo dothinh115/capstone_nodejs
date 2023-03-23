@@ -7,7 +7,7 @@ export declare class dataController {
     constructor(response: Response, dataService: dataProvider);
     createShowTime(body: ShowTimeCreateDto): Promise<void>;
     deleteShowTime(ma_lich_chieu: string): Promise<void>;
-    getShowTime(from: string, to: string, number: string, sort: string): Promise<void>;
+    getShowTime(from: string, to: string, number: string | null, sort: string): Promise<void>;
     createSeat(body: SeatCreateDto): Promise<void>;
     deleteSeat(ma_ghe: string): Promise<void>;
     getSeatByCinema(ma_rap: string): Promise<void>;

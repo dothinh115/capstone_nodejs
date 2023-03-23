@@ -24,7 +24,7 @@ services:
     environment:
       - DB_DATABASE=capstone_nodejs
       - DB_USER=root
-      - DB_PASS=1234
+      - DB_PASS=Thinh123
       - DB_HOST=localhost
       - DB_PORT=3306
       - DB_DIALECT=mysql
