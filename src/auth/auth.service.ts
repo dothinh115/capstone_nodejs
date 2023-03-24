@@ -5,7 +5,7 @@ import {
   UserLoginDto,
   UserLoginResponseDto,
 } from './dto/auth.dto';
-import * as bcrypt from 'bcrypt';
+import * as bcrypt from 'bcryptjs';
 import {
   alreadyExistedEmailMessage,
   loginErrorMessage,

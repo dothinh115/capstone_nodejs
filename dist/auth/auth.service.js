@@ -11,7 +11,7 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.AuthProvider = void 0;
 const common_1 = require("@nestjs/common");
-const bcrypt = require("bcrypt");
+const bcrypt = require("bcryptjs");
 const variables_1 = require("../utils/variables");
 const jwt_1 = require("@nestjs/jwt");
 const config_1 = require("@nestjs/config");
