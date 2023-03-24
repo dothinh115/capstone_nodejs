@@ -1,10 +1,9 @@
-import * as moment from 'moment';
 import { UserDto } from 'src/auth/dto/auth.dto';
 
 export interface ResponseInterface {
   message: string;
   data?: any;
-  dateTime: string;
+  dateTime: Date;
 }
 
 export class Response {
@@ -12,14 +11,14 @@ export class Response {
     return {
       message,
       ...(obj && { data: UserDto.plainToClass(obj) }),
-      dateTime: moment().format(),
+      dateTime: new Date(),
     };
   }
 
   failRes(message): ResponseInterface {
     return {
       message,
-      dateTime: moment().format(),
+      dateTime: new Date(),
     };
   }
 }
