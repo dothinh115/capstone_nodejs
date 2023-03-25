@@ -1,4 +1,4 @@
-import { cinemaImgPath, domain, movieImgPath } from './variables';
+import { movieImgResponse, systemImgResponse } from './variables';
 
 export const permissionConfig = {
   Banned: 0,
@@ -24,7 +24,7 @@ export const movieConfig = (obj) => {
   obj = {
     ...obj,
     nguoi_dang: userConfig(obj.nguoi_dung),
-    hinh_anh: domain + movieImgPath + obj.hinh_anh,
+    hinh_anh: movieImgResponse + obj.hinh_anh,
   };
   delete obj['tai_khoan'];
   delete obj['nguoi_dung'];
@@ -34,7 +34,7 @@ export const movieConfig = (obj) => {
 export const cinemaSystemConfig = (obj) => {
   obj = {
     ...obj,
-    logo: domain + cinemaImgPath + obj.logo,
+    logo: systemImgResponse + obj.logo,
   };
   return obj;
 };
