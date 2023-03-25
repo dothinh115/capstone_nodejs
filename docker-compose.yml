@@ -7,7 +7,7 @@ services:
       - 3306:3306
     environment:
       - DB_DATABASE=capstone_nodejs
-      - MYSQL_ROOT_PASSWORD=1234
+      - MYSQL_ROOT_PASSWORD=Thinh123
     env_file:
       - .env
     volumes:
@@ -25,7 +25,7 @@ services:
       - DB_HOST=mysql_db
       - DB_DATABASE=capstone_nodejs
       - DB_USER=root
-      - DB_PASS=1234
+      - DB_PASS=Thinh123
       - DB_PORT=3306
       - DB_DIALECT=mysql
     depends_on:

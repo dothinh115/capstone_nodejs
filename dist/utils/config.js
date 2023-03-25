@@ -17,14 +17,14 @@ const userConfig = (obj) => {
 };
 exports.userConfig = userConfig;
 const movieConfig = (obj) => {
-    obj = Object.assign(Object.assign({}, obj), { nguoi_dang: (0, exports.userConfig)(obj.nguoi_dung), hinh_anh: variables_1.movieImgPath + obj.hinh_anh });
+    obj = Object.assign(Object.assign({}, obj), { nguoi_dang: (0, exports.userConfig)(obj.nguoi_dung), hinh_anh: variables_1.domain + variables_1.movieImgPath + obj.hinh_anh });
     delete obj['tai_khoan'];
     delete obj['nguoi_dung'];
     return obj;
 };
 exports.movieConfig = movieConfig;
 const cinemaSystemConfig = (obj) => {
-    obj = Object.assign(Object.assign({}, obj), { logo: variables_1.cinemaImgPath + obj.logo });
+    obj = Object.assign(Object.assign({}, obj), { logo: variables_1.domain + variables_1.cinemaImgPath + obj.logo });
     return obj;
 };
 exports.cinemaSystemConfig = cinemaSystemConfig;
