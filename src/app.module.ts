@@ -5,9 +5,10 @@ import { AppController } from './app.controller';
 import { AppProvider } from './app.service';
 import { AuthModule } from './auth/auth.module';
 import { CinemasModule } from './cinemas/cinemas.module';
-import { dataModule } from './data/data.module';
+import { DataModule } from './data/data.module';
 import { MoviesModule } from './movies/movies.module';
 import { OrderModule } from './orders/order.module';
+import { PermissionModule } from './permission/permission.module';
 import { UserModule } from './users/users.module';
 
 @Module({
@@ -19,8 +20,9 @@ import { UserModule } from './users/users.module';
     MoviesModule,
     AdminModule,
     CinemasModule,
-    dataModule,
+    DataModule,
     OrderModule,
+    PermissionModule,
   ],
   controllers: [AppController],
   providers: [AppProvider],

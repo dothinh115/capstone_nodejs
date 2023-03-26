@@ -1,21 +1,26 @@
+import { ApiProperty } from '@nestjs/swagger';
 import { Exclude, plainToClass } from 'class-transformer';
 import { IsEmail, IsNotEmpty, Matches } from 'class-validator';
-import { so_dt_pattern } from 'src/utils/variables';
+import { phoneNumberRequired, so_dt_pattern } from 'src/utils/variables';
 
 //USER
 export class UserBaseDto {
+  @ApiProperty({ type: 'string' })
   @IsNotEmpty()
-  @IsEmail()
+  @IsEmail({}, { message: 'Điền đúng định dạng email!' })
   email: string;
 
+  @ApiProperty({ type: 'string' })
   @IsNotEmpty()
   ho_ten: string;
 
+  @ApiProperty({ type: 'string' })
   @IsNotEmpty()
   mat_khau: string;
 
+  @ApiProperty({ type: 'string' })
   @IsNotEmpty()
-  @Matches(so_dt_pattern)
+  @Matches(so_dt_pattern, { message: phoneNumberRequired })
   so_dt: string;
 
   static plainToClass<T>(this: new (...args: any[]) => T, obj: T) {
@@ -38,9 +43,11 @@ export interface UserResponseDto {
 
 //LOGIN
 export class UserLoginDto {
+  @ApiProperty({ type: 'string' })
   @IsNotEmpty()
   @IsEmail()
   email: string;
+  @ApiProperty({ type: 'string' })
   @IsNotEmpty()
   mat_khau: string;
 }

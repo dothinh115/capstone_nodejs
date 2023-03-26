@@ -3,7 +3,7 @@ export const so_dt_pattern =
 
 export const movieImgResponse = `http://194.59.165.15:8080/public/img/`;
 
-export const systemImgResponse = `http://194.59.165.15:8080//public/img/cinemas/`;
+export const systemImgResponse = `http://194.59.165.15:8080/public/img/cinemas/`;
 //message
 export const alreadyExistedEmailMessage = 'Email đã tồn tại';
 
@@ -53,3 +53,6 @@ export const selfSetPermissionNotAllowedMessage =
   'Không thể phân quyền cho bản thân!';
 
 export const selfBanNotAllowed = 'Không được ban bản thân!';
+export const selfDeteleNotAllowed = 'Không thể xóa bản thân!';
+export const phoneNumberRequired = 'Điền sdt VN, 10 số, ví dụ 0901234567!';
+export const imgSyncDecription = 'Đồng bộ hình anh giữa database và folder';

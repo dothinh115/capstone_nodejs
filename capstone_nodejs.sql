@@ -83,7 +83,10 @@ INSERT INTO `ghe` (`ma_ghe`, `ten_ghe`, `loai_ghe`, `ma_rap`) VALUES
 (3,	'abc',	'Normal',	4),
 (4,	'abc',	'Normal',	4),
 (5,	'abc',	'Normal',	4),
-(7,	'abc',	'Normal',	4);
+(7,	'abc',	'Normal',	4),
+(8,	'gheUpdate',	'gheUpdate',	9),
+(9,	'ghe ngoi',	'ghe1',	9),
+(10,	'ghe ngoi2',	'ghe2',	9);
 
 DROP TABLE IF EXISTS `he_thong_rap`;
 CREATE TABLE `he_thong_rap` (
@@ -94,7 +97,8 @@ CREATE TABLE `he_thong_rap` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 INSERT INTO `he_thong_rap` (`ma_he_thong_rap`, `ten_he_thong_rap`, `logo`) VALUES
-(12,	'Miền Nam',	'1679373438742_heThongRap.jpg');
+(12,	'Miền Nam',	'1679373438742_heThongRap.jpg'),
+(13,	'Miền Nam',	'1679814933957_heThongRap.jpg');
 
 DROP TABLE IF EXISTS `lich_chieu`;
 CREATE TABLE `lich_chieu` (
@@ -111,14 +115,14 @@ CREATE TABLE `lich_chieu` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 INSERT INTO `lich_chieu` (`ma_lich_chieu`, `ma_rap`, `ma_phim`, `ngay_gio_chieu`, `gia_ve`) VALUES
-(58,	3,	46,	'2023-03-15 10:00:00',	10000),
 (59,	3,	44,	'2023-03-15 08:00:00',	10000),
 (60,	3,	48,	'2023-03-15 12:00:00',	10000),
 (61,	3,	46,	'2023-03-15 12:00:00',	10000),
 (62,	3,	46,	'2023-03-16 12:00:00',	10000),
 (63,	3,	46,	'2023-03-14 12:00:00',	10000),
 (64,	3,	46,	'2023-03-14 15:00:00',	10000),
-(65,	3,	46,	'2023-03-14 16:00:00',	10000);
+(65,	3,	46,	'2023-03-14 16:00:00',	10000),
+(66,	9,	46,	'2023-12-20 04:00:00',	1000000);
 
 DROP TABLE IF EXISTS `nguoi_dung`;
 CREATE TABLE `nguoi_dung` (
@@ -138,8 +142,8 @@ INSERT INTO `nguoi_dung` (`tai_khoan`, `ho_ten`, `email`, `so_dt`, `mat_khau`, `
 (28,	'thinh',	'dothinh@gmail.com',	'0978481071',	'$2b$10$.8IU0v5SSi9dVv8l/9wnx.ysaS5ebfAYDM1dmDAdijO31/qmlgeaS',	4),
 (29,	'thinh',	'dothinh123@gmail.com',	'0978481071',	'$2b$10$GTbFuMc6rZiADAAeYFVPEOTDAhV.o/JMSRgxDYzPCP71O9rgjc.yK',	1),
 (31,	'thinh',	'dothinh12345@gmail.com',	'0978481071',	'$2b$10$4GgHcUN8FVRW44p5Nb6GBeknDMs/vGYX1f7SD1bIoX3P6uP2ZtIsy',	1),
-(32,	'thinh',	'dothinh123421345@gmail.com',	'0978481071',	'$2b$10$i4p1/Rlp/uHKPiIMMSBO/e7BEsC2TvhCE8hqRUbMCXzNySZqL.XsG',	1),
-(38,	'nguyenhau12345',	'abc@gmail.com',	'0361313493',	'$2b$10$6XPfwsNkfz1xwB2bjqYM6eIYz.LxFikJCHHZy7JgJq7WFcDTzjh.W',	4),
+(32,	'thinh',	'dothinh123421345@gmail.com',	'0978481071',	'$2b$10$i4p1/Rlp/uHKPiIMMSBO/e7BEsC2TvhCE8hqRUbMCXzNySZqL.XsG',	3),
+(38,	'Thinh890',	'abc@gmail.com',	'0901234567',	'$2b$10$6XPfwsNkfz1xwB2bjqYM6eIYz.LxFikJCHHZy7JgJq7WFcDTzjh.W',	4),
 (39,	'nguyenhau12345',	'abcd@gmail.com',	'0361313493',	'$2b$10$r9vAMBpN3kalMEGjrvHo4OGvwyw0MDoLFygnCECcC3YQCOILsqEq.',	4);
 
 DROP TABLE IF EXISTS `permission`;
@@ -196,6 +200,6 @@ INSERT INTO `rap_phim` (`ma_rap`, `ten_rap`, `ma_cum_rap`) VALUES
 (5,	'Rạp quận 7',	6),
 (6,	'Rạp quận 1',	6),
 (7,	'Rạp quận 2',	6),
-(8,	'Rạp Tp. Biên Hòa',	9);
+(9,	'cmv',	9);
 
--- 2023-03-23 11:43:27
+-- 2023-03-26 08:26:16

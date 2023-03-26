@@ -10,6 +10,7 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.SeatUpdateDto = exports.SeatCreateDto = exports.ShowTimeCreateDto = void 0;
+const swagger_1 = require("@nestjs/swagger");
 const class_transformer_1 = require("class-transformer");
 class ShowTimeCreateDto {
     static plainToClass(obj) {
@@ -17,18 +18,22 @@ class ShowTimeCreateDto {
     }
 }
 __decorate([
+    (0, swagger_1.ApiProperty)({ type: 'number' }),
     (0, class_transformer_1.Expose)(),
     __metadata("design:type", Number)
 ], ShowTimeCreateDto.prototype, "ma_rap", void 0);
 __decorate([
+    (0, swagger_1.ApiProperty)({ type: 'number' }),
     (0, class_transformer_1.Expose)(),
     __metadata("design:type", Number)
 ], ShowTimeCreateDto.prototype, "ma_phim", void 0);
 __decorate([
+    (0, swagger_1.ApiProperty)({ type: 'string' }),
     (0, class_transformer_1.Expose)(),
     __metadata("design:type", String)
 ], ShowTimeCreateDto.prototype, "ngay_gio_chieu", void 0);
 __decorate([
+    (0, swagger_1.ApiProperty)({ type: 'number' }),
     (0, class_transformer_1.Expose)(),
     __metadata("design:type", Number)
 ], ShowTimeCreateDto.prototype, "gia_ve", void 0);
@@ -39,14 +44,17 @@ class SeatCreateDto {
     }
 }
 __decorate([
+    (0, swagger_1.ApiProperty)({ type: 'string' }),
     (0, class_transformer_1.Expose)(),
     __metadata("design:type", String)
 ], SeatCreateDto.prototype, "ten_ghe", void 0);
 __decorate([
+    (0, swagger_1.ApiProperty)({ type: 'number' }),
     (0, class_transformer_1.Expose)(),
     __metadata("design:type", Number)
 ], SeatCreateDto.prototype, "ma_rap", void 0);
 __decorate([
+    (0, swagger_1.ApiProperty)({ type: 'string' }),
     (0, class_transformer_1.Expose)(),
     __metadata("design:type", String)
 ], SeatCreateDto.prototype, "loai_ghe", void 0);
@@ -54,6 +62,7 @@ exports.SeatCreateDto = SeatCreateDto;
 class SeatUpdateDto extends SeatCreateDto {
 }
 __decorate([
+    (0, swagger_1.ApiProperty)({ type: 'number' }),
     (0, class_transformer_1.Exclude)(),
     __metadata("design:type", Number)
 ], SeatUpdateDto.prototype, "ma_rap", void 0);

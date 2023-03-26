@@ -14,6 +14,7 @@ var __param = (this && this.__param) || function (paramIndex, decorator) {
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.AuthController = void 0;
 const common_1 = require("@nestjs/common");
+const swagger_1 = require("@nestjs/swagger");
 const config_1 = require("../utils/config");
 const global_dto_1 = require("../utils/dto/global.dto");
 const variables_1 = require("../utils/variables");
@@ -51,6 +52,7 @@ __decorate([
     __metadata("design:returntype", Promise)
 ], AuthController.prototype, "signIn", null);
 AuthController = __decorate([
+    (0, swagger_1.ApiTags)('Auth'),
     (0, common_1.Controller)('/users'),
     __metadata("design:paramtypes", [auth_service_1.AuthProvider, global_dto_1.Response])
 ], AuthController);

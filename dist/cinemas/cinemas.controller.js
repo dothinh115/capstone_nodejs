@@ -15,6 +15,7 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.CinemasController = void 0;
 const common_1 = require("@nestjs/common");
 const platform_express_1 = require("@nestjs/platform-express");
+const swagger_1 = require("@nestjs/swagger");
 const multer_1 = require("multer");
 const roles_decorator_1 = require("../guards/roles.decorator");
 const roles_guard_1 = require("../guards/roles.guard");
@@ -78,6 +79,20 @@ let CinemasController = class CinemasController {
     }
 };
 __decorate([
+    (0, swagger_1.ApiBearerAuth)(),
+    (0, swagger_1.ApiConsumes)('multipart/form-data'),
+    (0, swagger_1.ApiBody)({
+        schema: {
+            type: 'object',
+            properties: {
+                ten_he_thong_rap: { type: 'string' },
+                file: {
+                    type: 'string',
+                    format: 'binary',
+                },
+            },
+        },
+    }),
     (0, common_1.UseGuards)(strategy_1.TokenAuthorization, roles_guard_1.RoleGuard),
     (0, roles_decorator_1.Roles)(config_1.permissionConfig.Administrators),
     (0, common_1.Post)('/createCinemaSystem'),
@@ -95,10 +110,11 @@ __decorate([
     __param(0, (0, common_1.Body)()),
     __param(1, (0, common_1.UploadedFile)()),
     __metadata("design:type", Function),
-    __metadata("design:paramtypes", [cinemas_dto_1.CinemasSystemCreateDto, Object]),
+    __metadata("design:paramtypes", [Object, Object]),
     __metadata("design:returntype", Promise)
 ], CinemasController.prototype, "createCinemaSystem", null);
 __decorate([
+    (0, swagger_1.ApiBearerAuth)(),
     (0, common_1.UseGuards)(strategy_1.TokenAuthorization, roles_guard_1.RoleGuard),
     (0, roles_decorator_1.Roles)(config_1.permissionConfig.Administrators),
     (0, common_1.Delete)('/deleteCinemaSystem/:ma_he_thong_rap'),
@@ -114,6 +130,7 @@ __decorate([
     __metadata("design:returntype", Promise)
 ], CinemasController.prototype, "getCinemaSystem", null);
 __decorate([
+    (0, swagger_1.ApiBearerAuth)(),
     (0, common_1.UseGuards)(strategy_1.TokenAuthorization, roles_guard_1.RoleGuard),
     (0, roles_decorator_1.Roles)(config_1.permissionConfig.Administrators, config_1.permissionConfig.Moderators),
     (0, common_1.Post)('/createCinemaComlex'),
@@ -123,6 +140,7 @@ __decorate([
     __metadata("design:returntype", Promise)
 ], CinemasController.prototype, "createCinemaComlex", null);
 __decorate([
+    (0, swagger_1.ApiBearerAuth)(),
     (0, common_1.UseGuards)(strategy_1.TokenAuthorization, roles_guard_1.RoleGuard),
     (0, roles_decorator_1.Roles)(config_1.permissionConfig.Administrators, config_1.permissionConfig.Moderators),
     (0, common_1.Delete)('/deleteCinemaComlex/:ma_cum_rap'),
@@ -132,6 +150,7 @@ __decorate([
     __metadata("design:returntype", Promise)
 ], CinemasController.prototype, "deleteCinemaComlex", null);
 __decorate([
+    (0, swagger_1.ApiBearerAuth)(),
     (0, common_1.UseGuards)(strategy_1.TokenAuthorization, roles_guard_1.RoleGuard),
     (0, roles_decorator_1.Roles)(config_1.permissionConfig.Administrators, config_1.permissionConfig.Moderators),
     (0, common_1.Post)('/createCinema'),
@@ -147,6 +166,7 @@ __decorate([
     __metadata("design:returntype", Promise)
 ], CinemasController.prototype, "getCinemaComlex", null);
 __decorate([
+    (0, swagger_1.ApiBearerAuth)(),
     (0, common_1.UseGuards)(strategy_1.TokenAuthorization, roles_guard_1.RoleGuard),
     (0, roles_decorator_1.Roles)(config_1.permissionConfig.Administrators, config_1.permissionConfig.Moderators),
     (0, common_1.Delete)('/deleteCinema/:ma_rap'),
@@ -170,6 +190,7 @@ __decorate([
     __metadata("design:returntype", Promise)
 ], CinemasController.prototype, "getCinemasByComplex", null);
 __decorate([
+    (0, swagger_1.ApiBearerAuth)(),
     (0, common_1.UseGuards)(strategy_1.TokenAuthorization, roles_guard_1.RoleGuard),
     (0, roles_decorator_1.Roles)(config_1.permissionConfig.Administrators, config_1.permissionConfig.Moderators),
     (0, common_1.Put)('/updateCinema/:ma_rap'),
@@ -180,6 +201,7 @@ __decorate([
     __metadata("design:returntype", Promise)
 ], CinemasController.prototype, "updateCinema", null);
 CinemasController = __decorate([
+    (0, swagger_1.ApiTags)('Cinemas'),
     (0, common_1.Controller)('/cinemas'),
     __metadata("design:paramtypes", [cinemas_service_1.CinemasProvider,
         global_dto_1.Response])

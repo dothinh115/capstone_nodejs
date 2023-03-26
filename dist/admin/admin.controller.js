@@ -18,6 +18,7 @@ const config_1 = require("../utils/config");
 const global_dto_1 = require("../utils/dto/global.dto");
 const variables_1 = require("../utils/variables");
 const admin_service_1 = require("./admin.service");
+const swagger_1 = require("@nestjs/swagger");
 let AdminController = class AdminController {
     constructor(response, adminProvider) {
         this.response = response;
@@ -27,24 +28,17 @@ let AdminController = class AdminController {
         await this.adminProvider.imgSync();
         throw new common_1.HttpException(this.response.successRes(variables_1.successMessage), 200);
     }
-    async movieSync() {
-        await this.adminProvider.movieSync();
-        throw new common_1.HttpException(this.response.successRes(variables_1.successMessage), 200);
-    }
 };
 __decorate([
+    (0, swagger_1.ApiOperation)({ summary: variables_1.imgSyncDecription }),
     (0, common_1.Get)('/imgSync'),
     __metadata("design:type", Function),
     __metadata("design:paramtypes", []),
     __metadata("design:returntype", Promise)
 ], AdminController.prototype, "imgSync", null);
-__decorate([
-    (0, common_1.Get)('/movieSync'),
-    __metadata("design:type", Function),
-    __metadata("design:paramtypes", []),
-    __metadata("design:returntype", Promise)
-], AdminController.prototype, "movieSync", null);
 AdminController = __decorate([
+    (0, swagger_1.ApiTags)('Admin'),
+    (0, swagger_1.ApiBearerAuth)(),
     (0, common_1.Controller)('/admin'),
     (0, common_1.UseGuards)(strategy_1.TokenAuthorization, roles_guard_1.RoleGuard),
     (0, roles_decorator_1.Roles)(config_1.permissionConfig.Administrators),

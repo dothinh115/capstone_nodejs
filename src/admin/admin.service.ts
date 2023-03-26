@@ -20,19 +20,4 @@ export class AdminProvider {
       return error;
     }
   }
-
-  async movieSync() {
-    const movieList = await this.model.phim.findMany();
-    fs.readdir(movieImgPath, async (err, files) => {
-      for (let movie of movieList) {
-        const find = await files.find((file) => movie.hinh_anh === file);
-        if (!find)
-          await this.model.phim.delete({
-            where: {
-              ma_phim: movie.ma_phim,
-            },
-          });
-      }
-    });
-  }
 }

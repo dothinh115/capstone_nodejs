@@ -14,6 +14,13 @@ import {
   UseInterceptors,
 } from '@nestjs/common';
 import { FileInterceptor } from '@nestjs/platform-express';
+import {
+  ApiBearerAuth,
+  ApiBody,
+  ApiConsumes,
+  ApiQuery,
+  ApiTags,
+} from '@nestjs/swagger';
 import { diskStorage } from 'multer';
 import { Roles } from 'src/guards/roles.decorator';
 import { RoleGuard } from 'src/guards/roles.guard';
@@ -24,14 +31,14 @@ import { movieImgCheck } from 'src/utils/function';
 import { imgRequiredMessage, successMessage } from 'src/utils/variables';
 import { MovieCreateDto, MovieUpdateDto } from './dto/movies.dto';
 import { MoviesProvider } from './movies.service';
-
+@ApiTags('Movies')
 @Controller('/movies')
 export class MoviesController {
   constructor(
     private moviesProvider: MoviesProvider,
     private response: Response,
   ) {}
-
+  @ApiBearerAuth()
   @UseGuards(TokenAuthorization, RoleGuard)
   @Roles(
     permissionConfig.Editors,
@@ -77,7 +84,7 @@ export class MoviesController {
       200,
     );
   }
-
+  @ApiBearerAuth()
   @UseGuards(TokenAuthorization, RoleGuard)
   @Roles(
     permissionConfig.Editors,
@@ -99,6 +106,26 @@ export class MoviesController {
     );
   }
 
+  @ApiQuery({
+    name: 'from',
+    required: false,
+    type: 'string',
+  })
+  @ApiQuery({
+    name: 'to',
+    required: false,
+    type: 'string',
+  })
+  @ApiQuery({
+    name: 'number',
+    required: false,
+    type: 'string',
+  })
+  @ApiQuery({
+    name: 'sort',
+    required: false,
+    type: 'string',
+  })
   @Get('/getMovie')
   async getMovie(
     @Query('from') from: string,
@@ -151,7 +178,7 @@ export class MoviesController {
       200,
     );
   }
-
+  @ApiBearerAuth()
   @UseGuards(TokenAuthorization, RoleGuard)
   @Roles(
     permissionConfig.Editors,
@@ -171,6 +198,19 @@ export class MoviesController {
       },
     }),
   )
+  // @ApiConsumes('multipart/form-data')
+  // @ApiBody({
+  //   schema: {
+  //     type: 'object',
+  //     properties: {
+  //       ten_he_thong_rap: { type: 'string' },
+  //       file: {
+  //         type: 'string',
+  //         format: 'binary',
+  //       },
+  //     },
+  //   },
+  // })
   async updateMovie(
     @UploadedFile()
     file: Express.Multer.File,

@@ -18,11 +18,7 @@ let PermissionProvider = class PermissionProvider {
     }
     async getAllPermission() {
         const permission = await this.model.permission.findMany();
-        let permissionObj = {};
-        for (let key in permission) {
-            permissionObj = Object.assign(Object.assign({}, permissionObj), { [permission[key].permission_name]: permission[key].permission_value });
-        }
-        return permissionObj;
+        return permission;
     }
 };
 PermissionProvider = __decorate([

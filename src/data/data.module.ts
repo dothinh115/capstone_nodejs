@@ -1,12 +1,12 @@
 import { Module } from '@nestjs/common';
 import { PrismaModule } from 'src/prisma/prisma.module';
 import { Response } from 'src/utils/dto/global.dto';
-import { dataController } from './data.controller';
-import { dataProvider } from './data.service';
+import { DataController } from './data.controller';
+import { DataProvider } from './data.service';
 
 @Module({
-  imports: [dataModule, PrismaModule],
-  controllers: [dataController],
-  providers: [dataProvider, Response],
+  imports: [DataModule, PrismaModule],
+  controllers: [DataController],
+  providers: [DataProvider, Response],
 })
-export class dataModule {}
+export class DataModule {}

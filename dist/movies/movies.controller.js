@@ -15,6 +15,7 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.MoviesController = void 0;
 const common_1 = require("@nestjs/common");
 const platform_express_1 = require("@nestjs/platform-express");
+const swagger_1 = require("@nestjs/swagger");
 const multer_1 = require("multer");
 const roles_decorator_1 = require("../guards/roles.decorator");
 const roles_guard_1 = require("../guards/roles.guard");
@@ -77,6 +78,7 @@ let MoviesController = class MoviesController {
     }
 };
 __decorate([
+    (0, swagger_1.ApiBearerAuth)(),
     (0, common_1.UseGuards)(strategy_1.TokenAuthorization, roles_guard_1.RoleGuard),
     (0, roles_decorator_1.Roles)(config_1.permissionConfig.Editors, config_1.permissionConfig.Moderators, config_1.permissionConfig.Administrators),
     (0, common_1.Post)('/create'),
@@ -97,6 +99,7 @@ __decorate([
     __metadata("design:returntype", Promise)
 ], MoviesController.prototype, "createMovie", null);
 __decorate([
+    (0, swagger_1.ApiBearerAuth)(),
     (0, common_1.UseGuards)(strategy_1.TokenAuthorization, roles_guard_1.RoleGuard),
     (0, roles_decorator_1.Roles)(config_1.permissionConfig.Editors, config_1.permissionConfig.Moderators, config_1.permissionConfig.Administrators),
     (0, common_1.Delete)('/deleteMovie/:ma_phim'),
@@ -113,6 +116,26 @@ __decorate([
     __metadata("design:returntype", Promise)
 ], MoviesController.prototype, "getMovieInfo", null);
 __decorate([
+    (0, swagger_1.ApiQuery)({
+        name: 'from',
+        required: false,
+        type: 'string',
+    }),
+    (0, swagger_1.ApiQuery)({
+        name: 'to',
+        required: false,
+        type: 'string',
+    }),
+    (0, swagger_1.ApiQuery)({
+        name: 'number',
+        required: false,
+        type: 'string',
+    }),
+    (0, swagger_1.ApiQuery)({
+        name: 'sort',
+        required: false,
+        type: 'string',
+    }),
     (0, common_1.Get)('/getMovie'),
     __param(0, (0, common_1.Query)('from')),
     __param(1, (0, common_1.Query)('to')),
@@ -123,6 +146,7 @@ __decorate([
     __metadata("design:returntype", Promise)
 ], MoviesController.prototype, "getMovie", null);
 __decorate([
+    (0, swagger_1.ApiBearerAuth)(),
     (0, common_1.UseGuards)(strategy_1.TokenAuthorization, roles_guard_1.RoleGuard),
     (0, roles_decorator_1.Roles)(config_1.permissionConfig.Editors, config_1.permissionConfig.Moderators, config_1.permissionConfig.Administrators),
     (0, common_1.Put)('/updateMovie/:ma_phim'),
@@ -144,6 +168,7 @@ __decorate([
     __metadata("design:returntype", Promise)
 ], MoviesController.prototype, "updateMovie", null);
 MoviesController = __decorate([
+    (0, swagger_1.ApiTags)('Movies'),
     (0, common_1.Controller)('/movies'),
     __metadata("design:paramtypes", [movies_service_1.MoviesProvider,
         global_dto_1.Response])

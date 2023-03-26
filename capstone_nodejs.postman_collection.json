@@ -252,6 +252,24 @@
 						}
 					},
 					"response": []
+				},
+				{
+					"name": "getAllUser",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{domain}}/users/getAllUser",
+							"host": [
+								"{{domain}}"
+							],
+							"path": [
+								"users",
+								"getAllUser"
+							]
+						}
+					},
+					"response": []
 				}
 			]
 		},
@@ -482,7 +500,7 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "{{domain}}/movies/getMovie?from=2023-3-1&to=2023-4-30&number=0",
+							"raw": "{{domain}}/movies/getMovie?number=10",
 							"host": [
 								"{{domain}}"
 							],
@@ -493,11 +511,13 @@
 							"query": [
 								{
 									"key": "from",
-									"value": "2023-3-1"
+									"value": "2023-3-1",
+									"disabled": true
 								},
 								{
 									"key": "to",
-									"value": "2023-4-30"
+									"value": "2023-4-30",
+									"disabled": true
 								},
 								{
 									"key": "sort",
@@ -506,8 +526,27 @@
 								},
 								{
 									"key": "number",
-									"value": "0"
+									"value": "10"
 								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "getImg",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{domain}}/movies/img/1679468141175_pexels-cesar-perez-733745.jpg",
+							"host": [
+								"{{domain}}"
+							],
+							"path": [
+								"movies",
+								"img",
+								"1679468141175_pexels-cesar-perez-733745.jpg"
 							]
 						}
 					},
@@ -526,7 +565,7 @@
 							"bearer": [
 								{
 									"key": "token",
-									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0YWlfa2hvYW4iOjM4LCJpYXQiOjE2NzkzNjc4MzQsImV4cCI6MTY3OTQ1NDIzNH0.3sZ0WFxcqdhXUb1unjPBA8jZ3_RuOHUzxLGgpnNLXAY",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0YWlfa2hvYW4iOjM4LCJpYXQiOjE2Nzk4MDkwOTcsImV4cCI6MTY3OTg5NTQ5N30.IoWUm8d_RjKcV3KeSy9jwk3M36niimBOD7krg8pjW7Y",
 									"type": "string"
 								}
 							]
@@ -930,7 +969,38 @@
 					"name": "getShowTime",
 					"request": {
 						"method": "GET",
-						"header": []
+						"header": [],
+						"url": {
+							"raw": "194.59.165.15:8080/api/data/getShowTime?number=2",
+							"host": [
+								"194",
+								"59",
+								"165",
+								"15"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"data",
+								"getShowTime"
+							],
+							"query": [
+								{
+									"key": "from",
+									"value": "2023-02-03",
+									"disabled": true
+								},
+								{
+									"key": "to",
+									"value": "2023-06-03",
+									"disabled": true
+								},
+								{
+									"key": "number",
+									"value": "2"
+								}
+							]
+						}
 					},
 					"response": []
 				},
@@ -1089,7 +1159,7 @@
 							"bearer": [
 								{
 									"key": "token",
-									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0YWlfa2hvYW4iOjM4LCJpYXQiOjE2NzkzNjc4MzQsImV4cCI6MTY3OTQ1NDIzNH0.3sZ0WFxcqdhXUb1unjPBA8jZ3_RuOHUzxLGgpnNLXAY",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0YWlfa2hvYW4iOjM4LCJpYXQiOjE2Nzk1ODY1MDcsImV4cCI6MTY3OTY3MjkwN30.kw1-FvQD4iy9xv13IhBKAJAb3ipwmoLNNlq-3Fex-3Q",
 									"type": "string"
 								}
 							]
@@ -1240,6 +1310,29 @@
 								"order",
 								"deleteOrder",
 								"3"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "permission",
+			"item": [
+				{
+					"name": "getAllPermission",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{domain}}/permission/getAllPermission",
+							"host": [
+								"{{domain}}"
+							],
+							"path": [
+								"permission",
+								"getAllPermission"
 							]
 						}
 					},

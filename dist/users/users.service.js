@@ -20,7 +20,7 @@ let UsersProvider = class UsersProvider {
         this.model = model;
         this.response = response;
     }
-    async deleteUserProvider(tai_khoan) {
+    async deleteUserProvider(tai_khoan, user) {
         const userInfo = await this.model.nguoi_dung.findFirst({
             where: {
                 tai_khoan: Number(tai_khoan),
@@ -28,6 +28,8 @@ let UsersProvider = class UsersProvider {
         });
         if (!userInfo)
             throw new common_1.HttpException(this.response.failRes(variables_1.notExistedUserMessage), 400);
+        if (userInfo.tai_khoan === user.tai_khoan)
+            throw new common_1.HttpException(this.response.failRes(variables_1.selfDeteleNotAllowed), 400);
         await this.model.nguoi_dung.delete({
             where: {
                 tai_khoan: Number(tai_khoan),
@@ -160,6 +162,17 @@ let UsersProvider = class UsersProvider {
             },
         });
         return (0, config_1.userConfig)(result);
+    }
+    async getAllUser() {
+        const data = await this.model.nguoi_dung.findMany({
+            include: {
+                permission: true,
+            },
+        });
+        for (const key in data) {
+            data[key] = (0, config_1.userConfig)(data[key]);
+        }
+        return data;
     }
 };
 UsersProvider = __decorate([

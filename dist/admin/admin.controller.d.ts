@@ -5,5 +5,4 @@ export declare class AdminController {
     private adminProvider;
     constructor(response: Response, adminProvider: AdminProvider);
     imgSync(): Promise<void>;
-    movieSync(): Promise<void>;
 }

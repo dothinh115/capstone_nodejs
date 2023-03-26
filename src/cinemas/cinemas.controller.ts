@@ -12,12 +12,13 @@ import {
   UseInterceptors,
 } from '@nestjs/common';
 import { FileInterceptor } from '@nestjs/platform-express';
+import { ApiBearerAuth, ApiBody, ApiConsumes, ApiTags } from '@nestjs/swagger';
 import { diskStorage } from 'multer';
 import { Roles } from 'src/guards/roles.decorator';
 import { RoleGuard } from 'src/guards/roles.guard';
 import { TokenAuthorization } from 'src/strategy';
 import { cinemaSystemConfig, permissionConfig } from 'src/utils/config';
-import { Response } from 'src/utils/dto/global.dto';
+import { Response, ResponseInterface } from 'src/utils/dto/global.dto';
 import { movieImgCheck } from 'src/utils/function';
 import { imgRequiredMessage, successMessage } from 'src/utils/variables';
 import { CinemasProvider } from './cinemas.service';
@@ -26,15 +27,30 @@ import {
   CinemasCreateDto,
   CinemasSystemCreateDto,
   CinemaUpdateDto,
+  FileUploadDto,
 } from './dto/cinemas.dto';
 
+@ApiTags('Cinemas')
 @Controller('/cinemas')
 export class CinemasController {
   constructor(
     private cinemasService: CinemasProvider,
     private response: Response,
   ) {}
-
+  @ApiBearerAuth()
+  @ApiConsumes('multipart/form-data')
+  @ApiBody({
+    schema: {
+      type: 'object',
+      properties: {
+        ten_he_thong_rap: { type: 'string' },
+        file: {
+          type: 'string',
+          format: 'binary',
+        },
+      },
+    },
+  })
   @UseGuards(TokenAuthorization, RoleGuard)
   @Roles(permissionConfig.Administrators)
   @Post('/createCinemaSystem')
@@ -52,9 +68,9 @@ export class CinemasController {
     }),
   )
   async createCinemaSystem(
-    @Body() body: CinemasSystemCreateDto,
+    @Body() body: any,
     @UploadedFile() file: Express.Multer.File,
-  ) {
+  ): Promise<ResponseInterface> {
     if (!file)
       throw new HttpException(this.response.failRes(imgRequiredMessage), 400);
     const data = await this.cinemasService.createCinemaSystem(
@@ -66,6 +82,7 @@ export class CinemasController {
       200,
     );
   }
+  @ApiBearerAuth()
   @UseGuards(TokenAuthorization, RoleGuard)
   @Roles(permissionConfig.Administrators)
   @Delete('/deleteCinemaSystem/:ma_he_thong_rap')
@@ -82,7 +99,7 @@ export class CinemasController {
       200,
     );
   }
-
+  @ApiBearerAuth()
   @UseGuards(TokenAuthorization, RoleGuard)
   @Roles(permissionConfig.Administrators, permissionConfig.Moderators)
   @Post('/createCinemaComlex')
@@ -95,7 +112,7 @@ export class CinemasController {
       200,
     );
   }
-
+  @ApiBearerAuth()
   @UseGuards(TokenAuthorization, RoleGuard)
   @Roles(permissionConfig.Administrators, permissionConfig.Moderators)
   @Delete('/deleteCinemaComlex/:ma_cum_rap')
@@ -103,6 +120,7 @@ export class CinemasController {
     await this.cinemasService.deleteCinemaComlex(ma_cum_rap);
     throw new HttpException(this.response.successRes(successMessage), 200);
   }
+  @ApiBearerAuth()
   @UseGuards(TokenAuthorization, RoleGuard)
   @Roles(permissionConfig.Administrators, permissionConfig.Moderators)
   @Post('/createCinema')
@@ -123,6 +141,7 @@ export class CinemasController {
       200,
     );
   }
+  @ApiBearerAuth()
   @UseGuards(TokenAuthorization, RoleGuard)
   @Roles(permissionConfig.Administrators, permissionConfig.Moderators)
   @Delete('/deleteCinema/:ma_rap')
@@ -146,6 +165,7 @@ export class CinemasController {
       200,
     );
   }
+  @ApiBearerAuth()
   @UseGuards(TokenAuthorization, RoleGuard)
   @Roles(permissionConfig.Administrators, permissionConfig.Moderators)
   @Put('/updateCinema/:ma_rap')

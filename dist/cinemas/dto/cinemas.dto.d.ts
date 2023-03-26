@@ -15,3 +15,6 @@ export declare class CinemasCreateDto {
 }
 export declare class CinemaUpdateDto extends CinemasCreateDto {
 }
+export declare class FileUploadDto {
+    file: any;
+}

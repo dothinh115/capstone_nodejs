@@ -12,8 +12,9 @@ var __param = (this && this.__param) || function (paramIndex, decorator) {
     return function (target, key) { decorator(target, key, paramIndex); }
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.dataController = void 0;
+exports.DataController = void 0;
 const common_1 = require("@nestjs/common");
+const swagger_1 = require("@nestjs/swagger");
 const roles_decorator_1 = require("../guards/roles.decorator");
 const roles_guard_1 = require("../guards/roles.guard");
 const strategy_1 = require("../strategy");
@@ -22,7 +23,7 @@ const global_dto_1 = require("../utils/dto/global.dto");
 const variables_1 = require("../utils/variables");
 const data_service_1 = require("./data.service");
 const data_dto_1 = require("./Dto/data.dto");
-let dataController = class dataController {
+let DataController = class DataController {
     constructor(response, dataService) {
         this.response = response;
         this.dataService = dataService;
@@ -78,6 +79,7 @@ let dataController = class dataController {
     }
 };
 __decorate([
+    (0, swagger_1.ApiBearerAuth)(),
     (0, common_1.UseGuards)(strategy_1.TokenAuthorization, roles_guard_1.RoleGuard),
     (0, roles_decorator_1.Roles)(config_1.permissionConfig.Administrators, config_1.permissionConfig.Editors, config_1.permissionConfig.Moderators),
     (0, common_1.Post)('/createShowTime'),
@@ -85,8 +87,9 @@ __decorate([
     __metadata("design:type", Function),
     __metadata("design:paramtypes", [data_dto_1.ShowTimeCreateDto]),
     __metadata("design:returntype", Promise)
-], dataController.prototype, "createShowTime", null);
+], DataController.prototype, "createShowTime", null);
 __decorate([
+    (0, swagger_1.ApiBearerAuth)(),
     (0, common_1.UseGuards)(strategy_1.TokenAuthorization, roles_guard_1.RoleGuard),
     (0, roles_decorator_1.Roles)(config_1.permissionConfig.Administrators, config_1.permissionConfig.Moderators, config_1.permissionConfig.Editors),
     (0, common_1.Delete)('/deleteShowTime/:ma_lich_chieu'),
@@ -94,8 +97,28 @@ __decorate([
     __metadata("design:type", Function),
     __metadata("design:paramtypes", [String]),
     __metadata("design:returntype", Promise)
-], dataController.prototype, "deleteShowTime", null);
+], DataController.prototype, "deleteShowTime", null);
 __decorate([
+    (0, swagger_1.ApiQuery)({
+        name: 'from',
+        required: false,
+        type: 'string',
+    }),
+    (0, swagger_1.ApiQuery)({
+        name: 'to',
+        required: false,
+        type: 'string',
+    }),
+    (0, swagger_1.ApiQuery)({
+        name: 'number',
+        required: false,
+        type: 'string',
+    }),
+    (0, swagger_1.ApiQuery)({
+        name: 'sort',
+        required: false,
+        type: 'string',
+    }),
     (0, common_1.Get)('/getShowTime'),
     __param(0, (0, common_1.Query)('from')),
     __param(1, (0, common_1.Query)('to')),
@@ -104,8 +127,9 @@ __decorate([
     __metadata("design:type", Function),
     __metadata("design:paramtypes", [String, String, String, String]),
     __metadata("design:returntype", Promise)
-], dataController.prototype, "getShowTime", null);
+], DataController.prototype, "getShowTime", null);
 __decorate([
+    (0, swagger_1.ApiBearerAuth)(),
     (0, common_1.UseGuards)(strategy_1.TokenAuthorization, roles_guard_1.RoleGuard),
     (0, roles_decorator_1.Roles)(config_1.permissionConfig.Administrators, config_1.permissionConfig.Moderators, config_1.permissionConfig.Editors),
     (0, common_1.Post)('/createSeat'),
@@ -113,8 +137,9 @@ __decorate([
     __metadata("design:type", Function),
     __metadata("design:paramtypes", [data_dto_1.SeatCreateDto]),
     __metadata("design:returntype", Promise)
-], dataController.prototype, "createSeat", null);
+], DataController.prototype, "createSeat", null);
 __decorate([
+    (0, swagger_1.ApiBearerAuth)(),
     (0, common_1.UseGuards)(strategy_1.TokenAuthorization, roles_guard_1.RoleGuard),
     (0, roles_decorator_1.Roles)(config_1.permissionConfig.Administrators, config_1.permissionConfig.Moderators, config_1.permissionConfig.Editors),
     (0, common_1.Delete)('/deleteSeat/:ma_ghe'),
@@ -122,15 +147,16 @@ __decorate([
     __metadata("design:type", Function),
     __metadata("design:paramtypes", [String]),
     __metadata("design:returntype", Promise)
-], dataController.prototype, "deleteSeat", null);
+], DataController.prototype, "deleteSeat", null);
 __decorate([
     (0, common_1.Get)('/getSeatByCinema/:ma_rap'),
     __param(0, (0, common_1.Param)('ma_rap')),
     __metadata("design:type", Function),
     __metadata("design:paramtypes", [String]),
     __metadata("design:returntype", Promise)
-], dataController.prototype, "getSeatByCinema", null);
+], DataController.prototype, "getSeatByCinema", null);
 __decorate([
+    (0, swagger_1.ApiBearerAuth)(),
     (0, common_1.UseGuards)(strategy_1.TokenAuthorization, roles_guard_1.RoleGuard),
     (0, roles_decorator_1.Roles)(config_1.permissionConfig.Administrators, config_1.permissionConfig.Moderators, config_1.permissionConfig.Editors),
     (0, common_1.Put)('/updateSeat/:ma_ghe'),
@@ -139,17 +165,18 @@ __decorate([
     __metadata("design:type", Function),
     __metadata("design:paramtypes", [String, data_dto_1.SeatUpdateDto]),
     __metadata("design:returntype", Promise)
-], dataController.prototype, "updateSeat", null);
+], DataController.prototype, "updateSeat", null);
 __decorate([
     (0, common_1.Get)('/getShowTimeByMovie/:ma_phim'),
     __param(0, (0, common_1.Param)('ma_phim')),
     __metadata("design:type", Function),
     __metadata("design:paramtypes", [String]),
     __metadata("design:returntype", Promise)
-], dataController.prototype, "getShowTimeByMovie", null);
-dataController = __decorate([
+], DataController.prototype, "getShowTimeByMovie", null);
+DataController = __decorate([
+    (0, swagger_1.ApiTags)('Data'),
     (0, common_1.Controller)('/data'),
-    __metadata("design:paramtypes", [global_dto_1.Response, data_service_1.dataProvider])
-], dataController);
-exports.dataController = dataController;
+    __metadata("design:paramtypes", [global_dto_1.Response, data_service_1.DataProvider])
+], DataController);
+exports.DataController = DataController;
 //# sourceMappingURL=data.controller.js.map

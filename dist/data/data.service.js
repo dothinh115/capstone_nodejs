@@ -9,14 +9,14 @@ var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.dataProvider = void 0;
+exports.DataProvider = void 0;
 const common_1 = require("@nestjs/common");
 const prisma_service_1 = require("../prisma/prisma.service");
 const config_1 = require("../utils/config");
 const global_dto_1 = require("../utils/dto/global.dto");
 const function_1 = require("../utils/function");
 const variables_1 = require("../utils/variables");
-let dataProvider = class dataProvider {
+let DataProvider = class DataProvider {
     constructor(model, response) {
         this.model = model;
         this.response = response;
@@ -288,14 +288,30 @@ let dataProvider = class dataProvider {
                         },
                     },
                 },
+                phim: {
+                    include: {
+                        nguoi_dung: {
+                            include: {
+                                permission: {
+                                    select: {
+                                        permission_name: true,
+                                    },
+                                },
+                            },
+                        },
+                    },
+                },
             },
         });
+        for (let key in result) {
+            result[key] = (0, config_1.showTimesConfig)(result[key]);
+        }
         return result;
     }
 };
-dataProvider = __decorate([
+DataProvider = __decorate([
     (0, common_1.Injectable)(),
     __metadata("design:paramtypes", [prisma_service_1.PrismaService, global_dto_1.Response])
-], dataProvider);
-exports.dataProvider = dataProvider;
+], DataProvider);
+exports.DataProvider = DataProvider;
 //# sourceMappingURL=data.service.js.map

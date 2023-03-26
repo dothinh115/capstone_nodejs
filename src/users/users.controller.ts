@@ -11,6 +11,7 @@ import {
   UsePipes,
   ValidationPipe,
 } from '@nestjs/common';
+import { ApiBearerAuth, ApiTags } from '@nestjs/swagger';
 import { Request } from 'express';
 import { UserDto } from 'src/auth/dto/auth.dto';
 import { OwnID } from 'src/guards/ownId.guard';
@@ -23,6 +24,7 @@ import { successMessage } from 'src/utils/variables';
 import { SetPermissionDto, UpdateUserDto } from './dto/users.dto';
 import { UsersProvider } from './users.service';
 
+@ApiTags('User')
 @Controller('/users')
 export class UsersController {
   constructor(
@@ -30,10 +32,11 @@ export class UsersController {
     private response: Response,
   ) {}
 
+  @ApiBearerAuth()
   @UseGuards(TokenAuthorization)
   @Get('/getCurrentUserInfo')
   async getCurrentUserInfo(@Req() req: Request) {
-    const data = await req.user;
+    const data = await userConfig(req.user);
     throw new HttpException(
       this.response.successRes(successMessage, data),
       200,
@@ -49,14 +52,16 @@ export class UsersController {
     );
   }
 
+  @ApiBearerAuth()
   @UseGuards(TokenAuthorization, RoleGuard)
   @Roles(permissionConfig.Administrators)
   @Delete('/deleteUser/:tai_khoan')
-  async deleteUser(@Param('tai_khoan') tai_khoan: number) {
-    await this.userProvider.deleteUserProvider(tai_khoan);
+  async deleteUser(@Param('tai_khoan') tai_khoan: number, @Req() req: Request) {
+    await this.userProvider.deleteUserProvider(tai_khoan, req.user);
     throw new HttpException(this.response.successRes(successMessage), 200);
   }
 
+  @ApiBearerAuth()
   @UseGuards(TokenAuthorization, OwnID, RoleGuard)
   @Roles(permissionConfig.Moderators, permissionConfig.Administrators)
   @UsePipes(new ValidationPipe())
@@ -74,6 +79,7 @@ export class UsersController {
       200,
     );
   }
+  @ApiBearerAuth()
   @UseGuards(TokenAuthorization, RoleGuard)
   @Roles(permissionConfig.Administrators, permissionConfig.Moderators)
   @Put('/banUser/:tai_khoan')
@@ -84,6 +90,7 @@ export class UsersController {
       200,
     );
   }
+  @ApiBearerAuth()
   @UseGuards(TokenAuthorization, RoleGuard)
   @Roles(permissionConfig.Administrators, permissionConfig.Moderators)
   @Put('/unBanUser/:tai_khoan')
@@ -94,6 +101,7 @@ export class UsersController {
       200,
     );
   }
+  @ApiBearerAuth()
   @UseGuards(TokenAuthorization, RoleGuard)
   @Roles(permissionConfig.Administrators, permissionConfig.Moderators)
   @Put('/setPermission')
@@ -102,6 +110,14 @@ export class UsersController {
       SetPermissionDto.plainToClass(body),
       req,
     );
+    throw new HttpException(
+      this.response.successRes(successMessage, data),
+      200,
+    );
+  }
+  @Get('getAllUser')
+  async getAllUser() {
+    const data = await this.userProvider.getAllUser();
     throw new HttpException(
       this.response.successRes(successMessage, data),
       200,

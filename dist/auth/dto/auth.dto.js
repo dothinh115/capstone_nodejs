@@ -10,6 +10,7 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.UserLoginResponseDto = exports.UserLoginDto = exports.UserDto = exports.UserBaseDto = void 0;
+const swagger_1 = require("@nestjs/swagger");
 const class_transformer_1 = require("class-transformer");
 const class_validator_1 = require("class-validator");
 const variables_1 = require("../../utils/variables");
@@ -19,21 +20,25 @@ class UserBaseDto {
     }
 }
 __decorate([
+    (0, swagger_1.ApiProperty)({ type: 'string' }),
     (0, class_validator_1.IsNotEmpty)(),
-    (0, class_validator_1.IsEmail)(),
+    (0, class_validator_1.IsEmail)({}, { message: 'Điền đúng định dạng email!' }),
     __metadata("design:type", String)
 ], UserBaseDto.prototype, "email", void 0);
 __decorate([
+    (0, swagger_1.ApiProperty)({ type: 'string' }),
     (0, class_validator_1.IsNotEmpty)(),
     __metadata("design:type", String)
 ], UserBaseDto.prototype, "ho_ten", void 0);
 __decorate([
+    (0, swagger_1.ApiProperty)({ type: 'string' }),
     (0, class_validator_1.IsNotEmpty)(),
     __metadata("design:type", String)
 ], UserBaseDto.prototype, "mat_khau", void 0);
 __decorate([
+    (0, swagger_1.ApiProperty)({ type: 'string' }),
     (0, class_validator_1.IsNotEmpty)(),
-    (0, class_validator_1.Matches)(variables_1.so_dt_pattern),
+    (0, class_validator_1.Matches)(variables_1.so_dt_pattern, { message: variables_1.phoneNumberRequired }),
     __metadata("design:type", String)
 ], UserBaseDto.prototype, "so_dt", void 0);
 exports.UserBaseDto = UserBaseDto;
@@ -47,11 +52,13 @@ exports.UserDto = UserDto;
 class UserLoginDto {
 }
 __decorate([
+    (0, swagger_1.ApiProperty)({ type: 'string' }),
     (0, class_validator_1.IsNotEmpty)(),
     (0, class_validator_1.IsEmail)(),
     __metadata("design:type", String)
 ], UserLoginDto.prototype, "email", void 0);
 __decorate([
+    (0, swagger_1.ApiProperty)({ type: 'string' }),
     (0, class_validator_1.IsNotEmpty)(),
     __metadata("design:type", String)
 ], UserLoginDto.prototype, "mat_khau", void 0);

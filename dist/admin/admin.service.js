@@ -35,20 +35,6 @@ let AdminProvider = class AdminProvider {
             return error;
         }
     }
-    async movieSync() {
-        const movieList = await this.model.phim.findMany();
-        fs.readdir(variables_1.movieImgPath, async (err, files) => {
-            for (let movie of movieList) {
-                const find = await files.find((file) => movie.hinh_anh === file);
-                if (!find)
-                    await this.model.phim.delete({
-                        where: {
-                            ma_phim: movie.ma_phim,
-                        },
-                    });
-            }
-        });
-    }
 };
 AdminProvider = __decorate([
     (0, common_1.Injectable)(),

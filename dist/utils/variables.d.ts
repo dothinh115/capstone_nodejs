@@ -1,6 +1,6 @@
 export declare const so_dt_pattern: RegExp;
 export declare const movieImgResponse = "http://194.59.165.15:8080/public/img/";
-export declare const systemImgResponse = "http://194.59.165.15:8080//public/img/cinemas/";
+export declare const systemImgResponse = "http://194.59.165.15:8080/public/img/cinemas/";
 export declare const alreadyExistedEmailMessage = "Email \u0111\u00E3 t\u1ED3n t\u1EA1i";
 export declare const loginErrorMessage = "Email ho\u1EB7c m\u1EADt kh\u1EA9u kh\u00F4ng \u0111\u00FAng!";
 export declare const successMessage = "Th\u00E0nh c\u00F4ng!";
@@ -29,3 +29,6 @@ export declare const higherPermissionSetNotAllowedMessage = "Kh\u00F4ng th\u1EC3
 export declare const notEnoughRightsPermissionMessage = "Kh\u00F4ng th\u1EC3 set quy\u1EC1n cho ng\u01B0\u1EDDi c\u00F3 quy\u1EC1n cao h\u01A1n m\u00ECnh!";
 export declare const selfSetPermissionNotAllowedMessage = "Kh\u00F4ng th\u1EC3 ph\u00E2n quy\u1EC1n cho b\u1EA3n th\u00E2n!";
 export declare const selfBanNotAllowed = "Kh\u00F4ng \u0111\u01B0\u1EE3c ban b\u1EA3n th\u00E2n!";
+export declare const selfDeteleNotAllowed = "Kh\u00F4ng th\u1EC3 x\u00F3a b\u1EA3n th\u00E2n!";
+export declare const phoneNumberRequired = "\u0110i\u1EC1n sdt VN, 10 s\u1ED1, v\u00ED d\u1EE5 0901234567!";
+export declare const imgSyncDecription = "\u0110\u1ED3ng b\u1ED9 h\u00ECnh anh gi\u1EEFa database v\u00E0 folder";

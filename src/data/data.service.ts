@@ -1,4 +1,4 @@
-import { Body, HttpException, Injectable } from '@nestjs/common';
+import { HttpException, Injectable } from '@nestjs/common';
 import { PrismaService } from 'src/prisma/prisma.service';
 import { seatConfig, showTimesConfig } from 'src/utils/config';
 import { Response } from 'src/utils/dto/global.dto';
@@ -17,7 +17,7 @@ import {
 } from './Dto/data.dto';
 
 @Injectable()
-export class dataProvider {
+export class DataProvider {
   constructor(private model: PrismaService, private response: Response) {}
   async createShowTime(body: ShowTimeCreateDto) {
     const checkIfCinemaExist = await this.model.rap_phim.findFirst({
@@ -334,8 +334,24 @@ export class dataProvider {
             },
           },
         },
+        phim: {
+          include: {
+            nguoi_dung: {
+              include: {
+                permission: {
+                  select: {
+                    permission_name: true,
+                  },
+                },
+              },
+            },
+          },
+        },
       },
     });
+    for (let key in result) {
+      result[key] = showTimesConfig(result[key]);
+    }
     return result;
   }
 }

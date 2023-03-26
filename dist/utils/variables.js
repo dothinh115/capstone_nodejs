@@ -1,9 +1,9 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.selfBanNotAllowed = exports.selfSetPermissionNotAllowedMessage = exports.notEnoughRightsPermissionMessage = exports.higherPermissionSetNotAllowedMessage = exports.alreadyBannedMessage = exports.notBannedMessage = exports.notEnoughRightsBanMessage = exports.bannedUserMessage = exports.orderNotFoundMessage = exports.seatNotFoundMessage = exports.showTimeNotFoundMessage = exports.alreadyExistedshowTimeMessage = exports.cinemaNotFoundMessage = exports.cinemaSystemNotFoundMessage = exports.cinemaComplexNotFoundMessage = exports.cinemaImgPath = exports.maxSize = exports.imgRequiredMessage = exports.userInfoUpdateNotAllowed = exports.adminOnlyMessage = exports.movieImgPath = exports.notExistedMovieMessage = exports.notExistedUserMessage = exports.notAllowedMessage = exports.invalidTokenMessage = exports.successMessage = exports.loginErrorMessage = exports.alreadyExistedEmailMessage = exports.systemImgResponse = exports.movieImgResponse = exports.so_dt_pattern = void 0;
+exports.imgSyncDecription = exports.phoneNumberRequired = exports.selfDeteleNotAllowed = exports.selfBanNotAllowed = exports.selfSetPermissionNotAllowedMessage = exports.notEnoughRightsPermissionMessage = exports.higherPermissionSetNotAllowedMessage = exports.alreadyBannedMessage = exports.notBannedMessage = exports.notEnoughRightsBanMessage = exports.bannedUserMessage = exports.orderNotFoundMessage = exports.seatNotFoundMessage = exports.showTimeNotFoundMessage = exports.alreadyExistedshowTimeMessage = exports.cinemaNotFoundMessage = exports.cinemaSystemNotFoundMessage = exports.cinemaComplexNotFoundMessage = exports.cinemaImgPath = exports.maxSize = exports.imgRequiredMessage = exports.userInfoUpdateNotAllowed = exports.adminOnlyMessage = exports.movieImgPath = exports.notExistedMovieMessage = exports.notExistedUserMessage = exports.notAllowedMessage = exports.invalidTokenMessage = exports.successMessage = exports.loginErrorMessage = exports.alreadyExistedEmailMessage = exports.systemImgResponse = exports.movieImgResponse = exports.so_dt_pattern = void 0;
 exports.so_dt_pattern = /^(0?)(3[2-9]|5[6|8|9]|7[0|6-9]|8[0-6|8|9]|9[0-4|6-9])[0-9]{7}$/;
 exports.movieImgResponse = `http://194.59.165.15:8080/public/img/`;
-exports.systemImgResponse = `http://194.59.165.15:8080//public/img/cinemas/`;
+exports.systemImgResponse = `http://194.59.165.15:8080/public/img/cinemas/`;
 exports.alreadyExistedEmailMessage = 'Email đã tồn tại';
 exports.loginErrorMessage = 'Email hoặc mật khẩu không đúng!';
 exports.successMessage = 'Thành công!';
@@ -32,4 +32,7 @@ exports.higherPermissionSetNotAllowedMessage = 'Không thể set quyền cao hơ
 exports.notEnoughRightsPermissionMessage = 'Không thể set quyền cho người có quyền cao hơn mình!';
 exports.selfSetPermissionNotAllowedMessage = 'Không thể phân quyền cho bản thân!';
 exports.selfBanNotAllowed = 'Không được ban bản thân!';
+exports.selfDeteleNotAllowed = 'Không thể xóa bản thân!';
+exports.phoneNumberRequired = 'Điền sdt VN, 10 số, ví dụ 0901234567!';
+exports.imgSyncDecription = 'Đồng bộ hình anh giữa database và folder';
 //# sourceMappingURL=variables.js.map

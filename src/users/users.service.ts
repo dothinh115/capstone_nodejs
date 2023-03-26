@@ -11,6 +11,7 @@ import {
   notEnoughRightsPermissionMessage,
   notExistedUserMessage,
   selfBanNotAllowed,
+  selfDeteleNotAllowed,
   selfSetPermissionNotAllowedMessage,
 } from 'src/utils/variables';
 import { SetPermissionDto, UpdateUserDto } from './dto/users.dto';
@@ -18,7 +19,7 @@ import { SetPermissionDto, UpdateUserDto } from './dto/users.dto';
 @Injectable()
 export class UsersProvider {
   constructor(private model: PrismaService, private response: Response) {}
-  async deleteUserProvider(tai_khoan: number) {
+  async deleteUserProvider(tai_khoan: number, user) {
     const userInfo = await this.model.nguoi_dung.findFirst({
       where: {
         tai_khoan: Number(tai_khoan),
@@ -29,6 +30,8 @@ export class UsersProvider {
         this.response.failRes(notExistedUserMessage),
         400,
       );
+    if (userInfo.tai_khoan === user.tai_khoan)
+      throw new HttpException(this.response.failRes(selfDeteleNotAllowed), 400);
     await this.model.nguoi_dung.delete({
       where: {
         tai_khoan: Number(tai_khoan),
@@ -192,5 +195,16 @@ export class UsersProvider {
       },
     });
     return userConfig(result);
+  }
+  async getAllUser() {
+    const data = await this.model.nguoi_dung.findMany({
+      include: {
+        permission: true,
+      },
+    });
+    for (const key in data) {
+      data[key] = userConfig(data[key]);
+    }
+    return data;
   }
 }

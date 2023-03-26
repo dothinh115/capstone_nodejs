@@ -10,6 +10,7 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.MovieUpdateDto = exports.MovieCreateDto = void 0;
+const swagger_1 = require("@nestjs/swagger");
 const class_transformer_1 = require("class-transformer");
 class MovieCreateDto {
     static plainToClass(obj) {
@@ -17,38 +18,47 @@ class MovieCreateDto {
     }
 }
 __decorate([
+    (0, swagger_1.ApiProperty)({ type: 'string', format: 'binary' }),
     (0, class_transformer_1.Expose)(),
     __metadata("design:type", Object)
 ], MovieCreateDto.prototype, "hinh_anh", void 0);
 __decorate([
+    (0, swagger_1.ApiProperty)({ type: 'string' }),
     (0, class_transformer_1.Expose)(),
     __metadata("design:type", String)
 ], MovieCreateDto.prototype, "ten_phim", void 0);
 __decorate([
+    (0, swagger_1.ApiProperty)({ type: 'string' }),
     (0, class_transformer_1.Expose)(),
     __metadata("design:type", String)
 ], MovieCreateDto.prototype, "trailer", void 0);
 __decorate([
+    (0, swagger_1.ApiProperty)({ type: 'string' }),
     (0, class_transformer_1.Expose)(),
     __metadata("design:type", String)
 ], MovieCreateDto.prototype, "mo_ta", void 0);
 __decorate([
+    (0, swagger_1.ApiProperty)({ type: 'string' }),
     (0, class_transformer_1.Expose)(),
     __metadata("design:type", String)
 ], MovieCreateDto.prototype, "ngay_khoi_chieu", void 0);
 __decorate([
+    (0, swagger_1.ApiProperty)({ type: 'string' }),
     (0, class_transformer_1.Expose)(),
     __metadata("design:type", Number)
 ], MovieCreateDto.prototype, "danh_gia", void 0);
 __decorate([
+    (0, swagger_1.ApiProperty)({ type: 'string' }),
     (0, class_transformer_1.Expose)(),
     __metadata("design:type", Boolean)
 ], MovieCreateDto.prototype, "hot", void 0);
 __decorate([
+    (0, swagger_1.ApiProperty)({ type: 'boolean' }),
     (0, class_transformer_1.Expose)(),
     __metadata("design:type", Boolean)
 ], MovieCreateDto.prototype, "dang_chieu", void 0);
 __decorate([
+    (0, swagger_1.ApiProperty)({ type: 'boolean' }),
     (0, class_transformer_1.Expose)(),
     __metadata("design:type", Boolean)
 ], MovieCreateDto.prototype, "sap_chieu", void 0);

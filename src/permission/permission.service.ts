@@ -6,14 +6,8 @@ import { PermissionDto } from './dto/permission.dto';
 export class PermissionProvider {
   constructor(private model: PrismaService) {}
   async getAllPermission() {
-    const permission: any = await this.model.permission.findMany();
-    let permissionObj = {};
-    for (let key in permission) {
-      permissionObj = {
-        ...permissionObj,
-        [permission[key].permission_name]: permission[key].permission_value,
-      };
-    }
-    return permissionObj;
+    const permission = await this.model.permission.findMany();
+
+    return permission;
   }
 }

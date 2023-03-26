@@ -6,7 +6,7 @@ export declare class UsersProvider {
     private model;
     private response;
     constructor(model: PrismaService, response: Response);
-    deleteUserProvider(tai_khoan: number): Promise<void>;
+    deleteUserProvider(tai_khoan: number, user: any): Promise<void>;
     getUserInfo(tai_khoan: number): Promise<import(".prisma/client").nguoi_dung & {
         permission: {
             permission_name: string;
@@ -16,4 +16,7 @@ export declare class UsersProvider {
     banUser(tai_khoan: string, req: any): Promise<any>;
     unBanUser(tai_khoan: string): Promise<any>;
     setPermission(data: SetPermissionDto, req: any): Promise<any>;
+    getAllUser(): Promise<(import(".prisma/client").nguoi_dung & {
+        permission: import(".prisma/client").permission;
+    })[]>;
 }

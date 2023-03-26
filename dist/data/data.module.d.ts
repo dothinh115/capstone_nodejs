@@ -1,2 +1,2 @@
-export declare class dataModule {
+export declare class DataModule {
 }
