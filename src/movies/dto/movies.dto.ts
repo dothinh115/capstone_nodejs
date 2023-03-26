@@ -12,7 +12,7 @@ export class MovieDto {
   @ApiProperty({ type: 'string' })
   @Expose()
   mo_ta: string;
-  @ApiProperty({ type: 'string', example: 'yyyy-mm-dd' })
+  @ApiProperty({ type: 'string', example: '2023-3-1' })
   @Expose()
   ngay_khoi_chieu: string;
   @ApiProperty({ type: 'number' })
@@ -60,7 +60,7 @@ export class MovieUpdateDto extends MovieDto {
 
   @ApiPropertyOptional()
   @IsOptional()
-  @ApiProperty({ type: 'string', example: 'yyyy-mm-dd' })
+  @ApiProperty({ type: 'string', example: '2023-3-1' })
   @Expose()
   ngay_khoi_chieu: string;
 
