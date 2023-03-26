@@ -1,5 +1,4 @@
-export declare class MovieCreateDto {
-    hinh_anh: any;
+export declare class MovieDto {
     ten_phim: string;
     trailer: string;
     mo_ta: string;
@@ -10,5 +9,15 @@ export declare class MovieCreateDto {
     sap_chieu: boolean;
     static plainToClass<T>(this: new (...args: any[]) => T, obj: T): T;
 }
-export declare class MovieUpdateDto extends MovieCreateDto {
+export declare class MovieCreateDto extends MovieDto {
+    hinh_anh: any;
+}
+export declare class MovieUpdateDto extends MovieDto {
+    hinh_anh?: any;
+}
+export declare class GetMovieQueryDto {
+    from?: string;
+    to?: string;
+    number?: string;
+    sort?: string;
 }

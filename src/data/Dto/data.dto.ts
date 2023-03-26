@@ -1,4 +1,4 @@
-import { ApiProperty } from '@nestjs/swagger';
+import { ApiProperty, ApiPropertyOptional } from '@nestjs/swagger';
 import { Exclude, Expose, plainToClass } from 'class-transformer';
 
 export class ShowTimeCreateDto {
@@ -37,4 +37,19 @@ export class SeatUpdateDto extends SeatCreateDto {
   @ApiProperty({ type: 'number' })
   @Exclude()
   ma_rap: number;
+}
+
+export class GetShowTimeQueryDto {
+  @ApiPropertyOptional()
+  @ApiProperty({ type: 'string' })
+  from?: string;
+  @ApiPropertyOptional()
+  @ApiProperty({ type: 'string' })
+  to?: string;
+  @ApiPropertyOptional()
+  @ApiProperty({ type: 'string' })
+  number?: string;
+  @ApiPropertyOptional()
+  @ApiProperty({ type: 'string' })
+  sort?: string;
 }

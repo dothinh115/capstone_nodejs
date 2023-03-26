@@ -15,6 +15,7 @@ export declare class CinemasCreateDto {
 }
 export declare class CinemaUpdateDto extends CinemasCreateDto {
 }
-export declare class FileUploadDto {
-    file: any;
+export declare class CinemaCreateSwaggerBodyDto {
+    ten_he_thong_rap: string;
+    logo: any;
 }

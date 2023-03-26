@@ -3,7 +3,7 @@ import { PrismaService } from 'src/prisma/prisma.service';
 import { Response } from 'src/utils/dto/global.dto';
 import { movieImgPath, notExistedMovieMessage } from 'src/utils/variables';
 import * as fs from 'fs';
-import { MovieCreateDto } from './dto/movies.dto';
+import { MovieCreateDto, MovieUpdateDto } from './dto/movies.dto';
 import { movieConfig } from 'src/utils/config';
 import { createDateAsUTC } from 'src/utils/function';
 
@@ -96,7 +96,7 @@ export class MoviesProvider {
   async updateMovie(
     req: any,
     file: Express.Multer.File,
-    body: MovieCreateDto,
+    body: MovieUpdateDto,
     ma_phim: string,
   ) {
     const phim = await this.model.phim.findFirst({
@@ -145,7 +145,8 @@ export class MoviesProvider {
     number?: null | string,
     sort?: any,
   ) {
-    if (+number < 1) throw new HttpException('number không thể bé hơn 1', 400);
+    if (number && +number < 1)
+      throw new HttpException('number không thể bé hơn 1', 400);
     const data = await this.model.phim.findMany({
       where: {
         ngay_khoi_chieu: {

@@ -19,6 +19,7 @@ import { Response } from 'src/utils/dto/global.dto';
 import { successMessage } from 'src/utils/variables';
 import { DataProvider } from './data.service';
 import {
+  GetShowTimeQueryDto,
   SeatCreateDto,
   SeatUpdateDto,
   ShowTimeCreateDto,
@@ -57,33 +58,10 @@ export class DataController {
     await this.dataService.deleteShowTime(ma_lich_chieu);
     throw new HttpException(this.response.successRes(successMessage), 200);
   }
-  @ApiQuery({
-    name: 'from',
-    required: false,
-    type: 'string',
-  })
-  @ApiQuery({
-    name: 'to',
-    required: false,
-    type: 'string',
-  })
-  @ApiQuery({
-    name: 'number',
-    required: false,
-    type: 'string',
-  })
-  @ApiQuery({
-    name: 'sort',
-    required: false,
-    type: 'string',
-  })
+
   @Get('/getShowTime')
-  async getShowTime(
-    @Query('from') from: string,
-    @Query('to') to: string,
-    @Query('number') number: string | null,
-    @Query('sort') sort: string,
-  ) {
+  async getShowTime(@Query() query: GetShowTimeQueryDto) {
+    const { from, to, number, sort } = query;
     if (from || to) {
       if (!from || !to) {
         throw new HttpException(

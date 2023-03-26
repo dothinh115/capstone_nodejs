@@ -38,7 +38,9 @@ export class CinemasCreateDto {
 }
 export class CinemaUpdateDto extends CinemasCreateDto {}
 
-export class FileUploadDto {
+export class CinemaCreateSwaggerBodyDto {
+  @ApiProperty({ type: 'string' })
+  ten_he_thong_rap: string;
   @ApiProperty({ type: 'string', format: 'binary' })
-  file: any;
+  logo: any;
 }

@@ -82,16 +82,7 @@ __decorate([
     (0, swagger_1.ApiBearerAuth)(),
     (0, swagger_1.ApiConsumes)('multipart/form-data'),
     (0, swagger_1.ApiBody)({
-        schema: {
-            type: 'object',
-            properties: {
-                ten_he_thong_rap: { type: 'string' },
-                file: {
-                    type: 'string',
-                    format: 'binary',
-                },
-            },
-        },
+        type: cinemas_dto_1.CinemaCreateSwaggerBodyDto,
     }),
     (0, common_1.UseGuards)(strategy_1.TokenAuthorization, roles_guard_1.RoleGuard),
     (0, roles_decorator_1.Roles)(config_1.permissionConfig.Administrators),

@@ -9,7 +9,7 @@ var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.FileUploadDto = exports.CinemaUpdateDto = exports.CinemasCreateDto = exports.CinemasComplexCreateDto = exports.CinemasSystemCreateDto = void 0;
+exports.CinemaCreateSwaggerBodyDto = exports.CinemaUpdateDto = exports.CinemasCreateDto = exports.CinemasComplexCreateDto = exports.CinemasSystemCreateDto = void 0;
 const swagger_1 = require("@nestjs/swagger");
 const class_transformer_1 = require("class-transformer");
 const class_validator_1 = require("class-validator");
@@ -65,11 +65,15 @@ exports.CinemasCreateDto = CinemasCreateDto;
 class CinemaUpdateDto extends CinemasCreateDto {
 }
 exports.CinemaUpdateDto = CinemaUpdateDto;
-class FileUploadDto {
+class CinemaCreateSwaggerBodyDto {
 }
+__decorate([
+    (0, swagger_1.ApiProperty)({ type: 'string' }),
+    __metadata("design:type", String)
+], CinemaCreateSwaggerBodyDto.prototype, "ten_he_thong_rap", void 0);
 __decorate([
     (0, swagger_1.ApiProperty)({ type: 'string', format: 'binary' }),
     __metadata("design:type", Object)
-], FileUploadDto.prototype, "file", void 0);
-exports.FileUploadDto = FileUploadDto;
+], CinemaCreateSwaggerBodyDto.prototype, "logo", void 0);
+exports.CinemaCreateSwaggerBodyDto = CinemaCreateSwaggerBodyDto;
 //# sourceMappingURL=cinemas.dto.js.map

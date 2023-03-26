@@ -1,10 +1,7 @@
-import { ApiProperty } from '@nestjs/swagger';
+import { ApiProperty, ApiPropertyOptional } from '@nestjs/swagger';
 import { Expose, plainToClass } from 'class-transformer';
 
-export class MovieCreateDto {
-  @ApiProperty({ type: 'string', format: 'binary' })
-  @Expose()
-  hinh_anh: any;
+export class MovieDto {
   @ApiProperty({ type: 'string' })
   @Expose()
   ten_phim: string;
@@ -14,13 +11,13 @@ export class MovieCreateDto {
   @ApiProperty({ type: 'string' })
   @Expose()
   mo_ta: string;
-  @ApiProperty({ type: 'string' })
+  @ApiProperty({ type: 'string', example: 'yyyy-mm-dd' })
   @Expose()
   ngay_khoi_chieu: string;
-  @ApiProperty({ type: 'string' })
+  @ApiProperty({ type: 'number' })
   @Expose()
   danh_gia: number;
-  @ApiProperty({ type: 'string' })
+  @ApiProperty({ type: 'boolean' })
   @Expose()
   hot: boolean;
   @ApiProperty({ type: 'boolean' })
@@ -35,4 +32,29 @@ export class MovieCreateDto {
   }
 }
 
-export class MovieUpdateDto extends MovieCreateDto {}
+export class MovieCreateDto extends MovieDto {
+  @ApiProperty({ type: 'string', format: 'binary' })
+  @Expose()
+  hinh_anh: any;
+}
+
+export class MovieUpdateDto extends MovieDto {
+  @ApiPropertyOptional()
+  @ApiProperty({ type: 'string', format: 'binary' })
+  hinh_anh?: any;
+}
+
+export class GetMovieQueryDto {
+  @ApiPropertyOptional()
+  @ApiProperty({ type: 'string' })
+  from?: string;
+  @ApiPropertyOptional()
+  @ApiProperty({ type: 'string' })
+  to?: string;
+  @ApiPropertyOptional()
+  @ApiProperty({ type: 'string' })
+  number?: string;
+  @ApiPropertyOptional()
+  @ApiProperty({ type: 'string' })
+  sort?: string;
+}

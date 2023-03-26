@@ -1,7 +1,7 @@
 /// <reference types="multer" />
 import { PrismaService } from 'src/prisma/prisma.service';
 import { Response } from 'src/utils/dto/global.dto';
-import { MovieCreateDto } from './dto/movies.dto';
+import { MovieCreateDto, MovieUpdateDto } from './dto/movies.dto';
 export declare class MoviesProvider {
     private model;
     private response;
@@ -21,7 +21,7 @@ export declare class MoviesProvider {
             };
         };
     }>;
-    updateMovie(req: any, file: Express.Multer.File, body: MovieCreateDto, ma_phim: string): Promise<import(".prisma/client").phim & {
+    updateMovie(req: any, file: Express.Multer.File, body: MovieUpdateDto, ma_phim: string): Promise<import(".prisma/client").phim & {
         nguoi_dung: import(".prisma/client").nguoi_dung & {
             permission: {
                 permission_name: string;

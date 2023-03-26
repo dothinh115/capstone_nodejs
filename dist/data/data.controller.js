@@ -36,7 +36,8 @@ let DataController = class DataController {
         await this.dataService.deleteShowTime(ma_lich_chieu);
         throw new common_1.HttpException(this.response.successRes(variables_1.successMessage), 200);
     }
-    async getShowTime(from, to, number, sort) {
+    async getShowTime(query) {
+        const { from, to, number, sort } = query;
         if (from || to) {
             if (!from || !to) {
                 throw new common_1.HttpException(this.response.failRes('phải có đủ from và to'), 400);
@@ -99,33 +100,10 @@ __decorate([
     __metadata("design:returntype", Promise)
 ], DataController.prototype, "deleteShowTime", null);
 __decorate([
-    (0, swagger_1.ApiQuery)({
-        name: 'from',
-        required: false,
-        type: 'string',
-    }),
-    (0, swagger_1.ApiQuery)({
-        name: 'to',
-        required: false,
-        type: 'string',
-    }),
-    (0, swagger_1.ApiQuery)({
-        name: 'number',
-        required: false,
-        type: 'string',
-    }),
-    (0, swagger_1.ApiQuery)({
-        name: 'sort',
-        required: false,
-        type: 'string',
-    }),
     (0, common_1.Get)('/getShowTime'),
-    __param(0, (0, common_1.Query)('from')),
-    __param(1, (0, common_1.Query)('to')),
-    __param(2, (0, common_1.Query)('number')),
-    __param(3, (0, common_1.Query)('sort')),
+    __param(0, (0, common_1.Query)()),
     __metadata("design:type", Function),
-    __metadata("design:paramtypes", [String, String, String, String]),
+    __metadata("design:paramtypes", [data_dto_1.GetShowTimeQueryDto]),
     __metadata("design:returntype", Promise)
 ], DataController.prototype, "getShowTime", null);
 __decorate([

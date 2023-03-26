@@ -23,11 +23,11 @@ import { movieImgCheck } from 'src/utils/function';
 import { imgRequiredMessage, successMessage } from 'src/utils/variables';
 import { CinemasProvider } from './cinemas.service';
 import {
+  CinemaCreateSwaggerBodyDto,
   CinemasComplexCreateDto,
   CinemasCreateDto,
   CinemasSystemCreateDto,
   CinemaUpdateDto,
-  FileUploadDto,
 } from './dto/cinemas.dto';
 
 @ApiTags('Cinemas')
@@ -40,16 +40,7 @@ export class CinemasController {
   @ApiBearerAuth()
   @ApiConsumes('multipart/form-data')
   @ApiBody({
-    schema: {
-      type: 'object',
-      properties: {
-        ten_he_thong_rap: { type: 'string' },
-        file: {
-          type: 'string',
-          format: 'binary',
-        },
-      },
-    },
+    type: CinemaCreateSwaggerBodyDto,
   })
   @UseGuards(TokenAuthorization, RoleGuard)
   @Roles(permissionConfig.Administrators)

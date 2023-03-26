@@ -29,7 +29,11 @@ import { movieConfig, permissionConfig } from 'src/utils/config';
 import { Response } from 'src/utils/dto/global.dto';
 import { movieImgCheck } from 'src/utils/function';
 import { imgRequiredMessage, successMessage } from 'src/utils/variables';
-import { MovieCreateDto, MovieUpdateDto } from './dto/movies.dto';
+import {
+  GetMovieQueryDto,
+  MovieCreateDto,
+  MovieUpdateDto,
+} from './dto/movies.dto';
 import { MoviesProvider } from './movies.service';
 @ApiTags('Movies')
 @Controller('/movies')
@@ -39,6 +43,10 @@ export class MoviesController {
     private response: Response,
   ) {}
   @ApiBearerAuth()
+  @ApiConsumes('multipart/form-data')
+  @ApiBody({
+    type: MovieCreateDto,
+  })
   @UseGuards(TokenAuthorization, RoleGuard)
   @Roles(
     permissionConfig.Editors,
@@ -106,33 +114,9 @@ export class MoviesController {
     );
   }
 
-  @ApiQuery({
-    name: 'from',
-    required: false,
-    type: 'string',
-  })
-  @ApiQuery({
-    name: 'to',
-    required: false,
-    type: 'string',
-  })
-  @ApiQuery({
-    name: 'number',
-    required: false,
-    type: 'string',
-  })
-  @ApiQuery({
-    name: 'sort',
-    required: false,
-    type: 'string',
-  })
   @Get('/getMovie')
-  async getMovie(
-    @Query('from') from: string,
-    @Query('to') to: string,
-    @Query('number') number: string,
-    @Query('sort') sort: string,
-  ) {
+  async getMovie(@Query() query: GetMovieQueryDto) {
+    const { from, to, number, sort } = query;
     if (from || to) {
       if (!from || !to) {
         throw new HttpException(
@@ -179,6 +163,10 @@ export class MoviesController {
     );
   }
   @ApiBearerAuth()
+  @ApiConsumes('multipart/form-data')
+  @ApiBody({
+    type: MovieUpdateDto,
+  })
   @UseGuards(TokenAuthorization, RoleGuard)
   @Roles(
     permissionConfig.Editors,
@@ -198,23 +186,10 @@ export class MoviesController {
       },
     }),
   )
-  // @ApiConsumes('multipart/form-data')
-  // @ApiBody({
-  //   schema: {
-  //     type: 'object',
-  //     properties: {
-  //       ten_he_thong_rap: { type: 'string' },
-  //       file: {
-  //         type: 'string',
-  //         format: 'binary',
-  //       },
-  //     },
-  //   },
-  // })
   async updateMovie(
     @UploadedFile()
     file: Express.Multer.File,
-    @Body() body: any,
+    @Body() body: MovieUpdateDto,
     @Param('ma_phim') ma_phim: string,
     @Req() req,
   ) {

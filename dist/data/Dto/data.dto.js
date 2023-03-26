@@ -9,7 +9,7 @@ var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.SeatUpdateDto = exports.SeatCreateDto = exports.ShowTimeCreateDto = void 0;
+exports.GetShowTimeQueryDto = exports.SeatUpdateDto = exports.SeatCreateDto = exports.ShowTimeCreateDto = void 0;
 const swagger_1 = require("@nestjs/swagger");
 const class_transformer_1 = require("class-transformer");
 class ShowTimeCreateDto {
@@ -67,4 +67,27 @@ __decorate([
     __metadata("design:type", Number)
 ], SeatUpdateDto.prototype, "ma_rap", void 0);
 exports.SeatUpdateDto = SeatUpdateDto;
+class GetShowTimeQueryDto {
+}
+__decorate([
+    (0, swagger_1.ApiPropertyOptional)(),
+    (0, swagger_1.ApiProperty)({ type: 'string' }),
+    __metadata("design:type", String)
+], GetShowTimeQueryDto.prototype, "from", void 0);
+__decorate([
+    (0, swagger_1.ApiPropertyOptional)(),
+    (0, swagger_1.ApiProperty)({ type: 'string' }),
+    __metadata("design:type", String)
+], GetShowTimeQueryDto.prototype, "to", void 0);
+__decorate([
+    (0, swagger_1.ApiPropertyOptional)(),
+    (0, swagger_1.ApiProperty)({ type: 'string' }),
+    __metadata("design:type", String)
+], GetShowTimeQueryDto.prototype, "number", void 0);
+__decorate([
+    (0, swagger_1.ApiPropertyOptional)(),
+    (0, swagger_1.ApiProperty)({ type: 'string' }),
+    __metadata("design:type", String)
+], GetShowTimeQueryDto.prototype, "sort", void 0);
+exports.GetShowTimeQueryDto = GetShowTimeQueryDto;
 //# sourceMappingURL=data.dto.js.map

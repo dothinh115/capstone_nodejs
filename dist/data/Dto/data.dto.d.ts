@@ -14,3 +14,9 @@ export declare class SeatCreateDto {
 export declare class SeatUpdateDto extends SeatCreateDto {
     ma_rap: number;
 }
+export declare class GetShowTimeQueryDto {
+    from?: string;
+    to?: string;
+    number?: string;
+    sort?: string;
+}

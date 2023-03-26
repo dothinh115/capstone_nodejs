@@ -48,7 +48,8 @@ let MoviesController = class MoviesController {
         const data = await this.moviesProvider.getMovieInfo(ma_phim);
         throw new common_1.HttpException(this.response.successRes(variables_1.successMessage, (0, config_1.movieConfig)(data)), 200);
     }
-    async getMovie(from, to, number, sort) {
+    async getMovie(query) {
+        const { from, to, number, sort } = query;
         if (from || to) {
             if (!from || !to) {
                 throw new common_1.HttpException(this.response.failRes('Phải đủ cả from và to!'), 400);
@@ -79,6 +80,10 @@ let MoviesController = class MoviesController {
 };
 __decorate([
     (0, swagger_1.ApiBearerAuth)(),
+    (0, swagger_1.ApiConsumes)('multipart/form-data'),
+    (0, swagger_1.ApiBody)({
+        type: movies_dto_1.MovieCreateDto,
+    }),
     (0, common_1.UseGuards)(strategy_1.TokenAuthorization, roles_guard_1.RoleGuard),
     (0, roles_decorator_1.Roles)(config_1.permissionConfig.Editors, config_1.permissionConfig.Moderators, config_1.permissionConfig.Administrators),
     (0, common_1.Post)('/create'),
@@ -116,37 +121,18 @@ __decorate([
     __metadata("design:returntype", Promise)
 ], MoviesController.prototype, "getMovieInfo", null);
 __decorate([
-    (0, swagger_1.ApiQuery)({
-        name: 'from',
-        required: false,
-        type: 'string',
-    }),
-    (0, swagger_1.ApiQuery)({
-        name: 'to',
-        required: false,
-        type: 'string',
-    }),
-    (0, swagger_1.ApiQuery)({
-        name: 'number',
-        required: false,
-        type: 'string',
-    }),
-    (0, swagger_1.ApiQuery)({
-        name: 'sort',
-        required: false,
-        type: 'string',
-    }),
     (0, common_1.Get)('/getMovie'),
-    __param(0, (0, common_1.Query)('from')),
-    __param(1, (0, common_1.Query)('to')),
-    __param(2, (0, common_1.Query)('number')),
-    __param(3, (0, common_1.Query)('sort')),
+    __param(0, (0, common_1.Query)()),
     __metadata("design:type", Function),
-    __metadata("design:paramtypes", [String, String, String, String]),
+    __metadata("design:paramtypes", [movies_dto_1.GetMovieQueryDto]),
     __metadata("design:returntype", Promise)
 ], MoviesController.prototype, "getMovie", null);
 __decorate([
     (0, swagger_1.ApiBearerAuth)(),
+    (0, swagger_1.ApiConsumes)('multipart/form-data'),
+    (0, swagger_1.ApiBody)({
+        type: movies_dto_1.MovieUpdateDto,
+    }),
     (0, common_1.UseGuards)(strategy_1.TokenAuthorization, roles_guard_1.RoleGuard),
     (0, roles_decorator_1.Roles)(config_1.permissionConfig.Editors, config_1.permissionConfig.Moderators, config_1.permissionConfig.Administrators),
     (0, common_1.Put)('/updateMovie/:ma_phim'),
@@ -164,7 +150,7 @@ __decorate([
     __param(2, (0, common_1.Param)('ma_phim')),
     __param(3, (0, common_1.Req)()),
     __metadata("design:type", Function),
-    __metadata("design:paramtypes", [Object, Object, String, Object]),
+    __metadata("design:paramtypes", [Object, movies_dto_1.MovieUpdateDto, String, Object]),
     __metadata("design:returntype", Promise)
 ], MoviesController.prototype, "updateMovie", null);
 MoviesController = __decorate([

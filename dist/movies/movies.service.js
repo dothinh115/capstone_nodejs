@@ -123,7 +123,7 @@ let MoviesProvider = class MoviesProvider {
         });
     }
     async getMovieFromDateToDate(from, to, number, sort) {
-        if (+number < 1)
+        if (number && +number < 1)
             throw new common_1.HttpException('number không thể bé hơn 1', 400);
         const data = await this.model.phim.findMany(Object.assign(Object.assign({ where: {
                 ngay_khoi_chieu: {
