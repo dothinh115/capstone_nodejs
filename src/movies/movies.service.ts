@@ -94,7 +94,6 @@ export class MoviesProvider {
   }
 
   async updateMovie(
-    req: any,
     file: Express.Multer.File,
     body: MovieUpdateDto,
     ma_phim: string,
@@ -109,15 +108,18 @@ export class MoviesProvider {
         this.response.failRes(notExistedMovieMessage),
         400,
       );
+
     const { danh_gia, dang_chieu, sap_chieu, hot, ngay_khoi_chieu, ...others } =
       body;
     const data = {
       ...others,
-      ngay_khoi_chieu: createDateAsUTC(new Date(ngay_khoi_chieu)),
-      danh_gia: +danh_gia,
-      hot: +hot === 1 ? true : false,
-      dang_chieu: +dang_chieu === 1 ? true : false,
-      sap_chieu: +sap_chieu === 1 ? true : false,
+      ...(ngay_khoi_chieu && {
+        ngay_khoi_chieu: createDateAsUTC(new Date(ngay_khoi_chieu)),
+      }),
+      ...(danh_gia && { danh_gia: +danh_gia }),
+      ...(hot && { hot: +hot === 1 ? true : false }),
+      ...(dang_chieu && { dang_chieu: +dang_chieu === 1 ? true : false }),
+      ...(sap_chieu && { sap_chieu: +sap_chieu === 1 ? true : false }),
       ...(file && { hinh_anh: file.filename }),
     };
     if (file) fs.unlinkSync(movieImgPath + phim.hinh_anh);

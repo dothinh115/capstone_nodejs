@@ -74,7 +74,7 @@ let MoviesController = class MoviesController {
         if (req.imgValidationErrorMessage) {
             throw new common_1.HttpException(this.response.failRes(req.imgValidationErrorMessage), 400);
         }
-        let data = await this.moviesProvider.updateMovie(req, file, movies_dto_1.MovieUpdateDto.plainToClass(body), ma_phim);
+        let data = await this.moviesProvider.updateMovie(file, movies_dto_1.MovieUpdateDto.plainToClass(body), ma_phim);
         throw new common_1.HttpException(this.response.successRes(variables_1.successMessage, (0, config_1.movieConfig)(data)), 200);
     }
 };

@@ -200,7 +200,6 @@ export class MoviesController {
       );
     }
     let data = await this.moviesProvider.updateMovie(
-      req,
       file,
       MovieUpdateDto.plainToClass(body),
       ma_phim,

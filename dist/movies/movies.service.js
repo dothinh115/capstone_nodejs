@@ -92,7 +92,7 @@ let MoviesProvider = class MoviesProvider {
             throw new common_1.HttpException(this.response.failRes(variables_1.notExistedMovieMessage), 400);
         return result;
     }
-    async updateMovie(req, file, body, ma_phim) {
+    async updateMovie(file, body, ma_phim) {
         const phim = await this.model.phim.findFirst({
             where: {
                 ma_phim: +ma_phim,
@@ -101,7 +101,9 @@ let MoviesProvider = class MoviesProvider {
         if (!phim)
             throw new common_1.HttpException(this.response.failRes(variables_1.notExistedMovieMessage), 400);
         const { danh_gia, dang_chieu, sap_chieu, hot, ngay_khoi_chieu } = body, others = __rest(body, ["danh_gia", "dang_chieu", "sap_chieu", "hot", "ngay_khoi_chieu"]);
-        const data = Object.assign(Object.assign(Object.assign({}, others), { ngay_khoi_chieu: (0, function_1.createDateAsUTC)(new Date(ngay_khoi_chieu)), danh_gia: +danh_gia, hot: +hot === 1 ? true : false, dang_chieu: +dang_chieu === 1 ? true : false, sap_chieu: +sap_chieu === 1 ? true : false }), (file && { hinh_anh: file.filename }));
+        const data = Object.assign(Object.assign(Object.assign(Object.assign(Object.assign(Object.assign(Object.assign({}, others), (ngay_khoi_chieu && {
+            ngay_khoi_chieu: (0, function_1.createDateAsUTC)(new Date(ngay_khoi_chieu)),
+        })), (danh_gia && { danh_gia: +danh_gia })), (hot && { hot: +hot === 1 ? true : false })), (dang_chieu && { dang_chieu: +dang_chieu === 1 ? true : false })), (sap_chieu && { sap_chieu: +sap_chieu === 1 ? true : false })), (file && { hinh_anh: file.filename }));
         if (file)
             fs.unlinkSync(variables_1.movieImgPath + phim.hinh_anh);
         return await this.model.phim.update({

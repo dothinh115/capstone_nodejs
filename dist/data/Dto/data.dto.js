@@ -71,12 +71,12 @@ class GetShowTimeQueryDto {
 }
 __decorate([
     (0, swagger_1.ApiPropertyOptional)(),
-    (0, swagger_1.ApiProperty)({ type: 'string' }),
+    (0, swagger_1.ApiProperty)({ type: 'string', example: 'yyyy-mm-dd hh:mm:ss' }),
     __metadata("design:type", String)
 ], GetShowTimeQueryDto.prototype, "from", void 0);
 __decorate([
     (0, swagger_1.ApiPropertyOptional)(),
-    (0, swagger_1.ApiProperty)({ type: 'string' }),
+    (0, swagger_1.ApiProperty)({ type: 'string', example: 'yyyy-mm-dd hh:mm:ss' }),
     __metadata("design:type", String)
 ], GetShowTimeQueryDto.prototype, "to", void 0);
 __decorate([

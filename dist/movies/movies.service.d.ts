@@ -21,7 +21,7 @@ export declare class MoviesProvider {
             };
         };
     }>;
-    updateMovie(req: any, file: Express.Multer.File, body: MovieUpdateDto, ma_phim: string): Promise<import(".prisma/client").phim & {
+    updateMovie(file: Express.Multer.File, body: MovieUpdateDto, ma_phim: string): Promise<import(".prisma/client").phim & {
         nguoi_dung: import(".prisma/client").nguoi_dung & {
             permission: {
                 permission_name: string;

@@ -1,5 +1,6 @@
 import { ApiProperty, ApiPropertyOptional } from '@nestjs/swagger';
 import { Expose, plainToClass } from 'class-transformer';
+import { IsOptional } from 'class-validator';
 
 export class MovieDto {
   @ApiProperty({ type: 'string' })
@@ -40,39 +41,56 @@ export class MovieCreateDto extends MovieDto {
 
 export class MovieUpdateDto extends MovieDto {
   @ApiPropertyOptional()
+  @IsOptional()
   @ApiProperty({ type: 'string' })
   @Expose()
   ten_phim: string;
+
   @ApiPropertyOptional()
+  @IsOptional()
   @ApiProperty({ type: 'string' })
   @Expose()
   trailer: string;
+
   @ApiPropertyOptional()
+  @IsOptional()
   @ApiProperty({ type: 'string' })
   @Expose()
   mo_ta: string;
+
   @ApiPropertyOptional()
+  @IsOptional()
   @ApiProperty({ type: 'string', example: 'yyyy-mm-dd' })
   @Expose()
   ngay_khoi_chieu: string;
+
   @ApiPropertyOptional()
+  @IsOptional()
   @ApiProperty({ type: 'number' })
   @Expose()
   danh_gia: number;
+
   @ApiPropertyOptional()
+  @IsOptional()
   @ApiProperty({ type: 'boolean' })
   @Expose()
   hot: boolean;
+
   @ApiPropertyOptional()
+  @IsOptional()
   @ApiProperty({ type: 'boolean' })
   @Expose()
   @ApiPropertyOptional()
   dang_chieu: boolean;
+
   @ApiProperty({ type: 'boolean' })
+  @IsOptional()
   @Expose()
   @ApiPropertyOptional()
   sap_chieu: boolean;
+
   @ApiPropertyOptional()
+  @IsOptional()
   @ApiProperty({ type: 'string', format: 'binary' })
   hinh_anh?: any;
 }
