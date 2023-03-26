@@ -41,10 +41,10 @@ export class SeatUpdateDto extends SeatCreateDto {
 
 export class GetShowTimeQueryDto {
   @ApiPropertyOptional()
-  @ApiProperty({ type: 'string', example: 'yyyy-mm-dd hh:mm:ss' })
+  @ApiProperty({ type: 'string', example: '2023-3-1 10:00:00' })
   from?: string;
   @ApiPropertyOptional()
-  @ApiProperty({ type: 'string', example: 'yyyy-mm-dd hh:mm:ss' })
+  @ApiProperty({ type: 'string', example: '2023-3-1 10:00:00' })
   to?: string;
   @ApiPropertyOptional()
   @ApiProperty({ type: 'string' })
