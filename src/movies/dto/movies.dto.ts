@@ -46,10 +46,10 @@ export class MovieUpdateDto extends MovieDto {
 
 export class GetMovieQueryDto {
   @ApiPropertyOptional()
-  @ApiProperty({ type: 'string' })
+  @ApiProperty({ type: 'string', example: 'yyyy-mm-dd' })
   from?: string;
   @ApiPropertyOptional()
-  @ApiProperty({ type: 'string' })
+  @ApiProperty({ type: 'string', example: 'yyyy-mm-dd' })
   to?: string;
   @ApiPropertyOptional()
   @ApiProperty({ type: 'string' })
