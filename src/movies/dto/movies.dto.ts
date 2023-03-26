@@ -40,6 +40,39 @@ export class MovieCreateDto extends MovieDto {
 
 export class MovieUpdateDto extends MovieDto {
   @ApiPropertyOptional()
+  @ApiProperty({ type: 'string' })
+  @Expose()
+  ten_phim: string;
+  @ApiPropertyOptional()
+  @ApiProperty({ type: 'string' })
+  @Expose()
+  trailer: string;
+  @ApiPropertyOptional()
+  @ApiProperty({ type: 'string' })
+  @Expose()
+  mo_ta: string;
+  @ApiPropertyOptional()
+  @ApiProperty({ type: 'string', example: 'yyyy-mm-dd' })
+  @Expose()
+  ngay_khoi_chieu: string;
+  @ApiPropertyOptional()
+  @ApiProperty({ type: 'number' })
+  @Expose()
+  danh_gia: number;
+  @ApiPropertyOptional()
+  @ApiProperty({ type: 'boolean' })
+  @Expose()
+  hot: boolean;
+  @ApiPropertyOptional()
+  @ApiProperty({ type: 'boolean' })
+  @Expose()
+  @ApiPropertyOptional()
+  dang_chieu: boolean;
+  @ApiProperty({ type: 'boolean' })
+  @Expose()
+  @ApiPropertyOptional()
+  sap_chieu: boolean;
+  @ApiPropertyOptional()
   @ApiProperty({ type: 'string', format: 'binary' })
   hinh_anh?: any;
 }
