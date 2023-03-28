@@ -24,6 +24,20 @@ let OrderProvider = class OrderProvider {
         req
             ? (body = Object.assign(Object.assign({}, body), { tai_khoan: req.user.tai_khoan }))
             : body;
+        const checkIfExistShowTime = await this.model.lich_chieu.findFirst({
+            where: {
+                ma_lich_chieu: +body.ma_lich_chieu,
+            },
+        });
+        const checkIfExistUser = await this.model.nguoi_dung.findFirst({
+            where: {
+                tai_khoan: +body.tai_khoan,
+            },
+        });
+        if (!checkIfExistUser)
+            throw new common_1.HttpException(this.response.failRes(variables_1.notExistedUserMessage), 400);
+        if (!checkIfExistShowTime)
+            throw new common_1.HttpException(this.response.failRes(variables_1.showTimeNotFoundMessage), 400);
         const order = await this.model.dat_ve.create({
             data: body,
             include: {
@@ -92,6 +106,67 @@ let OrderProvider = class OrderProvider {
                 ma_dat_ve: +ma_dat_ve,
             },
         });
+    }
+    async getCurrentOrder(req) {
+        const result = await this.model.dat_ve.findMany({
+            where: {
+                tai_khoan: req.user.taikhoan,
+            },
+            include: {
+                nguoi_dung: {
+                    include: {
+                        permission: {
+                            select: {
+                                permission_name: true,
+                            },
+                        },
+                    },
+                },
+                lich_chieu: {
+                    include: {
+                        rap_phim: {
+                            include: {
+                                cum_rap: {
+                                    include: {
+                                        he_thong_rap: true,
+                                    },
+                                },
+                            },
+                        },
+                        phim: {
+                            include: {
+                                nguoi_dung: {
+                                    include: {
+                                        permission: {
+                                            select: {
+                                                permission_name: true,
+                                            },
+                                        },
+                                    },
+                                },
+                            },
+                        },
+                    },
+                },
+                ghe: {
+                    include: {
+                        rap_phim: {
+                            include: {
+                                cum_rap: {
+                                    include: {
+                                        he_thong_rap: true,
+                                    },
+                                },
+                            },
+                        },
+                    },
+                },
+            },
+        });
+        for (let key in result) {
+            result[key] = (0, config_1.orderConfig)(result[key]);
+        }
+        return result;
     }
 };
 OrderProvider = __decorate([

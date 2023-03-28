@@ -4,3 +4,6 @@ export declare class OrderCreateDto {
     ma_ghe: number;
     static plainToClass<T>(this: new (...args: any[]) => T, obj: T): T;
 }
+export declare class OrderAdminCreateDto extends OrderCreateDto {
+    tai_khoan: number;
+}

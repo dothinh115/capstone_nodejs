@@ -14,6 +14,7 @@ var __param = (this && this.__param) || function (paramIndex, decorator) {
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.OrderController = void 0;
 const common_1 = require("@nestjs/common");
+const swagger_1 = require("@nestjs/swagger");
 const banned_guard_1 = require("../guards/banned.guard");
 const roles_decorator_1 = require("../guards/roles.decorator");
 const roles_guard_1 = require("../guards/roles.guard");
@@ -33,15 +34,20 @@ let OrderController = class OrderController {
         throw new common_1.HttpException(this.response.successRes(variables_1.successMessage, result), 200);
     }
     async adminCreate(body) {
-        const result = await this.orderService.createOrder(order_dto_1.OrderCreateDto.plainToClass(body));
+        const result = await this.orderService.createOrder(order_dto_1.OrderAdminCreateDto.plainToClass(body));
         throw new common_1.HttpException(this.response.successRes(variables_1.successMessage, result), 200);
     }
     async deleteOrder(ma_dat_ve) {
         await this.orderService.deleteOrder(ma_dat_ve);
         throw new common_1.HttpException(this.response.successRes(variables_1.successMessage), 200);
     }
+    async getCurrentOrder(req) {
+        const data = await this.orderService.getCurrentOrder(req);
+        throw new common_1.HttpException(this.response.successRes(variables_1.successMessage, data), 200);
+    }
 };
 __decorate([
+    (0, swagger_1.ApiBearerAuth)(),
     (0, common_1.UseGuards)(strategy_1.TokenAuthorization, banned_guard_1.BannedGuard),
     (0, common_1.Post)('/create'),
     __param(0, (0, common_1.Body)()),
@@ -51,15 +57,17 @@ __decorate([
     __metadata("design:returntype", Promise)
 ], OrderController.prototype, "createOrder", null);
 __decorate([
+    (0, swagger_1.ApiBearerAuth)(),
     (0, common_1.UseGuards)(strategy_1.TokenAuthorization, roles_guard_1.RoleGuard),
     (0, roles_decorator_1.Roles)(config_1.permissionConfig.Editors, config_1.permissionConfig.Moderators, config_1.permissionConfig.Administrators),
     (0, common_1.Post)('/adminCreate'),
     __param(0, (0, common_1.Body)()),
     __metadata("design:type", Function),
-    __metadata("design:paramtypes", [order_dto_1.OrderCreateDto]),
+    __metadata("design:paramtypes", [order_dto_1.OrderAdminCreateDto]),
     __metadata("design:returntype", Promise)
 ], OrderController.prototype, "adminCreate", null);
 __decorate([
+    (0, swagger_1.ApiBearerAuth)(),
     (0, common_1.UseGuards)(strategy_1.TokenAuthorization, roles_guard_1.RoleGuard),
     (0, roles_decorator_1.Roles)(config_1.permissionConfig.Editors, config_1.permissionConfig.Moderators, config_1.permissionConfig.Administrators),
     (0, common_1.Delete)('/deleteOrder/:ma_dat_ve'),
@@ -68,7 +76,17 @@ __decorate([
     __metadata("design:paramtypes", [String]),
     __metadata("design:returntype", Promise)
 ], OrderController.prototype, "deleteOrder", null);
+__decorate([
+    (0, swagger_1.ApiBearerAuth)(),
+    (0, common_1.UseGuards)(strategy_1.TokenAuthorization, roles_guard_1.RoleGuard),
+    (0, common_1.Get)('getCurrentOrder'),
+    __param(0, (0, common_1.Req)()),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [Object]),
+    __metadata("design:returntype", Promise)
+], OrderController.prototype, "getCurrentOrder", null);
 OrderController = __decorate([
+    (0, swagger_1.ApiTags)('Order'),
     (0, common_1.Controller)('/order'),
     __metadata("design:paramtypes", [order_service_1.OrderProvider,
         global_dto_1.Response])

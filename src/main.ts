@@ -13,6 +13,7 @@ import { PermissionModule } from './permission/permission.module';
 import { CinemasModule } from './cinemas/cinemas.module';
 import { DataModule } from './data/data.module';
 import { MoviesModule } from './movies/movies.module';
+import { OrderModule } from './orders/order.module';
 
 declare const module: any;
 
@@ -31,6 +32,7 @@ async function bootstrap() {
       CinemasModule,
       DataModule,
       MoviesModule,
+      OrderModule,
     ],
     deepScanRoutes: true,
   };

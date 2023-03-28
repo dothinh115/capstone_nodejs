@@ -11,6 +11,7 @@ const permission_module_1 = require("./permission/permission.module");
 const cinemas_module_1 = require("./cinemas/cinemas.module");
 const data_module_1 = require("./data/data.module");
 const movies_module_1 = require("./movies/movies.module");
+const order_module_1 = require("./orders/order.module");
 async function bootstrap() {
     const app = await core_1.NestFactory.create(app_module_1.AppModule);
     app.enableCors();
@@ -25,6 +26,7 @@ async function bootstrap() {
             cinemas_module_1.CinemasModule,
             data_module_1.DataModule,
             movies_module_1.MoviesModule,
+            order_module_1.OrderModule,
         ],
         deepScanRoutes: true,
     };

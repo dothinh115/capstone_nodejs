@@ -102,11 +102,27 @@ export class DataProvider {
         ma_lich_chieu: +ma_lich_chieu,
       },
     });
+
     if (!checkIfShowTimeExist)
       throw new HttpException(
         this.response.failRes(showTimeNotFoundMessage),
         400,
       );
+    // await this.model.cum_rap.delete({
+    //   where:{
+    //     ma_cum_rap:+c
+    //   }
+    // })
+    // await this.model.rap_phim.delete({
+    //   where: {
+    //     ma_rap: checkIfShowTimeExist.ma_rap,
+    //   },
+    // });
+    // await this.model.phim.delete({
+    //   where: {
+    //     ma_phim: checkIfShowTimeExist.ma_phim,
+    //   },
+    // });
     await this.model.lich_chieu.delete({
       where: {
         ma_lich_chieu: +ma_lich_chieu,

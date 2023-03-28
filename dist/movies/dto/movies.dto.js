@@ -34,7 +34,7 @@ __decorate([
     __metadata("design:type", String)
 ], MovieDto.prototype, "mo_ta", void 0);
 __decorate([
-    (0, swagger_1.ApiProperty)({ type: 'string', example: 'yyyy-mm-dd' }),
+    (0, swagger_1.ApiProperty)({ type: 'string', example: '2023-3-1' }),
     (0, class_transformer_1.Expose)(),
     __metadata("design:type", String)
 ], MovieDto.prototype, "ngay_khoi_chieu", void 0);
@@ -93,7 +93,7 @@ __decorate([
 __decorate([
     (0, swagger_1.ApiPropertyOptional)(),
     (0, class_validator_1.IsOptional)(),
-    (0, swagger_1.ApiProperty)({ type: 'string', example: 'yyyy-mm-dd' }),
+    (0, swagger_1.ApiProperty)({ type: 'string', example: '2023-3-1' }),
     (0, class_transformer_1.Expose)(),
     __metadata("design:type", String)
 ], MovieUpdateDto.prototype, "ngay_khoi_chieu", void 0);
@@ -137,12 +137,12 @@ class GetMovieQueryDto {
 }
 __decorate([
     (0, swagger_1.ApiPropertyOptional)(),
-    (0, swagger_1.ApiProperty)({ type: 'string', example: 'yyyy-mm-dd' }),
+    (0, swagger_1.ApiProperty)({ type: 'string', example: '2023-3-1' }),
     __metadata("design:type", String)
 ], GetMovieQueryDto.prototype, "from", void 0);
 __decorate([
     (0, swagger_1.ApiPropertyOptional)(),
-    (0, swagger_1.ApiProperty)({ type: 'string', example: 'yyyy-mm-dd' }),
+    (0, swagger_1.ApiProperty)({ type: 'string', example: '2023-3-1' }),
     __metadata("design:type", String)
 ], GetMovieQueryDto.prototype, "to", void 0);
 __decorate([

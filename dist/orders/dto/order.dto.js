@@ -9,7 +9,8 @@ var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.OrderCreateDto = void 0;
+exports.OrderAdminCreateDto = exports.OrderCreateDto = void 0;
+const swagger_1 = require("@nestjs/swagger");
 const class_transformer_1 = require("class-transformer");
 class OrderCreateDto {
     static plainToClass(obj) {
@@ -21,12 +22,21 @@ __decorate([
     __metadata("design:type", Number)
 ], OrderCreateDto.prototype, "tai_khoan", void 0);
 __decorate([
+    (0, swagger_1.ApiProperty)({ type: 'number' }),
     (0, class_transformer_1.Expose)(),
     __metadata("design:type", Number)
 ], OrderCreateDto.prototype, "ma_lich_chieu", void 0);
 __decorate([
+    (0, swagger_1.ApiProperty)({ type: 'number' }),
     (0, class_transformer_1.Expose)(),
     __metadata("design:type", Number)
 ], OrderCreateDto.prototype, "ma_ghe", void 0);
 exports.OrderCreateDto = OrderCreateDto;
+class OrderAdminCreateDto extends OrderCreateDto {
+}
+__decorate([
+    (0, swagger_1.ApiProperty)({ type: 'number' }),
+    __metadata("design:type", Number)
+], OrderAdminCreateDto.prototype, "tai_khoan", void 0);
+exports.OrderAdminCreateDto = OrderAdminCreateDto;
 //# sourceMappingURL=order.dto.js.map
