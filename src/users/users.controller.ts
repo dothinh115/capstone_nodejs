@@ -6,12 +6,13 @@ import {
   HttpException,
   Param,
   Put,
+  Query,
   Req,
   UseGuards,
   UsePipes,
   ValidationPipe,
 } from '@nestjs/common';
-import { ApiBearerAuth, ApiTags } from '@nestjs/swagger';
+import { ApiBearerAuth, ApiQuery, ApiTags } from '@nestjs/swagger';
 import { Request } from 'express';
 import { UserDto } from 'src/auth/dto/auth.dto';
 import { OwnID } from 'src/guards/ownId.guard';
@@ -115,9 +116,65 @@ export class UsersController {
       200,
     );
   }
-  @Get('getAllUser')
+  @Get('/getAllUser')
   async getAllUser() {
     const data = await this.userProvider.getAllUser();
+    throw new HttpException(
+      this.response.successRes(successMessage, data),
+      200,
+    );
+  }
+  @Get('/getUserPageDivision')
+  @ApiQuery({ name: 'page', required: false })
+  @ApiQuery({ name: 'limit', required: false })
+  async getUserPageDivision(
+    @Query('page') page?: string,
+    @Query('limit') limit?: string,
+  ) {
+    const data = await this.userProvider.getUserPageDivision(page, limit);
+    if (data.length === 0)
+      throw new HttpException(
+        this.response.successRes('Không tìm thấy user ở trang này'),
+        200,
+      );
+    throw new HttpException(
+      this.response.successRes(successMessage, data),
+      200,
+    );
+  }
+  @Get('/getUserByNamePageDivision')
+  @ApiQuery({ name: 'page', required: false })
+  @ApiQuery({ name: 'limit', required: false })
+  @ApiQuery({ name: 'query', required: false })
+  async getUserByNamePageDivision(
+    @Query('page') page?: string | null,
+    @Query('limit') limit?: string | null,
+    @Query('query') query?: string | null,
+  ) {
+    const data = await this.userProvider.getUserByNamePageDivision(
+      page,
+      limit,
+      query,
+    );
+    if (data.length === 0)
+      throw new HttpException(
+        this.response.successRes('Không tìm thấy user ở trang này'),
+        200,
+      );
+    throw new HttpException(
+      this.response.successRes(successMessage, data),
+      200,
+    );
+  }
+  @Get('/getUserByName')
+  @ApiQuery({ name: 'keyword', required: false })
+  async getUserByName(@Query('keyword') keyword?: string | null) {
+    const data = await this.userProvider.getUserByName(keyword);
+    if (data.length === 0)
+      throw new HttpException(
+        this.response.successRes('Không tìm thấy user ở trang này'),
+        200,
+      );
     throw new HttpException(
       this.response.successRes(successMessage, data),
       200,

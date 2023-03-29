@@ -19,4 +19,19 @@ export declare class UsersProvider {
     getAllUser(): Promise<(import(".prisma/client").nguoi_dung & {
         permission: import(".prisma/client").permission;
     })[]>;
+    getUserPageDivision(page?: string, limit?: string): Promise<(import(".prisma/client").nguoi_dung & {
+        permission: {
+            permission_name: string;
+        };
+    })[]>;
+    getUserByNamePageDivision(page?: string, limit?: string, query?: string): Promise<(import(".prisma/client").nguoi_dung & {
+        permission: {
+            permission_name: string;
+        };
+    })[]>;
+    getUserByName(keyword: string): Promise<(import(".prisma/client").nguoi_dung & {
+        permission: {
+            permission_name: string;
+        };
+    })[]>;
 }

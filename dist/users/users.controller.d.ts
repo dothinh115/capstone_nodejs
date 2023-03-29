@@ -15,4 +15,7 @@ export declare class UsersController {
     unBanUser(tai_khoan: string): Promise<void>;
     setPermission(body: SetPermissionDto, req: Request): Promise<void>;
     getAllUser(): Promise<void>;
+    getUserPageDivision(page?: string, limit?: string): Promise<void>;
+    getUserByNamePageDivision(page?: string | null, limit?: string | null, query?: string | null): Promise<void>;
+    getUserByName(keyword?: string | null): Promise<void>;
 }

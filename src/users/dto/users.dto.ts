@@ -1,6 +1,6 @@
-import { ApiProperty } from '@nestjs/swagger';
+import { ApiProperty, ApiPropertyOptional } from '@nestjs/swagger';
 import { Expose, plainToClass } from 'class-transformer';
-import { Matches } from 'class-validator';
+import { IsOptional, Matches } from 'class-validator';
 import { phoneNumberRequired, so_dt_pattern } from 'src/utils/variables';
 
 export class UpdateUserDto {
@@ -26,3 +26,20 @@ export class SetPermissionDto {
     return plainToClass(this, obj, { excludeExtraneousValues: true });
   }
 }
+// export class getUserPageDivisionDto {
+//   @ApiPropertyOptional()
+//   @IsOptional()
+//   @ApiProperty({ type: 'string' })
+//   @Expose()
+//   page: string;
+//   @ApiPropertyOptional()
+//   @IsOptional()
+//   @ApiProperty({ type: 'string' })
+//   @Expose()
+//   limit: string;
+//   @ApiPropertyOptional()
+//   @IsOptional()
+//   @ApiProperty({ type: 'string' })
+//   @Expose()
+//   query: string;
+// }

@@ -61,6 +61,24 @@ let UsersController = class UsersController {
         const data = await this.userProvider.getAllUser();
         throw new common_1.HttpException(this.response.successRes(variables_1.successMessage, data), 200);
     }
+    async getUserPageDivision(page, limit) {
+        const data = await this.userProvider.getUserPageDivision(page, limit);
+        if (data.length === 0)
+            throw new common_1.HttpException(this.response.successRes('Không tìm thấy user ở trang này'), 200);
+        throw new common_1.HttpException(this.response.successRes(variables_1.successMessage, data), 200);
+    }
+    async getUserByNamePageDivision(page, limit, query) {
+        const data = await this.userProvider.getUserByNamePageDivision(page, limit, query);
+        if (data.length === 0)
+            throw new common_1.HttpException(this.response.successRes('Không tìm thấy user ở trang này'), 200);
+        throw new common_1.HttpException(this.response.successRes(variables_1.successMessage, data), 200);
+    }
+    async getUserByName(keyword) {
+        const data = await this.userProvider.getUserByName(keyword);
+        if (data.length === 0)
+            throw new common_1.HttpException(this.response.successRes('Không tìm thấy user ở trang này'), 200);
+        throw new common_1.HttpException(this.response.successRes(variables_1.successMessage, data), 200);
+    }
 };
 __decorate([
     (0, swagger_1.ApiBearerAuth)(),
@@ -134,11 +152,41 @@ __decorate([
     __metadata("design:returntype", Promise)
 ], UsersController.prototype, "setPermission", null);
 __decorate([
-    (0, common_1.Get)('getAllUser'),
+    (0, common_1.Get)('/getAllUser'),
     __metadata("design:type", Function),
     __metadata("design:paramtypes", []),
     __metadata("design:returntype", Promise)
 ], UsersController.prototype, "getAllUser", null);
+__decorate([
+    (0, common_1.Get)('/getUserPageDivision'),
+    (0, swagger_1.ApiQuery)({ name: 'page', required: false }),
+    (0, swagger_1.ApiQuery)({ name: 'limit', required: false }),
+    __param(0, (0, common_1.Query)('page')),
+    __param(1, (0, common_1.Query)('limit')),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [String, String]),
+    __metadata("design:returntype", Promise)
+], UsersController.prototype, "getUserPageDivision", null);
+__decorate([
+    (0, common_1.Get)('/getUserByNamePageDivision'),
+    (0, swagger_1.ApiQuery)({ name: 'page', required: false }),
+    (0, swagger_1.ApiQuery)({ name: 'limit', required: false }),
+    (0, swagger_1.ApiQuery)({ name: 'query', required: false }),
+    __param(0, (0, common_1.Query)('page')),
+    __param(1, (0, common_1.Query)('limit')),
+    __param(2, (0, common_1.Query)('query')),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [String, String, String]),
+    __metadata("design:returntype", Promise)
+], UsersController.prototype, "getUserByNamePageDivision", null);
+__decorate([
+    (0, common_1.Get)('/getUserByName'),
+    (0, swagger_1.ApiQuery)({ name: 'keyword', required: false }),
+    __param(0, (0, common_1.Query)('keyword')),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [String]),
+    __metadata("design:returntype", Promise)
+], UsersController.prototype, "getUserByName", null);
 UsersController = __decorate([
     (0, swagger_1.ApiTags)('User'),
     (0, common_1.Controller)('/users'),

@@ -207,4 +207,65 @@ export class UsersProvider {
     }
     return data;
   }
+  async getUserPageDivision(page = '1', limit = '10') {
+    const skip = (+page - 1) * +limit;
+    let result = await this.model.nguoi_dung.findMany({
+      skip,
+      take: +limit,
+      include: {
+        permission: {
+          select: {
+            permission_name: true,
+          },
+        },
+      },
+    });
+
+    for (let key in result) {
+      result[key] = userConfig(result[key]);
+    }
+    return result;
+  }
+  async getUserByNamePageDivision(page = '1', limit = '10', query = '') {
+    const skip = (+page - 1) * +limit;
+    let result = await this.model.nguoi_dung.findMany({
+      where: {
+        OR: [{ ho_ten: { contains: query } }, { email: { contains: query } }],
+      },
+      skip,
+      take: +limit,
+      include: {
+        permission: {
+          select: {
+            permission_name: true,
+          },
+        },
+      },
+    });
+
+    for (let key in result) {
+      result[key] = userConfig(result[key]);
+    }
+    return result;
+  }
+  async getUserByName(keyword: string) {
+    let result = await this.model.nguoi_dung.findMany({
+      where: {
+        ho_ten: { contains: keyword },
+      },
+      include: {
+        permission: {
+          select: {
+            permission_name: true,
+          },
+        },
+      },
+    });
+    console.log(result);
+
+    for (let key in result) {
+      result[key] = userConfig(result[key]);
+    }
+    return result;
+  }
 }
