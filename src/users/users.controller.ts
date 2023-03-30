@@ -142,34 +142,10 @@ export class UsersController {
       200,
     );
   }
-  @Get('/getUserByNamePageDivision')
-  @ApiQuery({ name: 'page', required: false })
-  @ApiQuery({ name: 'limit', required: false })
-  @ApiQuery({ name: 'query', required: false })
-  async getUserByNamePageDivision(
-    @Query('page') page?: string | null,
-    @Query('limit') limit?: string | null,
-    @Query('query') query?: string | null,
-  ) {
-    const data = await this.userProvider.getUserByNamePageDivision(
-      page,
-      limit,
-      query,
-    );
-    if (data.length === 0)
-      throw new HttpException(
-        this.response.successRes('Không tìm thấy user ở trang này'),
-        200,
-      );
-    throw new HttpException(
-      this.response.successRes(successMessage, data),
-      200,
-    );
-  }
   @Get('/getUserByName')
   @ApiQuery({ name: 'keyword', required: false })
   async getUserByName(@Query('keyword') keyword?: string | null) {
-    const data = await this.userProvider.getUserByName(keyword);
+    const data = await this.userProvider.getUser(keyword);
     if (data.length === 0)
       throw new HttpException(
         this.response.successRes('Không tìm thấy user ở trang này'),

@@ -56,3 +56,6 @@ export const selfBanNotAllowed = 'Không được ban bản thân!';
 export const selfDeteleNotAllowed = 'Không thể xóa bản thân!';
 export const phoneNumberRequired = 'Điền sdt VN, 10 số, ví dụ 0901234567!';
 export const imgSyncDecription = 'Đồng bộ hình anh giữa database và folder';
+export const keywordsRequiredMessage = 'Phải có keywords';
+export const pageOrLimitRequiredMessage = 'Phải có đủ page và limit';
+export const makeSenseInfoMessage = 'Điền thông tin cho hợp lý!';

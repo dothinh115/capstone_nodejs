@@ -93,7 +93,7 @@ export class CinemasController {
   @ApiBearerAuth()
   @UseGuards(TokenAuthorization, RoleGuard)
   @Roles(permissionConfig.Administrators, permissionConfig.Moderators)
-  @Post('/createCinemaComlex')
+  @Post('/createCinemaComplex')
   async createCinemaComlex(@Body() body: CinemasComplexCreateDto) {
     const data = await this.cinemasService.createCinemaComlex(
       CinemasComplexCreateDto.plainToClass(body),

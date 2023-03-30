@@ -14,7 +14,13 @@ import {
   UseInterceptors,
 } from '@nestjs/common';
 import { FileInterceptor } from '@nestjs/platform-express';
-import { ApiBearerAuth, ApiBody, ApiConsumes, ApiTags } from '@nestjs/swagger';
+import {
+  ApiBearerAuth,
+  ApiBody,
+  ApiConsumes,
+  ApiQuery,
+  ApiTags,
+} from '@nestjs/swagger';
 import { diskStorage } from 'multer';
 import { Roles } from 'src/guards/roles.decorator';
 import { RoleGuard } from 'src/guards/roles.guard';
@@ -24,7 +30,8 @@ import { Response } from 'src/utils/dto/global.dto';
 import { movieImgCheck } from 'src/utils/function';
 import { imgRequiredMessage, successMessage } from 'src/utils/variables';
 import {
-  GetMovieQueryDto,
+  GetMovieByDateQueryDto,
+  GetMovieByNameDto,
   MovieCreateDto,
   MovieUpdateDto,
 } from './dto/movies.dto';
@@ -75,7 +82,6 @@ export class MoviesController {
       );
     }
     let data = await this.moviesProvider.createNewMovie(
-      req,
       file,
       MovieCreateDto.plainToClass(body),
       +req.user['tai_khoan'],
@@ -108,8 +114,8 @@ export class MoviesController {
     );
   }
 
-  @Get('/getMovie')
-  async getMovie(@Query() query: GetMovieQueryDto) {
+  @Get('/getMovieByDate')
+  async getMovie(@Query() query: GetMovieByDateQueryDto) {
     const { from, to, number, sort } = query;
     if (from || to) {
       if (!from || !to) {
@@ -201,6 +207,33 @@ export class MoviesController {
 
     throw new HttpException(
       this.response.successRes(successMessage, movieConfig(data)),
+      200,
+    );
+  }
+
+  @Get('/getMovieByName')
+  async getMovieByName(@Query() query: GetMovieByNameDto) {
+    const { keywords, page, limit } = query;
+    const result = await this.moviesProvider.getMovieByName(
+      keywords,
+      page,
+      limit,
+    );
+    throw new HttpException(
+      this.response.successRes(successMessage, result),
+      200,
+    );
+  }
+
+  @Get('/getBanner')
+  @ApiQuery({
+    name: 'ma_phim',
+    required: true,
+  })
+  async getBanner(@Query('ma_phim') ma_phim: string) {
+    const result = await this.moviesProvider.getBanner(ma_phim);
+    throw new HttpException(
+      this.response.successRes(successMessage, result),
       200,
     );
   }

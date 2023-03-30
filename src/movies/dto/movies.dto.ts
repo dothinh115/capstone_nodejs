@@ -1,6 +1,6 @@
 import { ApiProperty, ApiPropertyOptional } from '@nestjs/swagger';
 import { Expose, plainToClass } from 'class-transformer';
-import { IsOptional } from 'class-validator';
+import { IsNotEmpty, IsOptional } from 'class-validator';
 
 export class MovieDto {
   @ApiProperty({ type: 'string' })
@@ -95,7 +95,7 @@ export class MovieUpdateDto extends MovieDto {
   hinh_anh?: any;
 }
 
-export class GetMovieQueryDto {
+export class GetMovieByDateQueryDto {
   @ApiPropertyOptional()
   @ApiProperty({ type: 'string', example: '2023-3-1' })
   from?: string;
@@ -108,4 +108,19 @@ export class GetMovieQueryDto {
   @ApiPropertyOptional()
   @ApiProperty({ type: 'string' })
   sort?: string;
+}
+
+export class GetMovieByNameDto {
+  @ApiProperty()
+  @IsNotEmpty()
+  keywords: string;
+  @ApiPropertyOptional()
+  @IsOptional()
+  page: string;
+  @ApiPropertyOptional()
+  @IsOptional()
+  limit: string;
+  static plainToClass<T>(this: new (...args: any[]) => T, obj: T) {
+    return plainToClass(this, obj, { excludeExtraneousValues: true });
+  }
 }

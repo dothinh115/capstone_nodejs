@@ -1,9 +1,20 @@
 import { HttpException, Injectable } from '@nestjs/common';
 import { PrismaService } from 'src/prisma/prisma.service';
 import { Response } from 'src/utils/dto/global.dto';
-import { movieImgPath, notExistedMovieMessage } from 'src/utils/variables';
+import {
+  keywordsRequiredMessage,
+  makeSenseInfoMessage,
+  movieImgPath,
+  movieImgResponse,
+  notExistedMovieMessage,
+  pageOrLimitRequiredMessage,
+} from 'src/utils/variables';
 import * as fs from 'fs';
-import { MovieCreateDto, MovieUpdateDto } from './dto/movies.dto';
+import {
+  GetMovieByNameDto,
+  MovieCreateDto,
+  MovieUpdateDto,
+} from './dto/movies.dto';
 import { movieConfig } from 'src/utils/config';
 import { createDateAsUTC } from 'src/utils/function';
 
@@ -11,7 +22,6 @@ import { createDateAsUTC } from 'src/utils/function';
 export class MoviesProvider {
   constructor(private model: PrismaService, private response: Response) {}
   async createNewMovie(
-    req,
     file: Express.Multer.File,
     body: MovieCreateDto,
     tai_khoan: number,
@@ -31,7 +41,7 @@ export class MoviesProvider {
     const newMovie = await this.model.phim.create({
       data,
     });
-    return await this.model.phim.findFirst({
+    const result = await this.model.phim.findFirst({
       where: {
         ma_phim: newMovie.ma_phim,
       },
@@ -47,6 +57,14 @@ export class MoviesProvider {
         },
       },
     });
+
+    await this.model.banner.create({
+      data: {
+        ma_phim: result.ma_phim,
+        hinh_anh: result.hinh_anh,
+      },
+    });
+    return result;
   }
 
   async deleteMovie(ma_phim: number) {
@@ -60,9 +78,35 @@ export class MoviesProvider {
         this.response.failRes(notExistedMovieMessage),
         400,
       );
+    const showTimes = await this.model.lich_chieu.findMany({
+      where: {
+        ma_phim: +ma_phim,
+      },
+    });
+    if (showTimes.length !== 0) {
+      for (let value of showTimes) {
+        const orders = await this.model.dat_ve.findMany({
+          where: {
+            ma_lich_chieu: value.ma_lich_chieu,
+          },
+        });
+        if (orders.length !== 0) {
+          await this.model.dat_ve.deleteMany({
+            where: {
+              ma_lich_chieu: value.ma_lich_chieu,
+            },
+          });
+        }
+        await this.model.lich_chieu.delete({
+          where: {
+            ma_lich_chieu: value.ma_lich_chieu,
+          },
+        });
+      }
+    }
     await this.model.phim.delete({
       where: {
-        ma_phim: Number(ma_phim),
+        ma_phim: +ma_phim,
       },
     });
     fs.unlinkSync(movieImgPath + movie.hinh_anh);
@@ -203,5 +247,85 @@ export class MoviesProvider {
       dataQuantity[key] = movieConfig(dataQuantity[key]);
     }
     return dataQuantity;
+  }
+
+  async getMovieByName(keywords: string, page: string, limit: string) {
+    if (!keywords)
+      throw new HttpException(
+        this.response.failRes(keywordsRequiredMessage),
+        400,
+      );
+    if (page || limit) {
+      if (!page || !limit) {
+        throw new HttpException(
+          this.response.failRes(pageOrLimitRequiredMessage),
+          400,
+        );
+      }
+      if (+page <= 0 || +limit <= 0)
+        throw new HttpException(
+          this.response.failRes(makeSenseInfoMessage),
+          400,
+        );
+    }
+
+    const exist = await this.model.phim.findMany({
+      where: {
+        ten_phim: {
+          contains: keywords,
+        },
+      },
+    });
+    if (exist.length === 0)
+      throw new HttpException(
+        this.response.failRes(notExistedMovieMessage),
+        400,
+      );
+
+    const result = await this.model.phim.findMany({
+      where: {
+        ten_phim: {
+          contains: keywords,
+        },
+      },
+      ...(page &&
+        limit && {
+          skip: (+page - 1) * +limit,
+          take: +limit,
+        }),
+      include: {
+        nguoi_dung: {
+          include: {
+            permission: {
+              select: {
+                permission_name: true,
+              },
+            },
+          },
+        },
+      },
+    });
+    for (let key in result) {
+      result[key] = movieConfig(result[key]);
+    }
+    return result;
+  }
+
+  async getBanner(ma_phim: string) {
+    let result = await this.model.banner.findFirst({
+      where: {
+        ma_phim: +ma_phim,
+      },
+    });
+    if (!result)
+      throw new HttpException(
+        this.response.successRes(notExistedMovieMessage),
+        400,
+      );
+    result = {
+      ...result,
+      hinh_anh: movieImgResponse + result.hinh_anh,
+    };
+    return result;
   }
 }

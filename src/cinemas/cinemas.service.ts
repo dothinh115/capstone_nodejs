@@ -41,7 +41,62 @@ export class CinemasProvider {
         this.response.failRes('không tìm ra cụm rạp này'),
         400,
       );
-
+    const checkExistingComplex = await this.model.cum_rap.findMany({
+      where: {
+        ma_he_thong_rap: data.ma_he_thong_rap,
+      },
+    });
+    if (checkExistingComplex.length !== 0) {
+      for (let complex of checkExistingComplex) {
+        const checkExistingCinemas = await this.model.rap_phim.findMany({
+          where: {
+            ma_cum_rap: complex.ma_cum_rap,
+          },
+        });
+        if (checkExistingCinemas.length !== 0) {
+          for (let cinema of checkExistingCinemas) {
+            const checkExistingSeats = await this.model.ghe.findMany({
+              where: {
+                ma_rap: cinema.ma_rap,
+              },
+            });
+            if (checkExistingSeats.length !== 0) {
+              for (let seat of checkExistingSeats) {
+                const checkExistingOrders = await this.model.dat_ve.findMany({
+                  where: {
+                    ma_ghe: seat.ma_ghe,
+                  },
+                });
+                if (checkExistingOrders.length !== 0) {
+                  for (let order of checkExistingOrders) {
+                    await this.model.dat_ve.delete({
+                      where: {
+                        ma_dat_ve: order.ma_dat_ve,
+                      },
+                    });
+                  }
+                }
+                await this.model.ghe.delete({
+                  where: {
+                    ma_ghe: seat.ma_ghe,
+                  },
+                });
+              }
+            }
+            await this.model.rap_phim.delete({
+              where: {
+                ma_rap: cinema.ma_rap,
+              },
+            });
+          }
+        }
+        await this.model.cum_rap.delete({
+          where: {
+            ma_cum_rap: complex.ma_cum_rap,
+          },
+        });
+      }
+    }
     await this.model.he_thong_rap.delete({
       where: {
         ma_he_thong_rap: +ma_he_thong_rap,
