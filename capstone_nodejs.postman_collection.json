@@ -16,7 +16,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n        \"email\": \"abcd@gmail.com\",\r\n    \"mat_khau\": \"hau123\",\r\n    \"ho_ten\":\"admin\",\r\n    \"so_dt\":\"0978481071\"\r\n}",
+							"raw": "{\r\n        \"email\": \"abcde@gmail.com\",\r\n    \"mat_khau\": \"hau123\",\r\n    \"ho_ten\":\"admin\",\r\n    \"so_dt\":\"0978481071\"\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -71,7 +71,7 @@
 							"bearer": [
 								{
 									"key": "token",
-									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0YWlfa2hvYW4iOjI4LCJpYXQiOjE2NzkxOTA2NjMsImV4cCI6MTY3OTI3NzA2M30.88tGKlhsRPzHP2y7bwseecObu_UB7CucZ5Vl4kD9nq8",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0YWlfa2hvYW4iOjQxLCJpYXQiOjE2ODAxODMyMzgsImV4cCI6MTY4MDI2OTYzOH0.Dtnf7nXDYyzqJt84rPSqIinRgvEiS9kpV35EyveHTOE",
 									"type": "string"
 								}
 							]
@@ -270,6 +270,58 @@
 						}
 					},
 					"response": []
+				},
+				{
+					"name": "getUserPageDivision",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{domain}}/users/getUserPageDivision?page=2&limit=2",
+							"host": [
+								"{{domain}}"
+							],
+							"path": [
+								"users",
+								"getUserPageDivision"
+							],
+							"query": [
+								{
+									"key": "page",
+									"value": "2"
+								},
+								{
+									"key": "limit",
+									"value": "2"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "getUserByName",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{domain}}/users/getUserByName?keyword=hau",
+							"host": [
+								"{{domain}}"
+							],
+							"path": [
+								"users",
+								"getUserByName"
+							],
+							"query": [
+								{
+									"key": "keyword",
+									"value": "hau"
+								}
+							]
+						}
+					},
+					"response": []
 				}
 			]
 		},
@@ -284,7 +336,7 @@
 							"bearer": [
 								{
 									"key": "token",
-									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0YWlfa2hvYW4iOjM4LCJpYXQiOjE2Nzk0NjgwODEsImV4cCI6MTY3OTU1NDQ4MX0.8ltP_JykwOOQN2FG68wVaFWDmoiCXOaboD8CLA-yZjc",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0YWlfa2hvYW4iOjM4LCJpYXQiOjE2ODAxNjYxMTUsImV4cCI6MTY4MDI1MjUxNX0.zh2cuet7nXfT_etrT7l12WXBcsLw5T8j4GZCHeudNmc",
 									"type": "string"
 								}
 							]
@@ -298,7 +350,7 @@
 									"key": "hinh_anh",
 									"contentType": "",
 									"type": "file",
-									"src": "/C:/Users/Administrator/Downloads/pexels-cesar-perez-733745.jpg"
+									"src": "/C:/Users/Administrator/Downloads/1679468141175_pexels-cesar-perez-733745.jpg"
 								},
 								{
 									"key": "ten_phim",
@@ -369,7 +421,7 @@
 							"bearer": [
 								{
 									"key": "token",
-									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0YWlfa2hvYW4iOjM4LCJpYXQiOjE2Nzk1NTUxNTcsImV4cCI6MTY3OTY0MTU1N30.WEipPZnEXp2iS5sTx6TfpR0aBzOT9fRi98HhPjIhRKw",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0YWlfa2hvYW4iOjM4LCJpYXQiOjE2ODAxODc3NDcsImV4cCI6MTY4MDI3NDE0N30.Wi0yvm8GA2TIEQUhE04zpnf57KtnZhGGjDGR8O4azhg",
 									"type": "string"
 								}
 							]
@@ -377,14 +429,14 @@
 						"method": "DELETE",
 						"header": [],
 						"url": {
-							"raw": "{{domain}}/movies/deleteMovie/45",
+							"raw": "{{domain}}/movies/deleteMovie/51",
 							"host": [
 								"{{domain}}"
 							],
 							"path": [
 								"movies",
 								"deleteMovie",
-								"45"
+								"51"
 							]
 						}
 					},
@@ -495,18 +547,18 @@
 					"response": []
 				},
 				{
-					"name": "getMovie",
+					"name": "getMovieByDate",
 					"request": {
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "{{domain}}/movies/getMovie?number=10",
+							"raw": "{{domain}}/movies/getMovieByDate?number=10",
 							"host": [
 								"{{domain}}"
 							],
 							"path": [
 								"movies",
-								"getMovie"
+								"getMovieByDate"
 							],
 							"query": [
 								{
@@ -534,21 +586,34 @@
 					"response": []
 				},
 				{
-					"name": "getImg",
+					"name": "getMovieByName",
 					"request": {
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "{{domain}}/movies/img/1679468141175_pexels-cesar-perez-733745.jpg",
+							"raw": "{{domain}}/movies/getMovieByName?keywords=phim",
 							"host": [
 								"{{domain}}"
 							],
 							"path": [
 								"movies",
-								"img",
-								"1679468141175_pexels-cesar-perez-733745.jpg"
+								"getMovieByName"
+							],
+							"query": [
+								{
+									"key": "keywords",
+									"value": "phim"
+								}
 							]
 						}
+					},
+					"response": []
+				},
+				{
+					"name": "getBanner",
+					"request": {
+						"method": "GET",
+						"header": []
 					},
 					"response": []
 				}
@@ -565,7 +630,7 @@
 							"bearer": [
 								{
 									"key": "token",
-									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0YWlfa2hvYW4iOjM4LCJpYXQiOjE2Nzk4MDkwOTcsImV4cCI6MTY3OTg5NTQ5N30.IoWUm8d_RjKcV3KeSy9jwk3M36niimBOD7krg8pjW7Y",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0YWlfa2hvYW4iOjM4LCJpYXQiOjE2ODAxNzc1MTAsImV4cCI6MTY4MDI2MzkxMH0.DK3JffLMywB7XZTbDcin22txxqJATL-mn4qIXxD6YLw",
 									"type": "string"
 								}
 							]
@@ -608,7 +673,7 @@
 							"bearer": [
 								{
 									"key": "token",
-									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0YWlfa2hvYW4iOjM4LCJpYXQiOjE2NzkzNjc4MzQsImV4cCI6MTY3OTQ1NDIzNH0.3sZ0WFxcqdhXUb1unjPBA8jZ3_RuOHUzxLGgpnNLXAY",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0YWlfa2hvYW4iOjM4LCJpYXQiOjE2ODAxODc3NDcsImV4cCI6MTY4MDI3NDE0N30.Wi0yvm8GA2TIEQUhE04zpnf57KtnZhGGjDGR8O4azhg",
 									"type": "string"
 								}
 							]
@@ -616,14 +681,14 @@
 						"method": "DELETE",
 						"header": [],
 						"url": {
-							"raw": "{{domain}}/cinemas/deleteCinemaSystem/11",
+							"raw": "{{domain}}/cinemas/deleteCinemaSystem/16",
 							"host": [
 								"{{domain}}"
 							],
 							"path": [
 								"cinemas",
 								"deleteCinemaSystem",
-								"11"
+								"16"
 							]
 						}
 					},
@@ -667,7 +732,7 @@
 							"bearer": [
 								{
 									"key": "token",
-									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0YWlfa2hvYW4iOjM4LCJpYXQiOjE2NzkzNzU1NDgsImV4cCI6MTY3OTQ2MTk0OH0.XIg4tW0H1aCGwKQwKMYRcU9TpeM67Q0yrIUS4MGe2Qw",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0YWlfa2hvYW4iOjM4LCJpYXQiOjE2ODAxNzc1MTAsImV4cCI6MTY4MDI2MzkxMH0.DK3JffLMywB7XZTbDcin22txxqJATL-mn4qIXxD6YLw",
 									"type": "string"
 								}
 							]
@@ -676,7 +741,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"ten_cum_rap\":\"Cụm rạp Biên Hòa\",\r\n    \"dia_chi\":\"Biên Hòa\",\r\n    \"ma_he_thong_rap\":12\r\n}",
+							"raw": "{\r\n    \"ten_cum_rap\":\"Cụm rạp Biên Hòa\",\r\n    \"dia_chi\":\"Biên Hòa\",\r\n    \"ma_he_thong_rap\":15\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -684,13 +749,13 @@
 							}
 						},
 						"url": {
-							"raw": "{{domain}}/cinemas/createCinemaComlex",
+							"raw": "{{domain}}/cinemas/createCinemaComplex",
 							"host": [
 								"{{domain}}"
 							],
 							"path": [
 								"cinemas",
-								"createCinemaComlex"
+								"createCinemaComplex"
 							]
 						}
 					},
@@ -770,7 +835,7 @@
 							"bearer": [
 								{
 									"key": "token",
-									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0YWlfa2hvYW4iOjM4LCJpYXQiOjE2NzkzNzU1NDgsImV4cCI6MTY3OTQ2MTk0OH0.XIg4tW0H1aCGwKQwKMYRcU9TpeM67Q0yrIUS4MGe2Qw",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0YWlfa2hvYW4iOjM4LCJpYXQiOjE2ODAxNzc1MTAsImV4cCI6MTY4MDI2MzkxMH0.DK3JffLMywB7XZTbDcin22txxqJATL-mn4qIXxD6YLw",
 									"type": "string"
 								}
 							]
@@ -779,7 +844,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"ten_rap\":\"Rạp Tp. Biên Hòa\",\r\n    \"ma_cum_rap\":9\r\n}",
+							"raw": "{\r\n    \"ten_rap\":\"Rạp Tp. Biên Hòa\",\r\n    \"ma_cum_rap\":11\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -802,17 +867,27 @@
 				{
 					"name": "deleteCinema",
 					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0YWlfa2hvYW4iOjM4LCJpYXQiOjE2ODAxODc3NDcsImV4cCI6MTY4MDI3NDE0N30.Wi0yvm8GA2TIEQUhE04zpnf57KtnZhGGjDGR8O4azhg",
+									"type": "string"
+								}
+							]
+						},
 						"method": "DELETE",
 						"header": [],
 						"url": {
-							"raw": "{{domain}}/cinemas/deleteCinema/2",
+							"raw": "{{domain}}/cinemas/deleteCinema/12",
 							"host": [
 								"{{domain}}"
 							],
 							"path": [
 								"cinemas",
 								"deleteCinema",
-								"2"
+								"12"
 							]
 						}
 					},
@@ -824,14 +899,14 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "{{domain}}/cinemas/getCinemaInfo/4",
+							"raw": "{{domain}}/cinemas/getCinemaInfo/11",
 							"host": [
 								"{{domain}}"
 							],
 							"path": [
 								"cinemas",
 								"getCinemaInfo",
-								"4"
+								"11"
 							]
 						}
 					},
@@ -907,7 +982,7 @@
 							"bearer": [
 								{
 									"key": "token",
-									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0YWlfa2hvYW4iOjM4LCJpYXQiOjE2Nzk1NTUxNTcsImV4cCI6MTY3OTY0MTU1N30.WEipPZnEXp2iS5sTx6TfpR0aBzOT9fRi98HhPjIhRKw",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0YWlfa2hvYW4iOjM4LCJpYXQiOjE2ODAxNzc1MTAsImV4cCI6MTY4MDI2MzkxMH0.DK3JffLMywB7XZTbDcin22txxqJATL-mn4qIXxD6YLw",
 									"type": "string"
 								}
 							]
@@ -916,7 +991,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"ma_rap\":3,\r\n    \"ma_phim\":46,\r\n    \"ngay_gio_chieu\":\"2023-03-14 16:00:00\",\r\n    \"gia_ve\":10000\r\n}",
+							"raw": "{\r\n    \"ma_rap\":10,\r\n    \"ma_phim\":50,\r\n    \"ngay_gio_chieu\":\"2023-03-15 16:00:00\",\r\n    \"gia_ve\":10000\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -944,7 +1019,7 @@
 							"bearer": [
 								{
 									"key": "token",
-									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0YWlfa2hvYW4iOjM4LCJpYXQiOjE2Nzk0NzE1NDUsImV4cCI6MTY3OTU1Nzk0NX0.-C0HcopyZpn01T4mSjDTZRM8Xc5zwB-U1ovj29wffhE",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0YWlfa2hvYW4iOjM4LCJpYXQiOjE2ODAwMTAyNzUsImV4cCI6MTY4MDA5NjY3NX0.J8RgUXAxlD2NcUer5HK0R0layeISmLDS_gbbABqoG4I",
 									"type": "string"
 								}
 							]
@@ -952,14 +1027,14 @@
 						"method": "DELETE",
 						"header": [],
 						"url": {
-							"raw": "{{domain}}/data/deleteShowTime/56",
+							"raw": "{{domain}}/data/deleteShowTime/59",
 							"host": [
 								"{{domain}}"
 							],
 							"path": [
 								"data",
 								"deleteShowTime",
-								"56"
+								"59"
 							]
 						}
 					},
@@ -971,7 +1046,7 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "194.59.165.15:8080/api/data/getShowTime?number=2",
+							"raw": "194.59.165.15:8080/api/data/getShowTime?number=10",
 							"host": [
 								"194",
 								"59",
@@ -997,7 +1072,7 @@
 								},
 								{
 									"key": "number",
-									"value": "2"
+									"value": "10"
 								}
 							]
 						}
@@ -1012,7 +1087,7 @@
 							"bearer": [
 								{
 									"key": "token",
-									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0YWlfa2hvYW4iOjM4LCJpYXQiOjE2Nzk0NzQ4NjYsImV4cCI6MTY3OTU2MTI2Nn0.zAS9M9bl2YuY0MeWClsDqQfeN_OgUyOPOXYg6oZt04w",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0YWlfa2hvYW4iOjM4LCJpYXQiOjE2ODAxNzc1MTAsImV4cCI6MTY4MDI2MzkxMH0.DK3JffLMywB7XZTbDcin22txxqJATL-mn4qIXxD6YLw",
 									"type": "string"
 								}
 							]
@@ -1021,7 +1096,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n  \"ten_ghe\":\"abc\",\r\n  \"ma_rap\":4\r\n  }",
+							"raw": "{\r\n  \"ten_ghe\":\"aabcáddd\",\r\n  \"ma_rap\":11\r\n  }",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -1049,7 +1124,7 @@
 							"bearer": [
 								{
 									"key": "token",
-									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0YWlfa2hvYW4iOjM4LCJpYXQiOjE2Nzk0NzE1NDUsImV4cCI6MTY3OTU1Nzk0NX0.-C0HcopyZpn01T4mSjDTZRM8Xc5zwB-U1ovj29wffhE",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0YWlfa2hvYW4iOjM4LCJpYXQiOjE2ODAxODc3NDcsImV4cCI6MTY4MDI3NDE0N30.Wi0yvm8GA2TIEQUhE04zpnf57KtnZhGGjDGR8O4azhg",
 									"type": "string"
 								}
 							]
@@ -1057,14 +1132,14 @@
 						"method": "DELETE",
 						"header": [],
 						"url": {
-							"raw": "{{domain}}/data/deleteSeat/6",
+							"raw": "{{domain}}/data/deleteSeat/16",
 							"host": [
 								"{{domain}}"
 							],
 							"path": [
 								"data",
 								"deleteSeat",
-								"6"
+								"16"
 							]
 						}
 					},
@@ -1076,14 +1151,14 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "{{domain}}/data/getSeatByCinema/4",
+							"raw": "{{domain}}/data/getSeatByCinema/11",
 							"host": [
 								"{{domain}}"
 							],
 							"path": [
 								"data",
 								"getSeatByCinema",
-								"4"
+								"11"
 							]
 						}
 					},
@@ -1133,14 +1208,14 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "{{domain}}/data/getShowTimeByMovie/46",
+							"raw": "{{domain}}/data/getShowTimeByMovie/50",
 							"host": [
 								"{{domain}}"
 							],
 							"path": [
 								"data",
 								"getShowTimeByMovie",
-								"46"
+								"50"
 							]
 						}
 					},
@@ -1159,7 +1234,7 @@
 							"bearer": [
 								{
 									"key": "token",
-									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0YWlfa2hvYW4iOjM4LCJpYXQiOjE2Nzk1ODY1MDcsImV4cCI6MTY3OTY3MjkwN30.kw1-FvQD4iy9xv13IhBKAJAb3ipwmoLNNlq-3Fex-3Q",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0YWlfa2hvYW4iOjM4LCJpYXQiOjE2ODAwMTAyNzUsImV4cCI6MTY4MDA5NjY3NX0.J8RgUXAxlD2NcUer5HK0R0layeISmLDS_gbbABqoG4I",
 									"type": "string"
 								}
 							]
@@ -1178,34 +1253,6 @@
 						}
 					},
 					"response": []
-				},
-				{
-					"name": "movieSync",
-					"request": {
-						"auth": {
-							"type": "bearer",
-							"bearer": [
-								{
-									"key": "token",
-									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0YWlfa2hvYW4iOjM0LCJpYXQiOjE2NzkyMjI2MzksImV4cCI6MTY3OTMwOTAzOX0.wxdpPYosEAgXH69U02T_dw0aN8Dhn85yuSuOdsOVFHQ",
-									"type": "string"
-								}
-							]
-						},
-						"method": "GET",
-						"header": [],
-						"url": {
-							"raw": "{{domain}}/admin/movieSync",
-							"host": [
-								"{{domain}}"
-							],
-							"path": [
-								"admin",
-								"movieSync"
-							]
-						}
-					},
-					"response": []
 				}
 			]
 		},
@@ -1220,7 +1267,7 @@
 							"bearer": [
 								{
 									"key": "token",
-									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0YWlfa2hvYW4iOjM5LCJpYXQiOjE2Nzk1NDQ2NjAsImV4cCI6MTY3OTYzMTA2MH0.spTb-ih0ntFB9mf-0IDNDC4DCBtndzqOpJ0QAZppGDM",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0YWlfa2hvYW4iOjM4LCJpYXQiOjE2ODAxODMyNDYsImV4cCI6MTY4MDI2OTY0Nn0.QXCM7_YtaSAAmSGCkJi8UR8ji_kigXU2HnfDq9bi0K8",
 									"type": "string"
 								}
 							]
@@ -1229,7 +1276,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"ma_ghe\": 1,\r\n    \"ma_lich_chieu\": 59\r\n}",
+							"raw": "{\r\n    \"ma_ghe\": 13,\r\n    \"ma_lich_chieu\": 69\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -1257,7 +1304,7 @@
 							"bearer": [
 								{
 									"key": "token",
-									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0YWlfa2hvYW4iOjM4LCJpYXQiOjE2Nzk0NzQ4NjYsImV4cCI6MTY3OTU2MTI2Nn0.zAS9M9bl2YuY0MeWClsDqQfeN_OgUyOPOXYg6oZt04w",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0YWlfa2hvYW4iOjM4LCJpYXQiOjE2ODAxODMyNDYsImV4cCI6MTY4MDI2OTY0Nn0.QXCM7_YtaSAAmSGCkJi8UR8ji_kigXU2HnfDq9bi0K8",
 									"type": "string"
 								}
 							]
@@ -1266,7 +1313,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"tai_khoan\":26,\r\n    \"ma_ghe\": 1,\r\n    \"ma_lich_chieu\": 59\r\n}",
+							"raw": "{\r\n    \"tai_khoan\":41,\r\n    \"ma_ghe\": 12,\r\n    \"ma_lich_chieu\": 68\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -1287,6 +1334,34 @@
 					"response": []
 				},
 				{
+					"name": "getCurrentOrder",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0YWlfa2hvYW4iOjQxLCJpYXQiOjE2ODAxNzc2NDEsImV4cCI6MTY4MDI2NDA0MX0.xWxZk4sY67rju2oqjxl32r06ePNAKUblCGhPPra9rRA",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{domain}}/order/getCurrentOrder",
+							"host": [
+								"{{domain}}"
+							],
+							"path": [
+								"order",
+								"getCurrentOrder"
+							]
+						}
+					},
+					"response": []
+				},
+				{
 					"name": "deleteOrder",
 					"request": {
 						"auth": {
@@ -1294,7 +1369,7 @@
 							"bearer": [
 								{
 									"key": "token",
-									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0YWlfa2hvYW4iOjM4LCJpYXQiOjE2Nzk1NTIxNjgsImV4cCI6MTY3OTYzODU2OH0.0_h_1SyJXOZYVuhcYXWyzz0bmnFTb52Tfs7La_EErL4",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0YWlfa2hvYW4iOjM4LCJpYXQiOjE2ODAxODEyMjcsImV4cCI6MTY4MDI2NzYyN30.wDh4FwNteLGt8zCP-aBqz31bbbB-kMLQY8zqFhJavkM",
 									"type": "string"
 								}
 							]
@@ -1302,14 +1377,33 @@
 						"method": "DELETE",
 						"header": [],
 						"url": {
-							"raw": "{{domain}}/order/deleteOrder/3",
+							"raw": "{{domain}}/order/deleteOrder/64",
 							"host": [
 								"{{domain}}"
 							],
 							"path": [
 								"order",
 								"deleteOrder",
-								"3"
+								"64"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "getOrderByShowTime",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{domain}}/order/getOrderByShowTime/69",
+							"host": [
+								"{{domain}}"
+							],
+							"path": [
+								"order",
+								"getOrderByShowTime",
+								"69"
 							]
 						}
 					},

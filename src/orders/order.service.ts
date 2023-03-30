@@ -1,10 +1,12 @@
 import { HttpException, Injectable } from '@nestjs/common';
 import { PrismaService } from 'src/prisma/prisma.service';
-import { orderConfig } from 'src/utils/config';
+import { orderConfig, showTimesConfig } from 'src/utils/config';
 import { Response } from 'src/utils/dto/global.dto';
 import {
+  alreadyExistedshowTimeMessage,
   notExistedUserMessage,
   orderNotFoundMessage,
+  seatNotFoundMessage,
   showTimeNotFoundMessage,
 } from 'src/utils/variables';
 import { OrderCreateDto } from './dto/order.dto';
@@ -29,6 +31,20 @@ export class OrderProvider {
         tai_khoan: +body.tai_khoan,
       },
     });
+    const checkExistingSeats = await this.model.ghe.findFirst({
+      where: {
+        ma_ghe: +body.ma_ghe,
+      },
+    });
+    if (!checkExistingSeats)
+      throw new HttpException(this.response.failRes(seatNotFoundMessage), 400);
+    // const checkOrdered = await this.model.dat_ve.findFirst({
+    //   where: {
+    //     ma_ghe: +body.ma_ghe,
+    //   },
+    // });
+    // console.log(checkOrdered, req.user);
+
     if (!checkIfExistUser)
       throw new HttpException(
         this.response.failRes(notExistedUserMessage),
@@ -39,6 +55,24 @@ export class OrderProvider {
         this.response.failRes(showTimeNotFoundMessage),
         400,
       );
+
+    // if (
+    //   checkOrdered &&
+    //   checkOrdered.ma_ghe === +body.ma_ghe &&
+    //   checkOrdered.ma_lich_chieu === +body.ma_lich_chieu
+    // ) {
+    //   if (checkOrdered.tai_khoan === req.user.tai_khoan)
+    //     throw new HttpException(
+    //       this.response.successRes('bạn đã đặt ghế này rồi'),
+    //       200,
+    //     );
+    //   if (checkOrdered.tai_khoan !== req.user.tai_khoan)
+    //     throw new HttpException(
+    //       this.response.successRes('ghế này đã có người đặt'),
+    //       200,
+    //     );
+    // }
+
     const order = await this.model.dat_ve.create({
       data: body,
       include: {
@@ -113,6 +147,77 @@ export class OrderProvider {
     const result = await this.model.dat_ve.findMany({
       where: {
         tai_khoan: req.user.taikhoan,
+      },
+      include: {
+        nguoi_dung: {
+          include: {
+            permission: {
+              select: {
+                permission_name: true,
+              },
+            },
+          },
+        },
+        lich_chieu: {
+          include: {
+            rap_phim: {
+              include: {
+                cum_rap: {
+                  include: {
+                    he_thong_rap: true,
+                  },
+                },
+              },
+            },
+            phim: {
+              include: {
+                nguoi_dung: {
+                  include: {
+                    permission: {
+                      select: {
+                        permission_name: true,
+                      },
+                    },
+                  },
+                },
+              },
+            },
+          },
+        },
+        ghe: {
+          include: {
+            rap_phim: {
+              include: {
+                cum_rap: {
+                  include: {
+                    he_thong_rap: true,
+                  },
+                },
+              },
+            },
+          },
+        },
+      },
+    });
+    for (let key in result) {
+      result[key] = orderConfig(result[key]);
+    }
+    return result;
+  }
+  async getOrderByShowTime(ma_lich_chieu: string) {
+    const checkIfExistShowTime = await this.model.lich_chieu.findFirst({
+      where: {
+        ma_lich_chieu: +ma_lich_chieu,
+      },
+    });
+    if (!checkIfExistShowTime)
+      throw new HttpException(
+        this.response.failRes(showTimeNotFoundMessage),
+        400,
+      );
+    let result = await this.model.dat_ve.findMany({
+      where: {
+        ma_lich_chieu: +ma_lich_chieu,
       },
       include: {
         nguoi_dung: {

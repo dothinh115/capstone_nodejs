@@ -104,6 +104,18 @@ export class MoviesProvider {
         });
       }
     }
+    const checkBanner = await this.model.banner.findFirst({
+      where: {
+        ma_phim: +ma_phim,
+      },
+    });
+    if (checkBanner) {
+      await this.model.banner.delete({
+        where: {
+          ma_banner: checkBanner.ma_banner,
+        },
+      });
+    }
     await this.model.phim.delete({
       where: {
         ma_phim: +ma_phim,

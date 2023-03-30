@@ -17,7 +17,7 @@ import { RoleGuard } from 'src/guards/roles.guard';
 import { TokenAuthorization } from 'src/strategy';
 import { permissionConfig } from 'src/utils/config';
 import { Response } from 'src/utils/dto/global.dto';
-import { successMessage } from 'src/utils/variables';
+import { showTimeNotFoundMessage, successMessage } from 'src/utils/variables';
 import { OrderAdminCreateDto, OrderCreateDto } from './dto/order.dto';
 import { OrderProvider } from './order.service';
 
@@ -50,9 +50,10 @@ export class OrderController {
     permissionConfig.Administrators,
   )
   @Post('/adminCreate')
-  async adminCreate(@Body() body: OrderAdminCreateDto) {
+  async adminCreate(@Body() body: OrderAdminCreateDto, @Req() req: Request) {
     const result = await this.orderService.createOrder(
       OrderAdminCreateDto.plainToClass(body),
+      req,
     );
     throw new HttpException(
       this.response.successRes(successMessage, result),
@@ -73,9 +74,22 @@ export class OrderController {
   }
   @ApiBearerAuth()
   @UseGuards(TokenAuthorization, RoleGuard)
-  @Get('getCurrentOrder')
+  @Get('/getCurrentOrder')
   async getCurrentOrder(@Req() req: Request) {
     const data = await this.orderService.getCurrentOrder(req);
+    throw new HttpException(
+      this.response.successRes(successMessage, data),
+      200,
+    );
+  }
+  @Get('/getOrderByShowTime/:ma_lich_chieu')
+  async getOrderByShowTime(@Param('ma_lich_chieu') ma_lich_chieu: string) {
+    const data = await this.orderService.getOrderByShowTime(ma_lich_chieu);
+    if (data.length === 0)
+      throw new HttpException(
+        this.response.successRes('lịch chiếu này chưa có người đặt vé'),
+        200,
+      );
     throw new HttpException(
       this.response.successRes(successMessage, data),
       200,

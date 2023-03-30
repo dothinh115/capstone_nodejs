@@ -21,6 +21,8 @@ CREATE TABLE `banner` (
   CONSTRAINT `banner_ibfk_1` FOREIGN KEY (`ma_phim`, `hinh_anh`) REFERENCES `phim` (`ma_phim`, `hinh_anh`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
+INSERT INTO `banner` (`ma_banner`, `ma_phim`, `hinh_anh`) VALUES
+(1,	50,	'1680167146104_1679468141175_pexels-cesar-perez-733745.jpg');
 
 DROP TABLE IF EXISTS `cum_rap`;
 CREATE TABLE `cum_rap` (
@@ -34,8 +36,8 @@ CREATE TABLE `cum_rap` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 INSERT INTO `cum_rap` (`ma_cum_rap`, `ten_cum_rap`, `dia_chi`, `ma_he_thong_rap`) VALUES
-(6,	'Cụm rạp Hồ Chí Minh',	'Hồ Chí Minh',	12),
-(9,	'Cụm rạp Biên Hòa',	'Biên Hòa',	12);
+(11,	'Cụm rạp Biên Hòa',	'Biên Hòa',	15),
+(12,	'Cụm rạp Biên Hòa',	'Biên Hòa',	15);
 
 DROP TABLE IF EXISTS `dat_ve`;
 CREATE TABLE `dat_ve` (
@@ -53,18 +55,9 @@ CREATE TABLE `dat_ve` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 INSERT INTO `dat_ve` (`ma_dat_ve`, `tai_khoan`, `ma_lich_chieu`, `ma_ghe`) VALUES
-(3,	38,	59,	1),
-(4,	38,	59,	1),
-(5,	38,	59,	1),
-(6,	38,	59,	1),
-(7,	38,	59,	1),
-(8,	26,	59,	1),
-(9,	26,	59,	1),
-(10,	38,	59,	1),
-(11,	38,	59,	1),
-(12,	38,	59,	1),
-(13,	39,	59,	1),
-(14,	39,	59,	1);
+(65,	38,	69,	13),
+(66,	38,	69,	13),
+(67,	38,	69,	13);
 
 DROP TABLE IF EXISTS `ghe`;
 CREATE TABLE `ghe` (
@@ -78,15 +71,12 @@ CREATE TABLE `ghe` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 INSERT INTO `ghe` (`ma_ghe`, `ten_ghe`, `loai_ghe`, `ma_rap`) VALUES
-(1,	'thinh',	'VIP',	4),
-(2,	'abc',	'Normal',	4),
-(3,	'abc',	'Normal',	4),
-(4,	'abc',	'Normal',	4),
-(5,	'abc',	'Normal',	4),
-(7,	'abc',	'Normal',	4),
-(8,	'gheUpdate',	'gheUpdate',	9),
-(9,	'ghe ngoi',	'ghe1',	9),
-(10,	'ghe ngoi2',	'ghe2',	9);
+(13,	'aac',	'Normal',	10),
+(14,	'aabc',	'Normal',	10),
+(15,	'aabc',	'Normal',	10),
+(17,	'aabc',	'Normal',	11),
+(18,	'aabcád',	'Normal',	11),
+(19,	'aabcáddd',	'Normal',	11);
 
 DROP TABLE IF EXISTS `he_thong_rap`;
 CREATE TABLE `he_thong_rap` (
@@ -97,8 +87,7 @@ CREATE TABLE `he_thong_rap` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 INSERT INTO `he_thong_rap` (`ma_he_thong_rap`, `ten_he_thong_rap`, `logo`) VALUES
-(12,	'Miền Nam',	'1679373438742_heThongRap.jpg'),
-(13,	'Miền Nam',	'1679814933957_heThongRap.jpg');
+(15,	'Miền Nam',	'1680177854073_heThongRap.jpg');
 
 DROP TABLE IF EXISTS `lich_chieu`;
 CREATE TABLE `lich_chieu` (
@@ -115,14 +104,8 @@ CREATE TABLE `lich_chieu` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 INSERT INTO `lich_chieu` (`ma_lich_chieu`, `ma_rap`, `ma_phim`, `ngay_gio_chieu`, `gia_ve`) VALUES
-(59,	3,	44,	'2023-03-15 08:00:00',	10000),
-(60,	3,	48,	'2023-03-15 12:00:00',	10000),
-(61,	3,	46,	'2023-03-15 12:00:00',	10000),
-(62,	3,	46,	'2023-03-16 12:00:00',	10000),
-(63,	3,	46,	'2023-03-14 12:00:00',	10000),
-(64,	3,	46,	'2023-03-14 15:00:00',	10000),
-(65,	3,	46,	'2023-03-14 16:00:00',	10000),
-(66,	9,	46,	'2023-12-20 04:00:00',	1000000);
+(69,	10,	50,	'2023-03-14 16:00:00',	10000),
+(70,	10,	50,	'2023-03-15 16:00:00',	10000);
 
 DROP TABLE IF EXISTS `nguoi_dung`;
 CREATE TABLE `nguoi_dung` (
@@ -144,7 +127,8 @@ INSERT INTO `nguoi_dung` (`tai_khoan`, `ho_ten`, `email`, `so_dt`, `mat_khau`, `
 (31,	'thinh',	'dothinh12345@gmail.com',	'0978481071',	'$2b$10$4GgHcUN8FVRW44p5Nb6GBeknDMs/vGYX1f7SD1bIoX3P6uP2ZtIsy',	1),
 (32,	'thinh',	'dothinh123421345@gmail.com',	'0978481071',	'$2b$10$i4p1/Rlp/uHKPiIMMSBO/e7BEsC2TvhCE8hqRUbMCXzNySZqL.XsG',	3),
 (38,	'Thinh890',	'abc@gmail.com',	'0901234567',	'$2b$10$6XPfwsNkfz1xwB2bjqYM6eIYz.LxFikJCHHZy7JgJq7WFcDTzjh.W',	4),
-(39,	'nguyenhau12345',	'abcd@gmail.com',	'0361313493',	'$2b$10$r9vAMBpN3kalMEGjrvHo4OGvwyw0MDoLFygnCECcC3YQCOILsqEq.',	4);
+(39,	'nguyenhau12345',	'abcd@gmail.com',	'0361313493',	'$2b$10$r9vAMBpN3kalMEGjrvHo4OGvwyw0MDoLFygnCECcC3YQCOILsqEq.',	4),
+(41,	'admin',	'abcde@gmail.com',	'0978481071',	'$2a$10$MRayGo2nYwIMiolw.tN40Oq2OwFp8fmd47FapE2oBf2C7dvO9pinG',	1);
 
 DROP TABLE IF EXISTS `permission`;
 CREATE TABLE `permission` (
@@ -180,9 +164,7 @@ CREATE TABLE `phim` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 INSERT INTO `phim` (`ma_phim`, `ten_phim`, `trailer`, `hinh_anh`, `mo_ta`, `ngay_khoi_chieu`, `danh_gia`, `hot`, `dang_chieu`, `sap_chieu`, `tai_khoan`) VALUES
-(44,	'phim 5',	'trailer 3',	'1679322233729_avatardefault.png',	'abc',	'1111-11-11',	4,	1,	1,	0,	38),
-(46,	'Phim 2',	'trailer_test',	'1679323912955_elephant-2729415.jpg',	'Mô tả phim thứ 1',	'2023-03-20',	5,	1,	1,	0,	38),
-(48,	'Phim 3',	'trailer_test',	'1679468141175_pexels-cesar-perez-733745.jpg',	'Mô tả phim thứ 1',	'2023-03-21',	5,	1,	1,	0,	38);
+(50,	'Phim 3',	'trailer_test',	'1680167146104_1679468141175_pexels-cesar-perez-733745.jpg',	'Mô tả phim thứ 1',	'2023-03-21',	5,	1,	1,	0,	38);
 
 DROP TABLE IF EXISTS `rap_phim`;
 CREATE TABLE `rap_phim` (
@@ -195,11 +177,8 @@ CREATE TABLE `rap_phim` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 INSERT INTO `rap_phim` (`ma_rap`, `ten_rap`, `ma_cum_rap`) VALUES
-(3,	'rap binh chanh',	6),
-(4,	'cgv',	6),
-(5,	'Rạp quận 7',	6),
-(6,	'Rạp quận 1',	6),
-(7,	'Rạp quận 2',	6),
-(9,	'cmv',	9);
+(10,	'Rạp Tp. Biên Hòa',	11),
+(11,	'Rạp Tp. Biên Hòa',	11),
+(13,	'Rạp Tp. Biên Hòa',	11);
 
--- 2023-03-26 08:26:16
+-- 2023-03-30 15:11:02
