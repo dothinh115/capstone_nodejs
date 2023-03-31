@@ -14,19 +14,11 @@ import { CinemasModule } from './cinemas/cinemas.module';
 import { DataModule } from './data/data.module';
 import { MoviesModule } from './movies/movies.module';
 import { OrderModule } from './orders/order.module';
-import * as fs from 'fs';
 
 declare const module: any;
 
 async function bootstrap() {
-  const httpsOptions = {
-    key: fs.readFileSync('./secrets/private-key.pem'),
-    cert: fs.readFileSync('./secrets/public-certificate.pem'),
-  };
-
-  const app = await NestFactory.create(AppModule, {
-    httpsOptions,
-  });
+  const app = await NestFactory.create(AppModule);
   app.enableCors();
   app.setGlobalPrefix('/api');
   app.use(express.static('.'));
@@ -55,7 +47,6 @@ async function bootstrap() {
   SwaggerModule.setup('/swagger', app, document);
 
   await app.listen(process.env.PORT);
-
   if (module.hot) {
     module.hot.accept();
     module.hot.dispose(() => app.close());
