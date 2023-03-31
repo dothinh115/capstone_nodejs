@@ -47,6 +47,7 @@ async function bootstrap() {
   SwaggerModule.setup('/swagger', app, document);
 
   await app.listen(process.env.PORT);
+
   if (module.hot) {
     module.hot.accept();
     module.hot.dispose(() => app.close());
