@@ -1,6 +1,8 @@
 import { NestFactory } from '@nestjs/core';
 import { AppModule } from './app.module';
 import * as express from 'express';
+import * as http from 'http';
+import * as https from 'https';
 import {
   SwaggerModule,
   DocumentBuilder,
@@ -14,11 +16,21 @@ import { CinemasModule } from './cinemas/cinemas.module';
 import { DataModule } from './data/data.module';
 import { MoviesModule } from './movies/movies.module';
 import { OrderModule } from './orders/order.module';
+import * as fs from 'fs';
+import { ExpressAdapter } from '@nestjs/platform-express';
 
 declare const module: any;
 
 async function bootstrap() {
-  const app = await NestFactory.create(AppModule);
+  const httpsOptions = {
+    key: fs.readFileSync('./secrets/private-key.pem'),
+    cert: fs.readFileSync('./secrets/public-certificate.pem'),
+  };
+
+  const server = express();
+  const app = await NestFactory.create(AppModule, new ExpressAdapter(server));
+  await app.init();
+
   app.enableCors();
   app.setGlobalPrefix('/api');
   app.use(express.static('.'));
@@ -46,7 +58,9 @@ async function bootstrap() {
   const document = SwaggerModule.createDocument(app, config, options);
   SwaggerModule.setup('/swagger', app, document);
 
-  await app.listen(process.env.PORT);
+  http.createServer(server).listen(process.env.PORT);
+  https.createServer(httpsOptions, server).listen(443);
+
   if (module.hot) {
     module.hot.accept();
     module.hot.dispose(() => app.close());
