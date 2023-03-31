@@ -5,7 +5,7 @@ import {
   UserLoginDto,
   UserLoginResponseDto,
 } from './dto/auth.dto';
-import * as bcrypt from 'bcryptjs';
+import * as bcrypt from 'bcrypt';
 import {
   alreadyExistedEmailMessage,
   loginErrorMessage,
@@ -65,11 +65,7 @@ export class AuthProvider {
         email,
       },
       include: {
-        permission: {
-          select: {
-            permission_name: true,
-          },
-        },
+        permission: true,
       },
     });
     if (!result) throw new HttpException(loginErrorMessage, 400);
@@ -81,6 +77,6 @@ export class AuthProvider {
         ...result,
         access_token: token,
       };
-    }
+    } else throw new HttpException(loginErrorMessage, 400);
   }
 }
