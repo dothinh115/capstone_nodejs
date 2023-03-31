@@ -59,7 +59,7 @@ async function bootstrap() {
   SwaggerModule.setup('/swagger', app, document);
 
   http.createServer(server).listen(process.env.PORT);
-  https.createServer(httpsOptions, server).listen(443);
+  https.createServer(httpsOptions, server).listen(3000);
 
   if (module.hot) {
     module.hot.accept();
