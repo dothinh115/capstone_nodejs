@@ -171,4 +171,12 @@ export class DataController {
       200,
     );
   }
+  @Get('/getSeatByShowTime/:ma_lich_chieu')
+  async getSeatByShowTime(@Param('ma_lich_chieu') ma_lich_chieu: string) {
+    const result = await this.dataService.getSeatByShowTime(ma_lich_chieu);
+    throw new HttpException(
+      this.response.successRes(successMessage, result),
+      200,
+    );
+  }
 }

@@ -10,11 +10,7 @@ import {
   pageOrLimitRequiredMessage,
 } from 'src/utils/variables';
 import * as fs from 'fs';
-import {
-  GetMovieByNameDto,
-  MovieCreateDto,
-  MovieUpdateDto,
-} from './dto/movies.dto';
+import { MovieCreateDto, MovieUpdateDto } from './dto/movies.dto';
 import { movieConfig } from 'src/utils/config';
 import { createDateAsUTC } from 'src/utils/function';
 
@@ -116,12 +112,15 @@ export class MoviesProvider {
         },
       });
     }
+    fs.readFile(movieImgPath + movie.hinh_anh, (err, file) => {
+      if (file) fs.unlinkSync(movieImgPath + movie.hinh_anh);
+    });
+
     await this.model.phim.delete({
       where: {
         ma_phim: +ma_phim,
       },
     });
-    fs.unlinkSync(movieImgPath + movie.hinh_anh);
   }
 
   async getMovieInfo(ma_phim) {

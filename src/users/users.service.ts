@@ -247,7 +247,6 @@ export class UsersProvider {
         },
       },
     });
-    console.log(result);
 
     for (let key in result) {
       result[key] = userConfig(result[key]);

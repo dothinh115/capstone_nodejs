@@ -106,9 +106,9 @@ export class CinemasController {
   @ApiBearerAuth()
   @UseGuards(TokenAuthorization, RoleGuard)
   @Roles(permissionConfig.Administrators, permissionConfig.Moderators)
-  @Delete('/deleteCinemaComlex/:ma_cum_rap')
+  @Delete('/deleteCinemaComplex/:ma_cum_rap')
   async deleteCinemaComlex(@Param('ma_cum_rap') ma_cum_rap: string) {
-    await this.cinemasService.deleteCinemaComlex(ma_cum_rap);
+    await this.cinemasService.deleteCinemaComplex(ma_cum_rap);
     throw new HttpException(this.response.successRes(successMessage), 200);
   }
   @ApiBearerAuth()

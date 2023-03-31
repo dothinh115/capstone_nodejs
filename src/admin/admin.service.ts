@@ -9,12 +9,12 @@ export class AdminProvider {
     try {
       const movieList = await this.model.phim.findMany();
       fs.readdir(movieImgPath, (err, files) => {
-        files.forEach((file) => {
+        for (let file of files) {
           const find = movieList.find((item) => item.hinh_anh === file);
           if (!find) {
             if (file !== 'cinemas') fs.unlinkSync(`${movieImgPath + file}`);
           }
-        });
+        }
       });
     } catch (error) {
       return error;

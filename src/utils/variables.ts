@@ -59,3 +59,4 @@ export const imgSyncDecription = 'Đồng bộ hình anh giữa database và fol
 export const keywordsRequiredMessage = 'Phải có keywords';
 export const pageOrLimitRequiredMessage = 'Phải có đủ page và limit';
 export const makeSenseInfoMessage = 'Điền thông tin cho hợp lý!';
+export const alreadyOrderedMessage = 'Ghế không trống!';

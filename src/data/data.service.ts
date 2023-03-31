@@ -370,4 +370,41 @@ export class DataProvider {
     }
     return result;
   }
+  async getSeatByShowTime(ma_lich_chieu: string) {
+    const showTime = await this.model.lich_chieu.findFirst({
+      where: {
+        ma_lich_chieu: +ma_lich_chieu,
+      },
+    });
+    if (!showTime)
+      throw new HttpException(
+        this.response.failRes(showTimeNotFoundMessage),
+        400,
+      );
+    const cinemaByShowTime = await this.model.rap_phim.findFirst({
+      where: {
+        ma_rap: showTime.ma_rap,
+      },
+    });
+    const seat = await this.model.ghe.findMany({
+      where: {
+        ma_rap: cinemaByShowTime.ma_rap,
+      },
+      include: {
+        rap_phim: {
+          include: {
+            cum_rap: {
+              include: {
+                he_thong_rap: true,
+              },
+            },
+          },
+        },
+      },
+    });
+    for (let key in seat) {
+      seat[key] = seatConfig(seat[key]);
+    }
+    return seat;
+  }
 }

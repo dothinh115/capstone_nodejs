@@ -4,6 +4,7 @@ import { orderConfig, showTimesConfig } from 'src/utils/config';
 import { Response } from 'src/utils/dto/global.dto';
 import {
   alreadyExistedshowTimeMessage,
+  alreadyOrderedMessage,
   notExistedUserMessage,
   orderNotFoundMessage,
   seatNotFoundMessage,
@@ -38,13 +39,6 @@ export class OrderProvider {
     });
     if (!checkExistingSeats)
       throw new HttpException(this.response.failRes(seatNotFoundMessage), 400);
-    // const checkOrdered = await this.model.dat_ve.findFirst({
-    //   where: {
-    //     ma_ghe: +body.ma_ghe,
-    //   },
-    // });
-    // console.log(checkOrdered, req.user);
-
     if (!checkIfExistUser)
       throw new HttpException(
         this.response.failRes(notExistedUserMessage),
@@ -56,22 +50,27 @@ export class OrderProvider {
         400,
       );
 
-    // if (
-    //   checkOrdered &&
-    //   checkOrdered.ma_ghe === +body.ma_ghe &&
-    //   checkOrdered.ma_lich_chieu === +body.ma_lich_chieu
-    // ) {
-    //   if (checkOrdered.tai_khoan === req.user.tai_khoan)
-    //     throw new HttpException(
-    //       this.response.successRes('bạn đã đặt ghế này rồi'),
-    //       200,
-    //     );
-    //   if (checkOrdered.tai_khoan !== req.user.tai_khoan)
-    //     throw new HttpException(
-    //       this.response.successRes('ghế này đã có người đặt'),
-    //       200,
-    //     );
-    // }
+    const orderCheck = await this.model.dat_ve.findFirst({
+      where: {
+        AND: [
+          {
+            tai_khoan: body.tai_khoan,
+          },
+          {
+            ma_lich_chieu: body.ma_lich_chieu,
+          },
+          {
+            ma_ghe: body.ma_ghe,
+          },
+        ],
+      },
+    });
+
+    if (orderCheck)
+      throw new HttpException(
+        this.response.failRes(alreadyOrderedMessage),
+        400,
+      );
 
     const order = await this.model.dat_ve.create({
       data: body,
