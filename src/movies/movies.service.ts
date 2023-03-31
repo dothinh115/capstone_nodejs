@@ -287,6 +287,7 @@ export class MoviesProvider {
         },
       },
     });
+
     if (exist.length === 0)
       throw new HttpException(
         this.response.failRes(notExistedMovieMessage),
@@ -302,7 +303,7 @@ export class MoviesProvider {
       ...(page &&
         limit && {
           skip: (+page - 1) * +limit,
-          take: +limit,
+          take: +limit, //1
         }),
       include: {
         nguoi_dung: {
@@ -316,10 +317,15 @@ export class MoviesProvider {
         },
       },
     });
+    const totalPage = Math.ceil(exist.length / +limit); // 1 / 1
     for (let key in result) {
       result[key] = movieConfig(result[key]);
     }
-    return result;
+    const data = {
+      content: [...result],
+      totalPage,
+    };
+    return data;
   }
 
   async getBanner(ma_phim: string) {

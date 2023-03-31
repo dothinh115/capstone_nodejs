@@ -48,7 +48,7 @@ export class UsersController {
   async getUserInfo(@Param('tai_khoan') tai_khoan: number): Promise<UserDto> {
     const result = await this.userProvider.getUserInfo(tai_khoan);
     throw new HttpException(
-      this.response.successRes(successMessage, userConfig(result)),
+      this.response.successRes(successMessage, result),
       200,
     );
   }

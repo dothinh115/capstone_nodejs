@@ -45,14 +45,15 @@ export class UsersProvider {
         tai_khoan: Number(tai_khoan),
       },
       include: {
-        permission: {
-          select: {
-            permission_name: true,
-          },
-        },
+        permission: true,
       },
     });
-    return data;
+    if (!data)
+      throw new HttpException(
+        this.response.failRes(notExistedUserMessage),
+        400,
+      );
+    return userConfig(data);
   }
 
   async updateUser(tai_khoan: number, body: UpdateUserDto): Promise<UserDto> {
