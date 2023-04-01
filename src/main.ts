@@ -14,11 +14,21 @@ import { CinemasModule } from './cinemas/cinemas.module';
 import { DataModule } from './data/data.module';
 import { MoviesModule } from './movies/movies.module';
 import { OrderModule } from './orders/order.module';
-
+import * as fs from 'fs';
 declare const module: any;
 
 async function bootstrap() {
-  const app = await NestFactory.create(AppModule);
+  const httpsOptions = {
+    key: fs.readFileSync(
+      process.cwd() + '/secrets/www_nodejs_dothinh_info_private-key.pem',
+    ),
+    cert: fs.readFileSync(
+      process.cwd() + '/secrets/www_nodejs_dothinh_info_cert.pem',
+    ),
+  };
+  const app = await NestFactory.create(AppModule, {
+    httpsOptions,
+  });
   app.enableCors();
   app.setGlobalPrefix('/api');
   app.use(express.static('.'));
