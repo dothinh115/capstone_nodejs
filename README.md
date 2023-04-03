@@ -5,7 +5,9 @@
 
 # capstone_nodejs Movie
 (*) :require
+
 ------------------------------------- APi Auth --------------------------------------------
+
 ---- Sign in ----
     + email: string (require)
     + mat_khau: string (require)
