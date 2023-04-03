@@ -350,7 +350,7 @@
 									"key": "hinh_anh",
 									"contentType": "",
 									"type": "file",
-									"src": "/C:/Users/Administrator/Downloads/1679468141175_pexels-cesar-perez-733745.jpg"
+									"src": "/C:/Users/Administrator/Downloads/cum_rap.jpg"
 								},
 								{
 									"key": "ten_phim",
@@ -429,14 +429,14 @@
 						"method": "DELETE",
 						"header": [],
 						"url": {
-							"raw": "{{domain}}/movies/deleteMovie/51",
+							"raw": "{{domain}}/movies/deleteMovie/50",
 							"host": [
 								"{{domain}}"
 							],
 							"path": [
 								"movies",
 								"deleteMovie",
-								"51"
+								"50"
 							]
 						}
 					},
@@ -552,7 +552,7 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "{{domain}}/movies/getMovieByDate?number=10",
+							"raw": "{{domain}}/movies/getMovieByDate?from=2023-3-1&to=2023-4-30&number=10",
 							"host": [
 								"{{domain}}"
 							],
@@ -563,13 +563,11 @@
 							"query": [
 								{
 									"key": "from",
-									"value": "2023-3-1",
-									"disabled": true
+									"value": "2023-3-1"
 								},
 								{
 									"key": "to",
-									"value": "2023-4-30",
-									"disabled": true
+									"value": "2023-4-30"
 								},
 								{
 									"key": "sort",
@@ -648,7 +646,7 @@
 								{
 									"key": "logo",
 									"type": "file",
-									"src": "/C:/Users/Administrator/Downloads/heThongRap.jpg"
+									"src": "/C:/Users/Administrator/Downloads/cum_rap.jpg"
 								}
 							]
 						},
@@ -681,14 +679,14 @@
 						"method": "DELETE",
 						"header": [],
 						"url": {
-							"raw": "{{domain}}/cinemas/deleteCinemaSystem/16",
+							"raw": "{{domain}}/cinemas/deleteCinemaSystem/22",
 							"host": [
 								"{{domain}}"
 							],
 							"path": [
 								"cinemas",
 								"deleteCinemaSystem",
-								"16"
+								"22"
 							]
 						}
 					},
@@ -769,7 +767,7 @@
 							"bearer": [
 								{
 									"key": "token",
-									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0YWlfa2hvYW4iOjM4LCJpYXQiOjE2NzkzNzU1NDgsImV4cCI6MTY3OTQ2MTk0OH0.XIg4tW0H1aCGwKQwKMYRcU9TpeM67Q0yrIUS4MGe2Qw",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0YWlfa2hvYW4iOjM4LCJpYXQiOjE2ODAyMjg5ODcsImV4cCI6MTY4MDMxNTM4N30.8ajWyB5bIN5htGvNFOtDEODdN1Fm1NLt4vJA0r4nb_M",
 									"type": "string"
 								}
 							]
@@ -786,14 +784,14 @@
 							}
 						},
 						"url": {
-							"raw": "{{domain}}/cinemas/deleteCinemaComlex/3",
+							"raw": "{{domain}}/cinemas/deleteCinemaComplex/12",
 							"host": [
 								"{{domain}}"
 							],
 							"path": [
 								"cinemas",
-								"deleteCinemaComlex",
-								"3"
+								"deleteCinemaComplex",
+								"12"
 							]
 						}
 					},
@@ -844,7 +842,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"ten_rap\":\"Rạp Tp. Biên Hòa\",\r\n    \"ma_cum_rap\":11\r\n}",
+							"raw": "{\r\n    \"ten_rap\":\"Rạp Tp. Biên Hòa\",\r\n    \"ma_cum_rap\":13\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -880,14 +878,14 @@
 						"method": "DELETE",
 						"header": [],
 						"url": {
-							"raw": "{{domain}}/cinemas/deleteCinema/12",
+							"raw": "{{domain}}/cinemas/deleteCinema/14",
 							"host": [
 								"{{domain}}"
 							],
 							"path": [
 								"cinemas",
 								"deleteCinema",
-								"12"
+								"14"
 							]
 						}
 					},
@@ -918,14 +916,14 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "{{domain}}/cinemas/getCinemasByComplex/6",
+							"raw": "{{domain}}/cinemas/getCinemasByComplex/11",
 							"host": [
 								"{{domain}}"
 							],
 							"path": [
 								"cinemas",
 								"getCinemasByComplex",
-								"6"
+								"11"
 							]
 						}
 					},
@@ -991,7 +989,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"ma_rap\":10,\r\n    \"ma_phim\":50,\r\n    \"ngay_gio_chieu\":\"2023-03-15 16:00:00\",\r\n    \"gia_ve\":10000\r\n}",
+							"raw": "{\r\n    \"ma_rap\":13,\r\n    \"ma_phim\":52,\r\n    \"ngay_gio_chieu\":\"2023-03-15 16:00:00\",\r\n    \"gia_ve\":10000\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -1096,7 +1094,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n  \"ten_ghe\":\"aabcáddd\",\r\n  \"ma_rap\":11\r\n  }",
+							"raw": "{\r\n  \"ten_ghe\":\"4\",\r\n  \"ma_rap\":13\r\n  }",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -1151,14 +1149,14 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "{{domain}}/data/getSeatByCinema/11",
+							"raw": "{{domain}}/data/getSeatByCinema/16",
 							"host": [
 								"{{domain}}"
 							],
 							"path": [
 								"data",
 								"getSeatByCinema",
-								"11"
+								"16"
 							]
 						}
 					},
@@ -1220,6 +1218,25 @@
 						}
 					},
 					"response": []
+				},
+				{
+					"name": "getSeatByShowTime",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{domain}}/data/getSeatByShowTime/73",
+							"host": [
+								"{{domain}}"
+							],
+							"path": [
+								"data",
+								"getSeatByShowTime",
+								"73"
+							]
+						}
+					},
+					"response": []
 				}
 			]
 		},
@@ -1276,7 +1293,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"ma_ghe\": 13,\r\n    \"ma_lich_chieu\": 69\r\n}",
+							"raw": "{\r\n    \"ma_ghe\": 25,\r\n    \"ma_lich_chieu\": 72\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"

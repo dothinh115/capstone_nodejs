@@ -22,7 +22,19 @@ CREATE TABLE `banner` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 INSERT INTO `banner` (`ma_banner`, `ma_phim`, `hinh_anh`) VALUES
-(1,	50,	'1680167146104_1679468141175_pexels-cesar-perez-733745.jpg');
+(3,	52,	'1680229954708_cum_rap.jpg'),
+(5,	54,	'1680235038873_Capture.PNG'),
+(6,	55,	'1680235052292_Capture.PNG'),
+(7,	56,	'1680235224402_cum_rap.jpg'),
+(8,	57,	'1680235225274_cum_rap.jpg'),
+(9,	58,	'1680235225912_cum_rap.jpg'),
+(10,	59,	'1680235226406_cum_rap.jpg'),
+(11,	60,	'1680235226863_cum_rap.jpg'),
+(12,	61,	'1680235227306_cum_rap.jpg'),
+(13,	62,	'1680235227709_cum_rap.jpg'),
+(14,	63,	'1680235228140_cum_rap.jpg'),
+(15,	64,	'1680235228599_cum_rap.jpg'),
+(16,	65,	'1680235229551_cum_rap.jpg');
 
 DROP TABLE IF EXISTS `cum_rap`;
 CREATE TABLE `cum_rap` (
@@ -37,7 +49,7 @@ CREATE TABLE `cum_rap` (
 
 INSERT INTO `cum_rap` (`ma_cum_rap`, `ten_cum_rap`, `dia_chi`, `ma_he_thong_rap`) VALUES
 (11,	'Cụm rạp Biên Hòa',	'Biên Hòa',	15),
-(12,	'Cụm rạp Biên Hòa',	'Biên Hòa',	15);
+(13,	'Cụm rạp Biên Hòa',	'Biên Hòa',	15);
 
 DROP TABLE IF EXISTS `dat_ve`;
 CREATE TABLE `dat_ve` (
@@ -55,9 +67,7 @@ CREATE TABLE `dat_ve` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 INSERT INTO `dat_ve` (`ma_dat_ve`, `tai_khoan`, `ma_lich_chieu`, `ma_ghe`) VALUES
-(65,	38,	69,	13),
-(66,	38,	69,	13),
-(67,	38,	69,	13);
+(74,	38,	72,	25);
 
 DROP TABLE IF EXISTS `ghe`;
 CREATE TABLE `ghe` (
@@ -76,7 +86,15 @@ INSERT INTO `ghe` (`ma_ghe`, `ten_ghe`, `loai_ghe`, `ma_rap`) VALUES
 (15,	'aabc',	'Normal',	10),
 (17,	'aabc',	'Normal',	11),
 (18,	'aabcád',	'Normal',	11),
-(19,	'aabcáddd',	'Normal',	11);
+(19,	'aabcáddd',	'Normal',	11),
+(25,	'1',	'Normal',	16),
+(26,	'2',	'Normal',	16),
+(27,	'3',	'Normal',	16),
+(28,	'4',	'Normal',	16),
+(29,	'4',	'Normal',	13),
+(30,	'4',	'Normal',	13),
+(31,	'4',	'Normal',	13),
+(32,	'4',	'Normal',	13);
 
 DROP TABLE IF EXISTS `he_thong_rap`;
 CREATE TABLE `he_thong_rap` (
@@ -87,7 +105,8 @@ CREATE TABLE `he_thong_rap` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 INSERT INTO `he_thong_rap` (`ma_he_thong_rap`, `ten_he_thong_rap`, `logo`) VALUES
-(15,	'Miền Nam',	'1680177854073_heThongRap.jpg');
+(15,	'Miền Nam',	'1680177854073_heThongRap.jpg'),
+(23,	'Miền Nam',	'1680229975044_cum_rap.jpg');
 
 DROP TABLE IF EXISTS `lich_chieu`;
 CREATE TABLE `lich_chieu` (
@@ -104,8 +123,8 @@ CREATE TABLE `lich_chieu` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 INSERT INTO `lich_chieu` (`ma_lich_chieu`, `ma_rap`, `ma_phim`, `ngay_gio_chieu`, `gia_ve`) VALUES
-(69,	10,	50,	'2023-03-14 16:00:00',	10000),
-(70,	10,	50,	'2023-03-15 16:00:00',	10000);
+(72,	16,	52,	'2023-03-15 16:00:00',	10000),
+(73,	13,	52,	'2023-03-15 16:00:00',	10000);
 
 DROP TABLE IF EXISTS `nguoi_dung`;
 CREATE TABLE `nguoi_dung` (
@@ -121,14 +140,15 @@ CREATE TABLE `nguoi_dung` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 INSERT INTO `nguoi_dung` (`tai_khoan`, `ho_ten`, `email`, `so_dt`, `mat_khau`, `loai_nguoi_dung`) VALUES
-(26,	'nguyen hau',	'hau19@gmail.com',	'978481071',	'$2b$10$C5UUxxda3XiS3OD/R5.vfO0lvTQq.dX.xxON9caY.L2tCjZIrRRmi',	1),
+(26,	'nguyenhauUpdate',	'hau19@gmail.com',	'0942219837',	'$2b$10$C5UUxxda3XiS3OD/R5.vfO0lvTQq.dX.xxON9caY.L2tCjZIrRRmi',	2),
 (28,	'thinh',	'dothinh@gmail.com',	'0978481071',	'$2b$10$.8IU0v5SSi9dVv8l/9wnx.ysaS5ebfAYDM1dmDAdijO31/qmlgeaS',	4),
 (29,	'thinh',	'dothinh123@gmail.com',	'0978481071',	'$2b$10$GTbFuMc6rZiADAAeYFVPEOTDAhV.o/JMSRgxDYzPCP71O9rgjc.yK',	1),
 (31,	'thinh',	'dothinh12345@gmail.com',	'0978481071',	'$2b$10$4GgHcUN8FVRW44p5Nb6GBeknDMs/vGYX1f7SD1bIoX3P6uP2ZtIsy',	1),
 (32,	'thinh',	'dothinh123421345@gmail.com',	'0978481071',	'$2b$10$i4p1/Rlp/uHKPiIMMSBO/e7BEsC2TvhCE8hqRUbMCXzNySZqL.XsG',	3),
 (38,	'Thinh890',	'abc@gmail.com',	'0901234567',	'$2b$10$6XPfwsNkfz1xwB2bjqYM6eIYz.LxFikJCHHZy7JgJq7WFcDTzjh.W',	4),
 (39,	'nguyenhau12345',	'abcd@gmail.com',	'0361313493',	'$2b$10$r9vAMBpN3kalMEGjrvHo4OGvwyw0MDoLFygnCECcC3YQCOILsqEq.',	4),
-(41,	'admin',	'abcde@gmail.com',	'0978481071',	'$2a$10$MRayGo2nYwIMiolw.tN40Oq2OwFp8fmd47FapE2oBf2C7dvO9pinG',	1);
+(41,	'admin',	'abcde@gmail.com',	'0978481071',	'$2a$10$MRayGo2nYwIMiolw.tN40Oq2OwFp8fmd47FapE2oBf2C7dvO9pinG',	1),
+(43,	'admin',	'admin@admin.com',	'0908999999',	'$2a$10$k53nPt1Rg7Jcnm42r78U6edRxhoVz8GG2FET8KzrabZKD6/ZVYWS6',	4);
 
 DROP TABLE IF EXISTS `permission`;
 CREATE TABLE `permission` (
@@ -164,7 +184,19 @@ CREATE TABLE `phim` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 INSERT INTO `phim` (`ma_phim`, `ten_phim`, `trailer`, `hinh_anh`, `mo_ta`, `ngay_khoi_chieu`, `danh_gia`, `hot`, `dang_chieu`, `sap_chieu`, `tai_khoan`) VALUES
-(50,	'Phim 3',	'trailer_test',	'1680167146104_1679468141175_pexels-cesar-perez-733745.jpg',	'Mô tả phim thứ 1',	'2023-03-21',	5,	1,	1,	0,	38);
+(52,	'Phim 3',	'trailer_test',	'1680229954708_cum_rap.jpg',	'Mô tả phim thứ 1',	'2023-03-21',	5,	1,	1,	0,	38),
+(54,	'456',	'456',	'1680235038873_Capture.PNG',	'456',	'2023-03-01',	456,	0,	0,	0,	38),
+(55,	'123',	'123',	'1680235052292_Capture.PNG',	'123',	'2023-03-01',	123,	0,	0,	0,	38),
+(56,	'123',	'123',	'1680235224402_cum_rap.jpg',	'123',	'2023-03-01',	123,	0,	0,	0,	38),
+(57,	'123',	'123',	'1680235225274_cum_rap.jpg',	'123',	'2023-03-01',	123,	0,	0,	0,	38),
+(58,	'123',	'123',	'1680235225912_cum_rap.jpg',	'123',	'2023-03-01',	123,	0,	0,	0,	38),
+(59,	'123',	'123',	'1680235226406_cum_rap.jpg',	'123',	'2023-03-01',	123,	0,	0,	0,	38),
+(60,	'123',	'123',	'1680235226863_cum_rap.jpg',	'123',	'2023-03-01',	123,	0,	0,	0,	38),
+(61,	'123',	'123',	'1680235227306_cum_rap.jpg',	'123',	'2023-03-01',	123,	0,	0,	0,	38),
+(62,	'123',	'123',	'1680235227709_cum_rap.jpg',	'123',	'2023-03-01',	123,	0,	0,	0,	38),
+(63,	'123',	'123',	'1680235228140_cum_rap.jpg',	'123',	'2023-03-01',	123,	0,	0,	0,	38),
+(64,	'123',	'123',	'1680235228599_cum_rap.jpg',	'123',	'2023-03-01',	123,	0,	0,	0,	38),
+(65,	'123',	'123',	'1680235229551_cum_rap.jpg',	'123',	'2023-03-01',	123,	0,	0,	0,	38);
 
 DROP TABLE IF EXISTS `rap_phim`;
 CREATE TABLE `rap_phim` (
@@ -179,6 +211,7 @@ CREATE TABLE `rap_phim` (
 INSERT INTO `rap_phim` (`ma_rap`, `ten_rap`, `ma_cum_rap`) VALUES
 (10,	'Rạp Tp. Biên Hòa',	11),
 (11,	'Rạp Tp. Biên Hòa',	11),
-(13,	'Rạp Tp. Biên Hòa',	11);
+(13,	'Rạp Tp. Biên Hòa',	11),
+(16,	'Rạp Tp. Biên Hòa',	13);
 
--- 2023-03-30 15:11:02
+-- 2023-04-03 13:23:21
