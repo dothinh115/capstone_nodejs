@@ -4,6 +4,6 @@ import { Controller, Get } from '@nestjs/common';
 export class AppController {
   @Get()
   Hello() {
-    return 'App listened at port 8080 thinh';
+    return 'App listened at port 8080';
   }
 }
