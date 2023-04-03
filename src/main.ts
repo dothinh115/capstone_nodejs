@@ -27,7 +27,7 @@ async function bootstrap() {
     ),
   };
   const app = await NestFactory.create(AppModule, {
-    httpsOptions,
+    // httpsOptions,
   });
   app.enableCors();
   app.setGlobalPrefix('/api');

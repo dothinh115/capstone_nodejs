@@ -50,10 +50,9 @@ export class OrderController {
     permissionConfig.Administrators,
   )
   @Post('/adminCreate')
-  async adminCreate(@Body() body: OrderAdminCreateDto, @Req() req: Request) {
+  async adminCreate(@Body() body: OrderAdminCreateDto) {
     const result = await this.orderService.createOrder(
       OrderAdminCreateDto.plainToClass(body),
-      req,
     );
     throw new HttpException(
       this.response.successRes(successMessage, result),
