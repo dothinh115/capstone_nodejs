@@ -21,13 +21,6 @@ services:
       context: .
     ports:
       - 8080:8080
-    environment:
-      - DB_HOST=mysql_db
-      - DB_DATABASE=capstone_nodejs
-      - DB_USER=root
-      - DB_PASS=Thinh123
-      - DB_PORT=3306
-      - DB_DIALECT=mysql
     depends_on:
       - mysql_db
     env_file: .env
